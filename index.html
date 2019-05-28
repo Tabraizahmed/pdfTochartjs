@@ -3,14 +3,176 @@
     Chakra chart application
   </title>
   <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
   </head>
   <body>
-    <h1>It is working</h1>
+    <!-- Navigation -->
+    <nav
+      class="navbar fixed-top navbar-expand-lg navbar-dark bg-main fixed-top"
+    >
+      <div class="container">
+        <a class="navbar-brand" href="index.html">Home page</a>
+        <button
+          class="navbar-toggler navbar-toggler-right"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarResponsive"
+          aria-controls="navbarResponsive"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- container start -->
+    <div class="container-fluid py-5">
+      <div class="row">
+        <div class="col-6 py-3 border border-left border-dark border-bottom-0">
+          <form
+            class="form-horizontal justify-content-center"
+            action="/action_page.php"
+          >
+            <div class="form-group">
+              <label class="control-label col-sm-4">Crown Chakra:</label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-4">Forehead Chakra:</label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-4">Ajna Chakra:</label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-4">Throat Chakra:</label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-4"
+                >Heart Chakra (Front):</label
+              >
+              <div class="col-sm-7">
+                <input type="text" class="form-control" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-4">Heart Chakra (Back):</label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-4"
+                >Solar Plex Charka (Front):</label
+              >
+              <div class="col-sm-7">
+                <input type="text" class="form-control" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-4"
+                >Solar Plex Charka (Back):</label
+              >
+              <div class="col-sm-7">
+                <input type="text" class="form-control" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-4"
+                >Spleen Chakra (Front):</label
+              >
+              <div class="col-sm-7">
+                <input type="text" class="form-control" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-4"
+                >Spleen Chakra (Back):</label
+              >
+              <div class="col-sm-7">
+                <input type="text" class="form-control" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-4">Meng Mein Chakra:</label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-4">Sex Chakra :</label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-4">Basic Chakra:</label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" />
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-7">
+                <button type="submit" class="btn btn-success">
+                  Genrate Graph
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-6 py-3 text-center">
+          <canvas id="myChart" width="400" height="400"></canvas>
+        </div>
+      </div>
+      <!--Container close-->
+    </div>
 
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">
+          Copyright &copy; energy-medicine-consulting.com 2019
+        </p>
+      </div>
+      <!-- /.container -->
+    </footer>
+    <!-- /.container -->
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+    <script src="chart.js"></script>
   </body>
 </html>
