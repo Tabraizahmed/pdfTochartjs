@@ -14,32 +14,18 @@ var lables = [
   "Basic Chakra"
 ];
 
-$(document).ready(function() {
-  var data = [3, 3, 3, 4, 5, 6, 7, 5, 2, 7, 3, 4];
-
-  LoadChart(data, lables);
-});
-
 function LoadChart(data, labels) {
   var ctx = document.getElementById("myChart").getContext("2d");
   var myChart = new Chart(ctx, {
     type: "radar",
-    responsive: true,
+
     data: {
       labels: labels,
 
       datasets: [
         {
-          label: "# of Votes",
           data: data,
-          backgroundColor: [
-            "rgba(255, 99, 132, 0.2)",
-            "rgba(54, 162, 235, 0.2)",
-            "rgba(255, 206, 86, 0.2)",
-            "rgba(75, 192, 192, 0.2)",
-            "rgba(153, 102, 255, 0.2)",
-            "rgba(255, 159, 64, 0.2)"
-          ],
+          backgroundColor: ["rgba(0, 0, 0, 0)"],
           borderColor: [
             "rgba(255, 99, 132, 1)",
             "rgba(54, 162, 235, 1)",
@@ -53,11 +39,18 @@ function LoadChart(data, labels) {
       ]
     },
     options: {
+      responsive: true,
+      legend: {
+        display: false
+      },
       scales: {
         yAxes: [
           {
             ticks: {
-              beginAtZero: true
+              beginAtZero: true,
+              userCallback: function(label, index, labels) {
+                return "";
+              }
             }
           }
         ]
@@ -75,3 +68,36 @@ function collectData(event) {
   });
   LoadChart(dataFromForm, lables);
 }
+
+function LoadSizeChart(lableData, dataArray, chartId) {
+  var sizeChart = document.getElementById(chartId).getContext("2d");
+  var myChart = new Chart(sizeChart, {
+    type: "radar",
+
+    data: dataArray,
+    options: {
+      responsive: true,
+      legend: {
+        display: false
+      },
+      scales: {
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true,
+              min: 0,
+              max: 100,
+              stepSize: 20,
+              userCallback: function(label, index, labels) {
+                return "";
+              }
+            }
+          }
+        ]
+      }
+    }
+  });
+}
+window.randomScalingFactor = function() {
+  return Math.round(Samples.utils.rand(-100, 100));
+};
