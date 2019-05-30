@@ -5,3 +5,32 @@
 body {
   background-color: #f4f1f1cc;
 }
+
+.chartStack {
+  width: 100%;
+  height: 10vh;
+
+  background: #2cdd46; /* Old browsers */
+  background: -moz-linear-gradient(
+    -45deg,
+    #2cdd46 0%,
+    #2cdd46 0%,
+    #ad2c1b 71%,
+    #ad2c1b 98%
+  ); /* FF3.6-15 */
+  background: -webkit-linear-gradient(
+    -45deg,
+    #2cdd46 0%,
+    #2cdd46 0%,
+    #ad2c1b 71%,
+    #ad2c1b 98%
+  ); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(
+    135deg,
+    #2cdd46 0%,
+    #2cdd46 0%,
+    #ad2c1b 71%,
+    #ad2c1b 98%
+  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2cdd46', endColorstr='#ad2c1b',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
