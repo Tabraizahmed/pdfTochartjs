@@ -42,18 +42,6 @@ function LoadChart(data, labels) {
       responsive: true,
       legend: {
         display: false
-      },
-      scales: {
-        yAxes: [
-          {
-            ticks: {
-              beginAtZero: true,
-              userCallback: function(label, index, labels) {
-                return "";
-              }
-            }
-          }
-        ]
       }
     }
   });
@@ -81,19 +69,22 @@ function LoadSizeChart(lableData, dataArray, chartId) {
         display: false
       },
       scales: {
-        yAxes: [
-          {
-            ticks: {
-              beginAtZero: true,
-              min: 0,
-              max: 100,
-              stepSize: 20,
-              userCallback: function(label, index, labels) {
-                return "";
+        scales: {
+          xAxes: [
+            {
+              gridLines: {
+                display: false
               }
             }
-          }
-        ]
+          ],
+          yAxes: [
+            {
+              gridLines: {
+                display: false
+              }
+            }
+          ]
+        }
       }
     }
   });

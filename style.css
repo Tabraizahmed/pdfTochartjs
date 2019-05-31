@@ -6,31 +6,36 @@ body {
   background-color: #f4f1f1cc;
 }
 
-.chartStack {
-  width: 100%;
-  height: 10vh;
-
-  background: #2cdd46; /* Old browsers */
-  background: -moz-linear-gradient(
-    -45deg,
-    #2cdd46 0%,
-    #2cdd46 0%,
-    #ad2c1b 71%,
-    #ad2c1b 98%
-  ); /* FF3.6-15 */
-  background: -webkit-linear-gradient(
-    -45deg,
-    #2cdd46 0%,
-    #2cdd46 0%,
-    #ad2c1b 71%,
-    #ad2c1b 98%
-  ); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(
-    135deg,
-    #2cdd46 0%,
-    #2cdd46 0%,
-    #ad2c1b 71%,
-    #ad2c1b 98%
-  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2cdd46', endColorstr='#ad2c1b',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+.bullet {
+  font: 10px sans-serif;
+}
+.bullet .marker {
+  stroke: rgb(93, 70, 175);
+  stroke-width: 5px;
+}
+.bullet .tick line {
+  stroke: #666;
+  stroke-width: 0.5px;
+}
+.bullet .range.s0 {
+  fill: #eee;
+}
+.bullet .range.s1 {
+  fill: #ddd;
+}
+.bullet .range.s2 {
+  fill: #ccc;
+}
+.bullet .measure.s0 {
+  fill: rgb(209, 24, 24);
+}
+.bullet .measure.s1 {
+  fill: rgb(25, 148, 21);
+}
+.bullet .title {
+  font-size: 14px;
+  font-weight: bold;
+}
+.bullet .subtitle {
+  fill: #999;
 }

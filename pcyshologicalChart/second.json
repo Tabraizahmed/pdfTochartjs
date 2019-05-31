@@ -1,0 +1,54 @@
+[
+  {
+    "title": "Stress",
+    "subtitle": "solar plexus",
+
+    "ranges": [3.5, 4.25, 5],
+    "measures": [3.2, 4.7],
+    "markers": [2]
+  },
+  {
+    "title": "Anger",
+    "subtitle": "solar plexus",
+    "ranges": [20, 25, 30],
+    "measures": [21, 23],
+    "markers": [13]
+  },
+  {
+    "title": "Fear/phobia",
+    "subtitle": "solar plexus",
+
+    "ranges": [1400, 2000, 2500],
+    "measures": [1000, 1650],
+    "markers": [1000]
+  },
+  {
+    "title": "Courage",
+    "subtitle": "solar plexus",
+    "ranges": [350, 500, 600],
+    "measures": [100, 320],
+    "markers": [200]
+  },
+  {
+    "title": "Perseverance",
+    "subtitle": "solar plexus",
+
+    "ranges": [3.5, 4.25, 5],
+    "measures": [3.2, 4.7],
+    "markers": [3]
+  },
+  {
+    "title": "Obession",
+    "subtitle": "solar plexus",
+    "ranges": [3.5, 4.25, 5],
+    "measures": [3.2, 4.7],
+    "markers": [1]
+  },
+  {
+    "title": "Self-Confidence",
+    "subtitle": "",
+    "ranges": [150, 225, 300],
+    "measures": [220, 270],
+    "markers": [300]
+  }
+]
