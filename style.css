@@ -10,11 +10,11 @@ body {
   font: 10px sans-serif;
 }
 .bullet .marker {
-  stroke: rgb(93, 70, 175);
+  stroke: rgb(221, 16, 16);
   stroke-width: 5px;
 }
 .bullet .tick line {
-  stroke: #666;
+  stroke: rgba(102, 102, 102, 0.486);
   stroke-width: 0.5px;
 }
 .bullet .range.s0 {
@@ -24,13 +24,13 @@ body {
   fill: #ddd;
 }
 .bullet .range.s2 {
-  fill: #ccc;
+  fill: #d3626a;
 }
 .bullet .measure.s0 {
-  fill: rgb(209, 24, 24);
+  fill: #d3626a;
 }
 .bullet .measure.s1 {
-  fill: rgb(25, 148, 21);
+  fill: #72c275;
 }
 .bullet .title {
   font-size: 14px;

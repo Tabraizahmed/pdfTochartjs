@@ -1,51 +1,51 @@
 [
   {
-    "title": "Dynamism",
+    "title": "Dynamism %",
     "subtitle": "basic",
-    "ranges": [33, 33, 34],
+    "ranges": [30, 50],
+    "measures": [50, 100],
+    "markers": [30]
+  },
+  {
+    "title": "Ability to attract money %",
+    "subtitle": "basic",
+    "ranges": [50, 50],
     "measures": [50, 100],
     "markers": [50]
   },
   {
-    "title": "Ability to attract money",
+    "title": "Productivity %",
     "subtitle": "basic",
-    "ranges": [33, 33, 34],
+    "ranges": [70, 70],
     "measures": [50, 100],
-    "markers": [26]
+    "markers": [70]
   },
   {
-    "title": "Productivity",
-    "subtitle": "basic",
-    "ranges": [33, 33, 34],
-    "measures": [50, 100],
-    "markers": [75]
-  },
-  {
-    "title": "Sexual Drive",
+    "title": "Sexual Drive %",
     "subtitle": "sex",
-    "ranges": [33, 33, 34],
+    "ranges": [22, 70],
+    "measures": [50, 100],
+    "markers": [22]
+  },
+  {
+    "title": "Physical Violence %",
+    "subtitle": "meng mein",
+    "ranges": [40, 70],
+    "measures": [50, 100],
+    "markers": [40]
+  },
+  {
+    "title": "Sixth Sense %",
+    "subtitle": "navel",
+    "ranges": [60, 60],
     "measures": [50, 100],
     "markers": [60]
   },
   {
-    "title": "Physical Violence",
-    "subtitle": "meng mein",
-    "ranges": [33, 33, 34],
-    "measures": [50, 100],
-    "markers": [20]
-  },
-  {
-    "title": "Sixth Sense",
-    "subtitle": "navel",
-    "ranges": [33, 33, 34],
-    "measures": [50, 100],
-    "markers": [10]
-  },
-  {
-    "title": "Depression",
+    "title": "Depression %",
     "subtitle": "solar plexus",
-    "ranges": [33, 33, 34],
+    "ranges": [30, 50],
     "measures": [50, 100],
-    "markers": [23]
+    "markers": [30]
   }
 ]

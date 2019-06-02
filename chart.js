@@ -14,6 +14,20 @@ var lables = [
   "Basic Chakra"
 ];
 
+function OrganChart(data, id) {
+  var ctx = document.getElementById(id).getContext("2d");
+  var myChart = new Chart(ctx, {
+    type: "radar",
+
+    data: data,
+    options: {
+      responsive: true,
+      legend: {
+        display: false
+      }
+    }
+  });
+}
 function LoadChart(data, labels) {
   var ctx = document.getElementById("myChart").getContext("2d");
   var myChart = new Chart(ctx, {

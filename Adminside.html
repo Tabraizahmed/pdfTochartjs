@@ -1,0 +1,548 @@
+<html>
+  <title>
+    Chakra chart application
+  </title>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
+
+
+
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav
+      class="navbar fixed-top navbar-expand-lg navbar-dark bg-main fixed-top"
+    >
+      <div class="container">
+        <a class="navbar-brand" href="index.html">Home page</a>
+        <button
+          class="navbar-toggler navbar-toggler-right"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarResponsive"
+          aria-controls="navbarResponsive"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+    <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Admin side</a>
+            </li>
+            </ul>
+        </div>
+      </div>
+    </nav>
+  </body>
+</html>
+<div class="container-fluid py-5 mt-5">
+        <h3 class="card-subtitle text-center">Major chakras size & activation level test</h3>
+    <div class="row mt-5">
+      
+        <div class="col-lg-6 col-sm-12">
+            <h4>Front Chakara Form (Please fill this form with Benchmark data)</h4>
+            <form id="graphForm">
+                <div class="form-group">
+                  <label for="formGroupExampleInput">Crown Chakra</label>
+                  <input type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label for="formGroupExampleInput2">Forehead Chakra</label>
+                  <input type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label for="formGroupExampleInput2">Ajna Chakra</label>
+                  <input type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label for="formGroupExampleInput2">Throat Chakra</label>
+                  <input type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label for="formGroupExampleInput2">Heart Chakra (Front)</label>
+                  <input type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label for="formGroupExampleInput2">Heart Chakra (Back)</label>
+                  <input type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label for="formGroupExampleInput2"
+                    >Solar Plex Charka (Front)</label
+                  >
+                  <input type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label for="formGroupExampleInput2"
+                    >Solar Plex Charka (Back)</label
+                  >
+                  <input type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label for="formGroupExampleInput2">Spleen Chakra (Front)</label>
+                  <input type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label for="formGroupExampleInput2">Spleen Chakra (Back)</label>
+                  <input type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label for="formGroupExampleInput2">Meng Mein Chakra</label>
+                  <input type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label for="formGroupExampleInput2">Sex Chakra </label>
+                  <input type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label for="formGroupExampleInput2">Basic Chakra</label>
+                  <input type="text" class="form-control" />
+                </div>
+                <div class="form-row mt-3">
+                  <div class="col-lg-12 col-sm-12">
+                    <button
+                      type="button"
+                      onclick="collectData(this)"
+                      class="btn btn-success form-control"
+                    >
+                      Genrate Graph
+                    </button>
+                  </div>
+                </div>
+              </form>
+        </div>
+        <div class="col-lg-6 col-sm-12">
+            <h4>Back Chakara From (Please fill this form with Benchmark data)</h4>
+            <form id="graphForm-second">
+                <div class="form-group">
+                  <label for="formGroupExampleInput">Crown Chakra</label>
+                  <input type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label for="formGroupExampleInput2">Forehead Chakra</label>
+                  <input type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label for="formGroupExampleInput2">Ajna Chakra</label>
+                  <input type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label for="formGroupExampleInput2">Throat Chakra</label>
+                  <input type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label for="formGroupExampleInput2">Heart Chakra (Front)</label>
+                  <input type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label for="formGroupExampleInput2">Heart Chakra (Back)</label>
+                  <input type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label for="formGroupExampleInput2"
+                    >Solar Plex Charka (Front)</label
+                  >
+                  <input type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label for="formGroupExampleInput2"
+                    >Solar Plex Charka (Back)</label
+                  >
+                  <input type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label for="formGroupExampleInput2">Spleen Chakra (Front)</label>
+                  <input type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label for="formGroupExampleInput2">Spleen Chakra (Back)</label>
+                  <input type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label for="formGroupExampleInput2">Meng Mein Chakra</label>
+                  <input type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label for="formGroupExampleInput2">Sex Chakra </label>
+                  <input type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label for="formGroupExampleInput2">Basic Chakra</label>
+                  <input type="text" class="form-control" />
+                </div>
+                <div class="form-row mt-3">
+                  <div class="col-lg-12 col-sm-12">
+                    <button
+                      type="button"
+                      onclick="collectData(this)"
+                      class="btn btn-success form-control"
+                    >
+                      Genrate Graph
+                    </button>
+                  </div>
+                </div>
+              </form>
+        </div>
+        <div class="col-lg-12 col-sm-6">
+            <div id="firstEditor" style="height: 200px"></div>
+        </div>
+    </div>
+    <hr class="border border-info">
+    <h3 class="card-subtitle  text-center">Main organs & Minor Chakras Health level test</h3>
+    <div class="row mt-5">
+        <div class="col-lg-6 col-sm-12">
+            <h3 class="text-center">Left Organs</h3>
+            <form id="graphForm">
+                    <div class="form-group">
+                      <label for="formGroupExampleInput">Brain</label>
+                      <input type="text" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                      <label for="formGroupExampleInput2">Back Head m.Chakra</label>
+                      <input type="text" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                      <label for="formGroupExampleInput2">Eyes</label>
+                      <input type="text" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                      <label for="formGroupExampleInput2">Ears</label>
+                      <input type="text" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                      <label for="formGroupExampleInput2">Jaw m.chakra</label>
+                      <input type="text" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                      <label for="formGroupExampleInput2">Throat m.Chakra</label>
+                      <input type="text" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                      <label for="formGroupExampleInput2"
+                        >Physical Heat</label
+                      >
+                      <input type="text" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                            <label for="formGroupExampleInput2"
+                              >Breast</label
+                            >
+                            <input type="text" class="form-control" />
+                          </div>
+                          <div class="form-group">
+                                <label for="formGroupExampleInput2"
+                                  >Lungs</label
+                                >
+                                <input type="text" class="form-control" />
+                              </div>
+                              <div class="form-group">
+                                    <label for="formGroupExampleInput2"
+                                      >Liver</label
+                                    >
+                                    <input type="text" class="form-control" />
+                                  </div>
+                                  <div class="form-group">
+                                        <label for="formGroupExampleInput2"
+                                          >Stomach</label
+                                        >
+                                        <input type="text" class="form-control" />
+                                      </div>
+                                      <div class="form-group">
+                                            <label for="formGroupExampleInput2"
+                                              >Pancreas</label
+                                            >
+                                            <input type="text" class="form-control" />
+                                          </div>
+            
+                    <div class="form-row mt-3">
+                      <div class="col-lg-12 col-sm-12">
+                        <button
+                          type="button"
+                          onclick="collectData(this)"
+                          class="btn btn-success form-control"
+                        >
+                          Genrate Graph
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+        </div>
+        <div class="col-lg-6 col-sm-12">
+                <h3 class="text-center">Right Organs</h3>
+                <form id="graphForm">
+                        <div class="form-group">
+                          <label for="formGroupExampleInput">Large Intestine</label>
+                          <input type="text" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                          <label for="formGroupExampleInput2">Physical Spieen</label>
+                          <input type="text" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                          <label for="formGroupExampleInput2">Kidneys</label>
+                          <input type="text" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                          <label for="formGroupExampleInput2">Prostate (M) Uterus (W)</label>
+                          <input type="text" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                          <label for="formGroupExampleInput2">Bladder</label>
+                          <input type="text" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                          <label for="formGroupExampleInput2">Perineum m.chakra</label>
+                          <input type="text" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                          <label for="formGroupExampleInput2"
+                            >Armpits</label
+                          >
+                          <input type="text" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                                <label for="formGroupExampleInput2"
+                                  >Hands</label
+                                >
+                                <input type="text" class="form-control" />
+                              </div>
+                              <div class="form-group">
+                                    <label for="formGroupExampleInput2"
+                                      >Spine</label
+                                    >
+                                    <input type="text" class="form-control" />
+                                  </div>
+                                  <div class="form-group">
+                                        <label for="formGroupExampleInput2"
+                                          >Hips m.Chakra</label
+                                        >
+                                        <input type="text" class="form-control" />
+                                      </div>
+                                      <div class="form-group">
+                                            <label for="formGroupExampleInput2"
+                                              >Knees</label
+                                            >
+                                            <input type="text" class="form-control" />
+                                          </div>
+                                          <div class="form-group">
+                                                <label for="formGroupExampleInput2"
+                                                  >Feet</label
+                                                >
+                                                <input type="text" class="form-control" />
+                                              </div>
+                    
+                        <div class="form-row mt-3">
+                          <div class="col-lg-12 col-sm-12">
+                            <button
+                              type="button"
+                              onclick="collectData(this)"
+                              class="btn btn-success form-control"
+                            >
+                              Genrate Graph
+                            </button>
+                          </div>
+                        </div>
+                      </form>
+        </div>
+        <div class="col-lg-12 col-sm-6">
+                <div id="secondEditor" style="height: 200px"></div>
+            </div>
+    </div>
+    <hr class="border border-info">
+    <h3 class="card-subtitle  text-center">Psychological parameters strength level test</h3>
+    <div class="row mt-5">
+        <div class="col-lg-6 col-sm-6">
+                <h3 class="text-center">Part 1</h3>
+        <form>
+
+                <div class="form-group">
+                  <label for="formGroupExampleInput text-center"><b>Dynamism %</b></label><br/>
+                  <label for="formGroupExampleInput text-center">Low</label>
+                  <input type="text" class="form-control" />
+                  <label for="formGroupExampleInput text-center">High</label>
+                  <input type="text" class="form-control" />
+                </div>
+    <div class="form-group">
+            <label for="formGroupExampleInput text-center"><b>Ability to attract money %</b></label><br/>
+            <label for="formGroupExampleInput text-center">Low</label>
+            <input type="text" class="form-control" />
+            <label for="formGroupExampleInput text-center">High</label>
+            <input type="text" class="form-control" />
+            </div>
+    <div class="form-group">
+        <label for="formGroupExampleInput text-center"><b>Productivity %</b></label><br/>
+        <label for="formGroupExampleInput text-center">Low</label>
+        <input type="text" class="form-control" />
+        <label for="formGroupExampleInput text-center">High</label>
+        <input type="text" class="form-control" />
+                          </div>
+    <div class="form-group">
+        <label for="formGroupExampleInput text-center"><b>Sexual Drive %</b></label><br/>
+        <label for="formGroupExampleInput text-center">Low</label>
+        <input type="text" class="form-control" />
+        <label for="formGroupExampleInput text-center">High</label>
+        <input type="text" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="formGroupExampleInput text-center"><b>Physical Violence %</b></label><br/>
+            <label for="formGroupExampleInput text-center">Low</label>
+            <input type="text" class="form-control" />
+            <label for="formGroupExampleInput text-center">High</label>
+            <input type="text" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="formGroupExampleInput text-center"><b>Sixth Sense %</b></label><br/>
+                <label for="formGroupExampleInput text-center">Low</label>
+                <input type="text" class="form-control" />
+                <label for="formGroupExampleInput text-center">High</label>
+                <input type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput text-center"><b>Depression %</b></label><br/>
+                    <label for="formGroupExampleInput text-center">Low</label>
+                    <input type="text" class="form-control" />
+                    <label for="formGroupExampleInput text-center">High</label>
+                    <input type="text" class="form-control" />
+                    </div>
+                    <div class="form-row mt-3">
+                            <div class="col-lg-12 col-sm-12">
+                              <button
+                                type="button"
+                                onclick="collectData(this)"
+                                class="btn btn-success form-control"
+                              >
+                                Genrate Graph
+                              </button>
+                            </div>
+                          </div>
+        </form>
+        </div>
+        <div class="col-lg-6 col-sm-6">
+                <h3 class="text-center">Part 2</h3>
+                <form>
+
+                        <div class="form-group">
+                          <label for="formGroupExampleInput text-center"><b>Chakra Stress</b></label><br/>
+                          <label for="formGroupExampleInput text-center">Low</label>
+                          <input type="text" class="form-control" />
+                          <label for="formGroupExampleInput text-center">High</label>
+                          <input type="text" class="form-control" />
+                        </div>
+            <div class="form-group">
+                    <label for="formGroupExampleInput text-center"><b>Chakra Anger</b></label><br/>
+                    <label for="formGroupExampleInput text-center">Low</label>
+                    <input type="text" class="form-control" />
+                    <label for="formGroupExampleInput text-center">High</label>
+                    <input type="text" class="form-control" />
+                    </div>
+            <div class="form-group">
+                <label for="formGroupExampleInput text-center"><b>Chakra Fear/phobia</b></label><br/>
+                <label for="formGroupExampleInput text-center">Low</label>
+                <input type="text" class="form-control" />
+                <label for="formGroupExampleInput text-center">High</label>
+                <input type="text" class="form-control" />
+                                  </div>
+            <div class="form-group">
+                <label for="formGroupExampleInput text-center"><b>Chakra Courage</b></label><br/>
+                <label for="formGroupExampleInput text-center">Low</label>
+                <input type="text" class="form-control" />
+                <label for="formGroupExampleInput text-center">High</label>
+                <input type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput text-center"><b>Chakra Perseverance</b></label><br/>
+                    <label for="formGroupExampleInput text-center">Low</label>
+                    <input type="text" class="form-control" />
+                    <label for="formGroupExampleInput text-center">High</label>
+                    <input type="text" class="form-control" />
+                    </div>
+                  
+                        <div class="form-group">
+                            <label for="formGroupExampleInput text-center"><b>Chakra Obession</b></label><br/>
+                            <label for="formGroupExampleInput text-center">Low</label>
+                            <input type="text" class="form-control" />
+                            <label for="formGroupExampleInput text-center">High</label>
+                            <input type="text" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                    <label for="formGroupExampleInput text-center"><b>Chakra Self-Confidence</b></label><br/>
+                                    <label for="formGroupExampleInput text-center">Low</label>
+                                    <input type="text" class="form-control" />
+                                    <label for="formGroupExampleInput text-center">High</label>
+                                    <input type="text" class="form-control" />
+                                    </div>
+                            <div class="form-row mt-3">
+                                    <div class="col-lg-12 col-sm-12">
+                                      <button
+                                        type="button"
+                                        onclick="collectData(this)"
+                                        class="btn btn-success form-control"
+                                      >
+                                        Genrate Graph
+                                      </button>
+                                    </div>
+                                  </div>
+                </form>
+        </div>
+    </div>
+   
+            <div class="col-lg-12 col-sm-6">
+                    <div id="thirdEditor" style="height: 200px"></div>
+                </div>
+ 
+</div>
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+        <div class="container">
+          <p class="m-0 text-center text-white">
+            Copyright &copy; energy-medicine-consulting.com 2019
+          </p>
+        </div>
+        <!-- /.container -->
+      </footer>
+      <!-- /.container -->
+      <!-- Bootstrap core JavaScript -->
+      <script src="vendor/jquery/jquery.min.js"></script>
+      <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+      <script src="chart.js"></script>
+          <!-- Main Quill library -->
+<script src="//cdn.quilljs.com/1.3.6/quill.js"></script>
+<script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
+
+<!-- Theme included stylesheets -->
+<link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+      <script>
+          var options={
+            theme: 'snow'
+          }
+         var container = document.getElementById('firstEditor');
+         var second = document.getElementById('secondEditor');
+         var thirdEditor = document.getElementById('thirdEditor');
+         
+
+var editor = new Quill(container,options);
+var second = new Quill(second,options);
+var third = new Quill(thirdEditor,options);
+//   var quill = new Quill('#firstEditor,', {
+//     theme: 'snow'
+//   });
+//   var quill2 = new Quill('#secondEditor', {
+//     theme: 'snow'
+//   });
+</script>
+ 
+    </body>
+  </html>

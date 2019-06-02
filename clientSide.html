@@ -1,0 +1,241 @@
+<html>
+  <title>
+    Chakra chart application: Client side
+  </title>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav
+      class="navbar fixed-top navbar-expand-lg navbar-dark bg-main fixed-top"
+    >
+      <div class="container">
+        <a class="navbar-brand" href="index.html">Home page</a>
+        <button
+          class="navbar-toggler navbar-toggler-right"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarResponsive"
+          aria-controls="navbarResponsive"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="Adminside.html">Admin side</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid py-5 mt-5">
+      <h3 class="card-subtitle text-center">
+        Major chakras size & activation level test
+      </h3>
+      <div class="row mt-5">
+        <div class="col-lg-6 col-sm-6 text-center">
+          <h3>BENCHMARK SIZE TEST</h3>
+          <canvas id="sizeChart"></canvas>
+        </div>
+        <div class="col-lg-6 col-sm-6 text-center">
+          <h3>ACTIVATION LEVEL TEST</h3>
+          <canvas id="activationChart"></canvas>
+        </div>
+        <div class="col-lg-12 col-sm-6">
+          <div class="form-group">
+            <label for="comment">Comment:</label>
+            <textarea class="form-control" rows="5" id="comment"></textarea>
+          </div>
+        </div>
+      </div>
+      <hr class="border border-info" />
+      <h3 class="card-subtitle text-center">
+        Main organs & Minor Chakras Health level test
+      </h3>
+      <div class="row mt-5">
+        <div class="col-lg-6 col-sm-6 text-center">
+          <h3>Organs & Min.CH.-Part 1</h3>
+          <canvas id="leftOrganChart"></canvas>
+        </div>
+        <div class="col-lg-6 col-sm-6 text-center">
+          <h3>Organs & Min.CH.-Part 2</h3>
+          <canvas id="rightOrganChart"></canvas>
+        </div>
+        <div class="col-lg-12 col-sm-6">
+          <div class="form-group">
+            <label for="comment">Comment:</label>
+            <textarea class="form-control" rows="5" id="comment"></textarea>
+          </div>
+        </div>
+      </div>
+      <hr class="border border-info" />
+      <h3 class="card-subtitle text-center">
+        Psychological parameters strength level test
+      </h3>
+      <div class="row mt-5">
+        <div class="col-lg-6 col-sm-6 text-center">
+          <h3>Psych. Parameters - Part 1</h3>
+          <div id="chartContainer" class="mt-3"></div>
+        </div>
+        <div class="col-lg-6 col-sm-6 text-left">
+          <h3 class="text-center">Psych. Parameters - Part 2</h3>
+          <div id="secondChart" class="mt-3"></div>
+        </div>
+        <div class="col-lg-12 col-sm-6">
+          <div class="form-group">
+            <label for="comment">Comment:</label>
+            <textarea class="form-control" rows="5" id="comment"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">
+          Copyright &copy; energy-medicine-consulting.com 2019
+        </p>
+      </div>
+      <!-- /.container -->
+    </footer>
+    <!-- /.container -->
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+    <script src="chart.js"></script>
+    <script src="pcyshologicalChart/d3.min.js"></script>
+    <script src="pcyshologicalChart/dimple.js"></script>
+    <script src="pcyshologicalChart/renderchart.js"></script>
+    <script>
+      $(document).ready(function() {
+        var completeData = {
+          labels: [
+            "Crown Chakra",
+            "Forehead Chakra",
+            "Ajna Chakra",
+            "Throat Chakra",
+            "Heart Chakra (Front)",
+            "Heart Chakra (Back)",
+            "Solar Plex Charka (Front)",
+            "Solar Plex Charka (Back)",
+            "Spleen Chakra (Front)",
+            "Spleen Chakra (Back)",
+            "Meng Mein Chakra",
+            "Sex Chakra",
+            "Basic Chakra"
+          ],
+          datasets: [
+            {
+              label: "Set one",
+              backgroundColor: "transparent",
+              borderColor: "rgba(200,0,0,0.6)",
+              fill: false,
+              radius: 6,
+              pointRadius: 6,
+              pointBorderWidth: 3,
+              pointBackgroundColor: "orange",
+              pointBorderColor: "rgba(200,0,0,0.6)",
+              pointHoverRadius: 10,
+              data: [33, 13, 53, 14, 25, 26, 17, 25, 12, 17, 13, 24]
+            },
+            {
+              label: "Set 2",
+              backgroundColor: "transparent",
+              borderColor: "rgba(0,0,200,0.6)",
+              fill: false,
+              radius: 6,
+              pointRadius: 6,
+              pointBorderWidth: 3,
+              pointBackgroundColor: "cornflowerblue",
+              pointBorderColor: "rgba(0,0,200,0.6)",
+              pointHoverRadius: 10,
+              data: [13, 13, 23, 14, 25, 16, 57, 15, 12, 17, 3, 4]
+            }
+          ]
+        };
+
+        var leftOrganChartData = {
+          labels: [
+            "Brain",
+            "Back Head m.Chakra",
+            "Eyes",
+            "Ears",
+            "Jaw m.chakra",
+            "Throat m.Chakra",
+            "Physical Heat",
+            "Breast",
+            "Lungs",
+            "Liver",
+            "Stomach",
+            "Pancreas"
+          ],
+          datasets: [
+            {
+              label: "Set one",
+              backgroundColor: "transparent",
+              borderColor: "rgba(200,0,0,0.6)",
+              fill: false,
+              radius: 6,
+              pointRadius: 6,
+              pointBorderWidth: 3,
+              pointBackgroundColor: "orange",
+              pointBorderColor: "rgba(200,0,0,0.6)",
+              pointHoverRadius: 10,
+              data: [33, 13, 53, 14, 25, 26, 17, 25, 12, 17, 13, 24]
+            }
+          ]
+        };
+        var rightOrganChartData = {
+          labels: [
+            "Large Intestine",
+            "Physical Spieen",
+            "Kidneys",
+            "Prostate (M) Uterus (W)",
+            "Bladder",
+            "Perineum m.chakra",
+            "Armpits",
+            "Hands",
+            "Spine",
+            "Hips m.Chakra",
+            "Knees",
+            "Feet"
+          ],
+          datasets: [
+            {
+              label: "Set one",
+              backgroundColor: "transparent",
+              borderColor: "rgba(200,0,0,0.6)",
+              fill: false,
+              radius: 6,
+              pointRadius: 6,
+              pointBorderWidth: 3,
+              pointBackgroundColor: "orange",
+              pointBorderColor: "rgba(200,0,0,0.6)",
+              pointHoverRadius: 10,
+              data: [33, 13, 53, 14, 25, 26, 17, 25, 12, 17, 13, 24]
+            }
+          ]
+        };
+        LoadSizeChart(lables, completeData, "sizeChart");
+        LoadSizeChart(lables, completeData, "activationChart");
+        OrganChart(leftOrganChartData, "leftOrganChart");
+        OrganChart(rightOrganChartData, "rightOrganChart");
+      });
+    </script>
+  </body>
+</html>
