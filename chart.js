@@ -1,3 +1,15 @@
+var pluginSettings = {
+  datalabels: {
+    color: "purple",
+    align: "end",
+    offset: 0,
+    fontsize: 1,
+    formatter: function(value, context) {
+      return value + ":cm";
+    }
+  }
+};
+
 var lables = [
   "Crown Chakra",
   "Forehead Chakra",
@@ -24,6 +36,15 @@ function OrganChart(data, id) {
       responsive: true,
       legend: {
         display: false
+      },
+      plugins: pluginSettings,
+      scale: {
+        ticks: {
+          callback: function() {
+            return "";
+          },
+          backdropColor: "rgba(0, 0, 0, 0)"
+        }
       }
     }
   });
@@ -82,22 +103,13 @@ function LoadSizeChart(lableData, dataArray, chartId) {
       legend: {
         display: false
       },
-      scales: {
-        scales: {
-          xAxes: [
-            {
-              gridLines: {
-                display: false
-              }
-            }
-          ],
-          yAxes: [
-            {
-              gridLines: {
-                display: false
-              }
-            }
-          ]
+      plugins: pluginSettings,
+      scale: {
+        ticks: {
+          callback: function() {
+            return "";
+          },
+          backdropColor: "rgba(0, 0, 0, 0)"
         }
       }
     }
