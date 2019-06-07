@@ -11,26 +11,35 @@ body {
 }
 .bullet .marker {
   stroke: rgb(221, 16, 16);
-  stroke-width: 5px;
+  stroke-width: 3px;
 }
 .bullet .tick line {
   stroke: rgba(102, 102, 102, 0.486);
   stroke-width: 0.5px;
 }
 .bullet .range.s0 {
-  fill: #eee;
+  fill: #cc6666;
 }
 .bullet .range.s1 {
-  fill: #ddd;
+  fill: #cc9999;
 }
 .bullet .range.s2 {
-  fill: #d3626a;
+  fill: #ffcc99;
+}
+.bullet .range.s3 {
+  fill: #99cc99;
+}
+.bullet .range.s4 {
+  fill: #66cc66;
 }
 .bullet .measure.s0 {
-  fill: #d3626a;
+  fill: #663333;
 }
 .bullet .measure.s1 {
   fill: #72c275;
+}
+.bullet .measure.s2 {
+  fill: pink;
 }
 .bullet .title {
   font-size: 14px;
@@ -43,4 +52,11 @@ body {
   background-size: 40px 40px;
   background-image: linear-gradient(to right, #dad9d9 1px, transparent 1px),
     linear-gradient(to bottom, #dad9d9 1px, transparent 1px);
+}
+.reportTbl > tbody > tr > td {
+  border: 1px solid #dee2e6 !important;
+  border-top: 0 !important;
+  border-right: 0 !important;
+  border-left: 0 !important;
+  border-color: #343a40 !important;
 }

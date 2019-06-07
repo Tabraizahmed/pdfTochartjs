@@ -2,52 +2,50 @@
   {
     "title": "Chakra Stress",
     "subtitle": "solar plexus",
-
-    "ranges": [30, 50],
-    "measures": [50, 100],
-    "markers": [30]
+    "ranges": [20, 40, 60, 80, 100],
+    "measures": [76],
+    "markers": [76]
   },
   {
     "title": "Chakra Anger",
     "subtitle": "solar plexus",
-    "ranges": [60, 70],
-    "measures": [50, 100],
-    "markers": [60]
+    "ranges": [20, 40, 60, 80, 100],
+    "measures": [72],
+    "markers": [72]
   },
   {
     "title": "Chakra Fear/phobia",
     "subtitle": "solar plexus",
-
-    "ranges": [22, 70],
-    "measures": [50, 100],
-    "markers": [22]
+    "ranges": [20, 40, 60, 80, 100],
+    "measures": [74],
+    "markers": [74]
   },
   {
     "title": "Chakra Courage",
     "subtitle": "solar plexus",
-    "ranges": [40, 70],
-    "measures": [50, 100],
-    "markers": [40]
+    "ranges": [20, 40, 60, 80, 100],
+    "measures": [62],
+    "markers": [62]
   },
   {
     "title": "Chakra Perseverance",
     "subtitle": "solar plexus",
-    "ranges": [10, 70],
-    "measures": [50, 100],
-    "markers": [10]
+    "ranges": [20, 40, 60, 80, 100],
+    "measures": [60],
+    "markers": [60]
   },
   {
     "title": "Chakra Obession",
     "subtitle": "solar plexus",
-    "ranges": [80, 80],
-    "measures": [50, 100],
-    "markers": [80]
+    "ranges": [20, 40, 60, 80, 100],
+    "measures": [64],
+    "markers": [64]
   },
   {
     "title": "Chakra Self-Confidence",
     "subtitle": "",
-    "ranges": [45, 80],
-    "measures": [50, 100],
-    "markers": [45]
+    "ranges": [20, 40, 60, 80, 100],
+    "measures": [58],
+    "markers": [58]
   }
 ]
