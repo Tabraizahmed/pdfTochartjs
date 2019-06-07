@@ -1,15 +1,3 @@
-var pluginSettings = {
-  datalabels: {
-    color: "purple",
-    align: "end",
-    offset: 0,
-    fontsize: 1,
-    formatter: function(value, context) {
-      return value + ":cm";
-    }
-  }
-};
-
 var lables = [
   "Crown Chakra",
   "Forehead Chakra",
@@ -37,7 +25,7 @@ function OrganChart(data, id) {
       legend: {
         display: false
       },
-      plugins: pluginSettings,
+
       scale: {
         ticks: {
           callback: function() {
@@ -103,7 +91,7 @@ function LoadSizeChart(lableData, dataArray, chartId) {
       legend: {
         display: false
       },
-      plugins: pluginSettings,
+
       scale: {
         ticks: {
           callback: function() {

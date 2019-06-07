@@ -39,3 +39,8 @@ body {
 .bullet .subtitle {
   fill: #999;
 }
+.reportbg {
+  background-size: 40px 40px;
+  background-image: linear-gradient(to right, #dad9d9 1px, transparent 1px),
+    linear-gradient(to bottom, #dad9d9 1px, transparent 1px);
+}
