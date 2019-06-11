@@ -4,7 +4,7 @@ class tblClient
 {
     //db params
     private $conn;
-    private $table='tblclient';
+    private $table_name='tblclient';
 
     //model variables
 
@@ -13,6 +13,8 @@ class tblClient
     public $lastName;
     public $email;
     public $contactNumber;
+    public $country;
+    public $skypeId;
     public $dateOfBirth;
     public $sex;
     public $martialStaus;
@@ -26,11 +28,11 @@ class tblClient
         $this->conn=$db;
     }
 
-    //read method
+    // read method
     public function readClient(){
         //create a query
 
-        $query='select * from '.$this->table;
+        $query='select * from '.$this->table_name;
 
         // prepare statment
 
@@ -41,6 +43,59 @@ class tblClient
         $stmt->execute();
 
         return $stmt;
+
+    }
+    // write method
+
+    public function create()
+    {
+         // query to insert record
+    $query = "INSERT INTO
+    " . $this->table_name . "
+        SET
+        firstName=:firstName, lastName=:lastName, email=:email, contactNumber=:contactNumber,
+        country=:country,skypeId=:skypeId,
+        dateOfBirth=:dateOfBirth, sex=:sex,martialStaus=:martialStaus,Occupation=:Occupation,imageUrl=:imageUrl ";
+
+        // prepare query
+    $stmt = $this->conn->prepare($query);
+
+     // sanitize
+     $this->firstName=htmlspecialchars(strip_tags($this->firstName));
+     $this->lastName=htmlspecialchars(strip_tags($this->lastName));
+     $this->email=htmlspecialchars(strip_tags($this->email));
+     $this->contactNumber=htmlspecialchars(strip_tags($this->contactNumber));
+
+     $this->country=htmlspecialchars(strip_tags($this->country));
+     $this->skypeId=htmlspecialchars(strip_tags($this->skypeId));
+     
+     $this->dateOfBirth=htmlspecialchars(strip_tags($this->dateOfBirth));
+     $this->sex=htmlspecialchars(strip_tags($this->sex));
+     $this->martialStaus=htmlspecialchars(strip_tags($this->martialStaus));
+     $this->Occupation=htmlspecialchars(strip_tags($this->Occupation));
+     $this->imageUrl=htmlspecialchars(strip_tags($this->imageUrl));
+
+       // bind values
+    $stmt->bindParam(":firstName", $this->firstName);
+    $stmt->bindParam(":lastName", $this->lastName);
+    $stmt->bindParam(":email", $this->email);
+    $stmt->bindParam(":contactNumber", $this->contactNumber);
+
+    $stmt->bindParam(":country", $this->country);
+    $stmt->bindParam(":skypeId", $this->skypeId);
+
+    $stmt->bindParam(":dateOfBirth", $this->dateOfBirth);
+    $stmt->bindParam(":sex", $this->sex);
+    $stmt->bindParam(":martialStaus", $this->martialStaus);
+    $stmt->bindParam(":Occupation", $this->Occupation);
+    $stmt->bindParam(":imageUrl", $this->imageUrl);
+
+    // execute query
+    if($stmt->execute()){
+        return true;
+    }
+ 
+    return false;
 
     }
 
