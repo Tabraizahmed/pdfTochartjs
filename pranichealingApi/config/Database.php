@@ -4,7 +4,7 @@ class Database
 {
     //DB params
 
-    private $host='localhost:3305';
+    private $host='localhost:3308';
     private $db_name='pranichealing';
     private $username='root';
     private $password='';

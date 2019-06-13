@@ -19,16 +19,50 @@
 
     // query client table
 
-    $result= $client->readClient();
+    $stmt= $client->readClient();
 
     // Get row count
 
-    $num= $result->rowCount();
+    $num= $stmt->rowCount();
 
     //check if any
 
     if($num>0){
-        echo 'record exist';
+      // products array
+    $clients_arr=array();
+    $clients_arr["records"]=array();
+ 
+   
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+        // extract row
+        // this will make $row['name'] to
+        // just $name only
+        extract($row);
+ 
+        $client_item=array(
+            "id" => $clientId,
+            "firstName" => $firstName,
+            "lastName" => $lastName,
+            "email" => $email,
+            "contactNumber" => $contactNumber,
+            "country" => $country,
+            "skypeId" => $skypeId,
+            "dateOfBirth" => $dateOfBirth,
+            "sex" => $sex,
+            "martialStaus" => $martialStaus,
+            "Occupation" => $Occupation,
+            "imageUrl" => $imageUrl,
+
+        );
+ 
+        array_push($clients_arr["records"], $client_item);
+    }
+ 
+    // set response code - 200 OK
+    http_response_code(200);
+ 
+    // show products data in json format
+    echo json_encode($clients_arr);
     }
     else{
         echo 'record not exist';
