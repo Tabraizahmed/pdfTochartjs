@@ -53,6 +53,25 @@
             "Occupation" => $Occupation,
             "imageUrl" => $imageUrl,
 
+            // tblclienthabitsandtendencies model
+            
+            "habitsTendenciesId" => $habitsTendenciesId,
+            "isSmoke" => $isSmoke,
+            "isAlcohol" => $isAlcohol,
+            "isDrugs" => $isDrugs,
+            "meditationOrSpiritualPractice" => $meditationOrSpiritualPractice,
+            "tendenciesToRemove" => $tendenciesToRemove,
+          
+            // tblclienthealthinfo
+
+            "healthInfoId" => $healthInfoId,
+            "typeOfAilment" => $typeOfAilment,
+            "symptomsAndSeverity" => $symptomsAndSeverity,
+            "since" => $since,
+            "medicalReport" => $medicalReport,
+            "medicineUse" => $medicineUse,
+
+
         );
  
         array_push($clients_arr["records"], $client_item);

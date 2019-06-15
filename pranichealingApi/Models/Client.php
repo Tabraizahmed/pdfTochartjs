@@ -4,7 +4,11 @@ class tblClient
 {
     //db params
     private $conn;
-    private $table_name='tblclient';
+    private $table_client='tblclient';
+    private $table_clienthabitsandtendencies='tblclienthabitsandtendencies';
+    private $table_clienthealthinfo='tblclienthealthinfo';
+
+
 
     //model variables
 
@@ -20,7 +24,25 @@ class tblClient
     public $martialStaus;
     public $Occupation;
     public $imageUrl;
- 
+    // tblclienthabitsandtendencies model
+
+    public $habitsTendenciesId;
+    public $isSmoke;
+    public $isAlcohol;
+    public $isDrugs;
+    public $meditationOrSpiritualPractice;
+    public $tendenciesToRemove;
+
+    // tblclienthealthinfo
+
+    public $healthInfoId;
+    public $typeOfAilment;
+    public $symptomsAndSeverity;
+    public $since;
+    public $isAilmentInherited;
+    public $medicalReport;
+    public $medicineUse;
+
 
     // constructor 
 
@@ -32,7 +54,8 @@ class tblClient
     public function readClient(){
         //create a query
 
-        $query='select * from '.$this->table_name;
+        $query='select * from '.$this->table_client.' client INNER JOIN tblclienthabitsandtendencies habits on client.clientId=habits.clientId
+         INNER JOIN tblclienthealthinfo healing on client.clientId=healing.clientId';
 
         // prepare statment
 
@@ -51,7 +74,7 @@ class tblClient
     {
          // query to insert record
     $query = "INSERT INTO
-    " . $this->table_name . "
+    " . $this->table_client . "
         SET
         firstName=:firstName, lastName=:lastName, email=:email, contactNumber=:contactNumber,
         country=:country,skypeId=:skypeId,
