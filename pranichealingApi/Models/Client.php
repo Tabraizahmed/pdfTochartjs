@@ -56,7 +56,7 @@ class tblClient
         //create a query
 
         $query='select * from '.$this->table_client.' client INNER JOIN tblclienthabitsandtendencies habits on client.clientId=habits.clientId
-         INNER JOIN tblclienthealthinfo healing on client.clientId=healing.clientId where client.isActive=1 order by 1 desc';
+         INNER JOIN tblclienthealthinfo healing on client.clientId=healing.clientId where client.isActive=0 order by 1 desc';
 
         // prepare statment
 
@@ -201,7 +201,7 @@ class tblClient
     $this->clientId=htmlspecialchars(strip_tags($this->clientId));
 
     // delete query
-    $query = "Update " . $this->table_client . " SET isActive=0 WHERE clientId =".$this->clientId;
+    $query = "Update " . $this->table_client . " SET isActive=1 WHERE clientId =".$this->clientId;
    
     echo($query);
     // prepare query

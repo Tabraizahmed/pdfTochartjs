@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Modal from "react-responsive-modal";
 import AddClientInfo from "./AddClientInfo";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 class ClientInfo extends Component {
   constructor() {
@@ -39,12 +41,16 @@ class ClientInfo extends Component {
       this.setState({ open: true });
     } else if (e.target.value === "2") {
       this.setState({ clientTendencies: "" });
+
+      let isSmoke = ClientInfo.isSmoke === "1" ? "Yes" : "No";
+      let isAlchol = ClientInfo.isAlcohol === "1" ? "Yes" : "No";
+      let isDrugs = ClientInfo.isDrugs === "1" ? "Yes" : "No";
       let clientTendencies = clientToRender.map(client => {
         return (
           <tr key={client.id}>
-            <td>{client.isSmoke}</td>
-            <td>{client.isAlcohol}</td>
-            <td>{client.isDrugs}</td>
+            <td>{isSmoke}</td>
+            <td>{isAlchol}</td>
+            <td>{isDrugs}</td>
             <td>{client.meditationOrSpiritualPractice}</td>
             <td>{client.tendenciesToRemove}</td>
           </tr>
@@ -94,7 +100,7 @@ class ClientInfo extends Component {
                   <button className="btn btn-success btn-sm">Edit</button>{" "}
                   &nbsp;
                   <button
-                    onClick={this.onDeleteClick(client.id)}
+                    onClick={e => this.onDeleteClick(client.id)}
                     className="btn btn-danger  btn-sm"
                   >
                     Delete
@@ -112,6 +118,38 @@ class ClientInfo extends Component {
   };
   onDeleteClick = clientId => {
     if (clientId !== undefined) {
+      let clientRowToDelete = {
+        id: clientId
+      };
+
+      fetch(
+        "http://localhost:5514/pdfTochartjs/pranichealingApi/api/tblclient/Delete.php",
+        {
+          mode: "no-cors",
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*"
+          },
+          body: JSON.stringify(clientRowToDelete)
+        }
+      )
+        .then(function(response) {
+          toast.success(
+            "Client has been deleted, Page is going to be refreshed"
+          );
+          setTimeout(function() {
+            window.location.reload();
+          }, 3000);
+          console.log("success data= " + response);
+        })
+        .then(function(data) {
+          if (data !== undefined) {
+            toast.error("There is error in application. Please try later");
+            console.log("success data= " + data);
+          }
+        });
     }
   };
   toggleAddNewSection = () => {
@@ -183,6 +221,7 @@ class ClientInfo extends Component {
             <tbody>{this.state.clientTendencies}</tbody>
           </table>
         </Modal>
+        <ToastContainer />
       </div>
     );
   }
