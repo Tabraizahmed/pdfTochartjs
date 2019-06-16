@@ -1,37 +1,69 @@
 import React, { Component } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 class AddClientInfo extends Component {
   constructor() {
     super();
     this.state = {
-      firstName: "",
-      lastName: "",
-      email: "",
-      contactNumber: "",
-      country: "",
-      skypeId: "",
-      dateOfBirth: "",
-      sex: "",
-      martialStaus: "",
-      Occupation: "",
+      firstName: "testName",
+      lastName: "testLastName",
+      email: "tabi_emi@hotmail.com",
+      contactNumber: "03155075202",
+      country: "pakistan",
+      skypeId: "hello",
+      dateOfBirth: "1983-04-11 00:35:07",
+      sex: "male",
+      martialStaus: "married",
+      Occupation: "engineer",
       imageUrl: "",
 
-      isSmoke: "",
-      isAlcohol: "",
-      isDrugs: "",
-      meditationOrSpiritualPractice: "",
-      tendenciesToRemove: "",
-      typeOfAilment: "",
-      symptomsAndSeverity: "",
+      isSmoke: true,
+      isAlcohol: true,
+      isDrugs: true,
+      meditationOrSpiritualPractice: "nops",
+      tendenciesToRemove: "yes",
+      typeOfAilment: "dad",
+      symptomsAndSeverity: "adfdf",
       since: "",
-      isAilmentInherited: "",
-      medicalReport: "",
-      medicineUse: ""
+      isAilmentInherited: false,
+      medicalReport: "dfda",
+      medicineUse: "adfdf"
     };
   }
+
   SaveClientInfoOnSubmit = e => {
     e.preventDefault();
     console.log(this.state);
+
+    fetch(
+      "http://localhost:5514/pdfTochartjs/pranichealingApi/api/tblclient/Create.php",
+      {
+        mode: "no-cors",
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*"
+        },
+        body: JSON.stringify(this.state)
+      }
+    )
+      .then(function(response) {
+        toast.success(
+          "New Cient has been created, Page is going to be refreshed"
+        );
+        setTimeout(function() {
+          window.location.reload();
+        }, 3000);
+        console.log("success data= " + response);
+      })
+      .then(function(data) {
+        if (data !== undefined) {
+          toast.error("There is error in application. Please try later");
+          console.log("success data= " + data);
+        }
+      });
   };
   render() {
     return (
@@ -288,6 +320,7 @@ class AddClientInfo extends Component {
           &nbsp;
           <input type="reset" className="btn btn-lg btn-danger" />
         </form>
+        <ToastContainer />
       </div>
     );
   }

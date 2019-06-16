@@ -2,7 +2,6 @@
   "name": "pranichealingui",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://pranichealing.comnp",
   "dependencies": {
     "bootstrap": "^4.3.1",
     "chart.js": "^2.8.0",
@@ -12,7 +11,8 @@
     "react-dom": "^16.8.6",
     "react-responsive-modal": "^4.0.1",
     "react-router-dom": "^5.0.1",
-    "react-scripts": "3.0.1"
+    "react-scripts": "3.0.1",
+    "react-toastify": "^5.2.1"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -6,6 +6,7 @@ class ClientInfo extends Component {
   constructor() {
     super();
     this.state = {
+      completeData: [],
       clientsInfo: [],
       clientHealthInfo: [],
       clientTendencies: [],
@@ -14,10 +15,42 @@ class ClientInfo extends Component {
       addNewClient: false
     };
   }
-  onActionddlChange = e => {
+  onActionddlChange = (e, clientId) => {
+    // fetch which user on change triggered
+    let ClientInfo = this.completeData.records.find(
+      element => element.id === clientId
+    );
+    let clientToRender = [];
+    clientToRender.push(ClientInfo);
     if (e.target.value === "1") {
+      this.setState({ clientHealthInfo: "" });
+      let clientHealthInfo = clientToRender.map(client => {
+        return (
+          <tr key={client.id}>
+            <td>{client.typeOfAilment}</td>
+            <td>{client.symptomsAndSeverity}</td>
+            <td>{client.since}</td>
+            <td>{client.medicalReport}</td>
+            <td>{client.medicineUse}</td>
+          </tr>
+        );
+      });
+      this.setState({ clientHealthInfo: clientHealthInfo });
       this.setState({ open: true });
     } else if (e.target.value === "2") {
+      this.setState({ clientTendencies: "" });
+      let clientTendencies = clientToRender.map(client => {
+        return (
+          <tr key={client.id}>
+            <td>{client.isSmoke}</td>
+            <td>{client.isAlcohol}</td>
+            <td>{client.isDrugs}</td>
+            <td>{client.meditationOrSpiritualPractice}</td>
+            <td>{client.tendenciesToRemove}</td>
+          </tr>
+        );
+      });
+      this.setState({ clientTendencies: clientTendencies });
       this.setState({ habitPopup: true });
     }
   };
@@ -30,63 +63,43 @@ class ClientInfo extends Component {
       "http://localhost:5514/pdfTochartjs/pranichealingApi/api/tblclient/Read.php"
     )
       .then(result => {
-        return result.json();
+        if (result !== undefined) {
+          return result.json();
+        }
       })
       .then(data => {
-        let mappedData = data.records.map(client => {
-          return (
-            <tr key={client.id}>
-              <td>{client.id}</td>
-              <td>
-                {client.firstName},{client.lastName}
-              </td>
+        if (data !== undefined) {
+          this.completeData = data;
 
-              <td>{client.dateOfBirth}</td>
-              <td>{client.sex}</td>
-              <td>{client.email}</td>
-              <td>{client.contactNumber}</td>
-              <td>{client.imageUrl}</td>
-              <td>
-                <select onChange={this.onActionddlChange}>
-                  <option value="0">--Select--</option>
-                  <option value="1">View Client Health Info</option>
-                  <option value="2">View Client Habits Info</option>
-                </select>
-                &nbsp;
-                <button className="btn btn-success btn-sm">Edit</button> &nbsp;
-                <button className="btn btn-danger  btn-sm">Delete</button>
-              </td>
-            </tr>
-          );
-        });
-        this.setState({ clientsInfo: mappedData });
-        // Render health info popup
-        let clientHealthInfo = data.records.map(client => {
-          return (
-            <tr key={client.id}>
-              <td>{client.typeOfAilment}</td>
-              <td>{client.symptomsAndSeverity}</td>
-              <td>{client.since}</td>
-              <td>{client.medicalReport}</td>
-              <td>{client.medicineUse}</td>
-            </tr>
-          );
-        });
-        this.setState({ clientHealthInfo: clientHealthInfo });
+          let mappedData = data.records.map(client => {
+            return (
+              <tr key={client.id}>
+                <td>{client.id}</td>
+                <td>
+                  {client.firstName},{client.lastName}
+                </td>
 
-        // Render tendencies
-        let clientTendencies = data.records.map(client => {
-          return (
-            <tr key={client.id}>
-              <td>{client.isSmoke}</td>
-              <td>{client.isAlcohol}</td>
-              <td>{client.isDrugs}</td>
-              <td>{client.meditationOrSpiritualPractice}</td>
-              <td>{client.tendenciesToRemove}</td>
-            </tr>
-          );
-        });
-        this.setState({ clientTendencies: clientTendencies });
+                <td>{client.dateOfBirth}</td>
+                <td>{client.sex}</td>
+                <td>{client.email}</td>
+                <td>{client.contactNumber}</td>
+                <td>{client.imageUrl}</td>
+                <td>
+                  <select onChange={e => this.onActionddlChange(e, client.id)}>
+                    <option value="0">--Select--</option>
+                    <option value="1">View Client Health Info</option>
+                    <option value="2">View Client Habits Info</option>
+                  </select>
+                  &nbsp;
+                  <button className="btn btn-success btn-sm">Edit</button>{" "}
+                  &nbsp;
+                  <button className="btn btn-danger  btn-sm">Delete</button>
+                </td>
+              </tr>
+            );
+          });
+          this.setState({ clientsInfo: mappedData });
+        }
       });
   }
   onAddNewClient = () => {
@@ -132,6 +145,7 @@ class ClientInfo extends Component {
           </table>
         </div>
         <Modal open={open} onClose={this.onCloseModal} center>
+          <h3>Client Tendencies</h3>
           <table className="table mt-2">
             <thead>
               <tr>
@@ -146,6 +160,7 @@ class ClientInfo extends Component {
           </table>
         </Modal>
         <Modal open={habitPopup} onClose={this.onCloseModal} center>
+          <h3>Clients Habits</h3>
           <table className="table mt-2">
             <thead>
               <tr>
