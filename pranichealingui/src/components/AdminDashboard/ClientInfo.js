@@ -93,7 +93,12 @@ class ClientInfo extends Component {
                   &nbsp;
                   <button className="btn btn-success btn-sm">Edit</button>{" "}
                   &nbsp;
-                  <button className="btn btn-danger  btn-sm">Delete</button>
+                  <button
+                    onClick={this.onDeleteClick(client.id)}
+                    className="btn btn-danger  btn-sm"
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             );
@@ -104,6 +109,10 @@ class ClientInfo extends Component {
   }
   onAddNewClient = () => {
     this.setState({ addNewClient: true });
+  };
+  onDeleteClick = clientId => {
+    if (clientId !== undefined) {
+    }
   };
   toggleAddNewSection = () => {
     this.setState({ addNewClient: !this.state.addNewClient });

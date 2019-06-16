@@ -24,6 +24,7 @@ class tblClient
     public $martialStaus;
     public $Occupation;
     public $imageUrl;
+    public $isActive;
     // tblclienthabitsandtendencies model
 
     public $habitsTendenciesId;
@@ -55,7 +56,7 @@ class tblClient
         //create a query
 
         $query='select * from '.$this->table_client.' client INNER JOIN tblclienthabitsandtendencies habits on client.clientId=habits.clientId
-         INNER JOIN tblclienthealthinfo healing on client.clientId=healing.clientId order by 1 desc';
+         INNER JOIN tblclienthealthinfo healing on client.clientId=healing.clientId where client.isActive=1 order by 1 desc';
 
         // prepare statment
 
@@ -78,7 +79,7 @@ class tblClient
         SET
         firstName=:firstName, lastName=:lastName, email=:email, contactNumber=:contactNumber,
         country=:country,skypeId=:skypeId,
-        dateOfBirth=:dateOfBirth, sex=:sex,martialStaus=:martialStaus,Occupation=:Occupation,imageUrl=:imageUrl ";
+        dateOfBirth=:dateOfBirth, sex=:sex,martialStaus=:martialStaus,Occupation=:Occupation,imageUrl=:imageUrl,isActive=:isActive ";
 
         // prepare query
     $stmt = $this->conn->prepare($query);
@@ -98,6 +99,7 @@ class tblClient
      $this->Occupation=htmlspecialchars(strip_tags($this->Occupation));
      $this->imageUrl=htmlspecialchars(strip_tags($this->imageUrl));
 
+
        // bind values
     $stmt->bindParam(":firstName", $this->firstName);
     $stmt->bindParam(":lastName", $this->lastName);
@@ -112,6 +114,7 @@ class tblClient
     $stmt->bindParam(":martialStaus", $this->martialStaus);
     $stmt->bindParam(":Occupation", $this->Occupation);
     $stmt->bindParam(":imageUrl", $this->imageUrl);
+    $stmt->bindParam(":isActive",1);
 
     // execute query
     if($stmt->execute()){
@@ -189,6 +192,28 @@ class tblClient
     
      $stmt->execute();
 
+    }
+
+    public function Delete(){
+
+
+    // sanitize
+    $this->clientId=htmlspecialchars(strip_tags($this->clientId));
+
+    // delete query
+    $query = "Update " . $this->table_client . " SET isActive=0 WHERE clientId =".$this->clientId;
+   
+    echo($query);
+    // prepare query
+    $stmt = $this->conn->prepare($query);
+
+
+    // execute query
+    if($stmt->execute()){
+        return true;
+    }
+ 
+    return false;
     }
 }
 
