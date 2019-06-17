@@ -17,6 +17,7 @@ class ClientInfo extends Component {
       addNewClient: false
     };
   }
+
   onActionddlChange = (e, clientId) => {
     // fetch which user on change triggered
     let ClientInfo = this.completeData.records.find(
@@ -89,7 +90,13 @@ class ClientInfo extends Component {
                 <td>{client.sex}</td>
                 <td>{client.email}</td>
                 <td>{client.contactNumber}</td>
-                <td>{client.imageUrl}</td>
+                <td>
+                  <img
+                    alt={client.firstName}
+                    className="img-fluid"
+                    src={client.imageUrl}
+                  />
+                </td>
                 <td>
                   <select onChange={e => this.onActionddlChange(e, client.id)}>
                     <option value="0">--Select--</option>

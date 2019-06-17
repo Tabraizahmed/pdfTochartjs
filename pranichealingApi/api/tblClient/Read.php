@@ -84,5 +84,5 @@
     echo json_encode($clients_arr);
     }
     else{
-        echo 'record not exist';
+        array_push($clients_arr["records"], null);
     }

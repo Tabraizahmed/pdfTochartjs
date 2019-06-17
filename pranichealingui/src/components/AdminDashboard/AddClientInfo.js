@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import FileBase64 from "react-file-base64";
 
 class AddClientInfo extends Component {
   constructor() {
@@ -31,7 +32,15 @@ class AddClientInfo extends Component {
       medicineUse: "adfdf"
     };
   }
+  // Callback~
+  getFiles(files) {
+    if (files.file.size > 50000) {
+      toast.error("File size should be less than 500 kb");
+      return;
+    }
 
+    this.setState({ imageUrl: files.base64 });
+  }
   SaveClientInfoOnSubmit = e => {
     e.preventDefault();
     console.log(this.state);
@@ -130,14 +139,18 @@ class AddClientInfo extends Component {
               </div>
 
               <div className="form-group">
-                <label htmlFor="formGroupExampleInput">imageUrl</label>
-                <input
+                <label htmlFor="formGroupExampleInput">Upload Image</label>
+                <FileBase64
+                  multiple={false}
+                  onDone={this.getFiles.bind(this)}
+                />
+                {/* <input
                   type="file"
                   required
                   value={this.state.imageUrl}
                   onChange={e => this.setState({ imageUrl: e.target.value })}
                   className="form-control"
-                />
+                /> */}
               </div>
 
               <div className="form-group">

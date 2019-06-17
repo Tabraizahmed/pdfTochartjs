@@ -114,7 +114,11 @@ class tblClient
     $stmt->bindParam(":martialStaus", $this->martialStaus);
     $stmt->bindParam(":Occupation", $this->Occupation);
     $stmt->bindParam(":imageUrl", $this->imageUrl);
-    $stmt->bindParam(":isActive",1);
+    $value=0;
+    $stmt->bindParam(":isActive",$value);
+
+    
+    //$this->UploadImageToDirectory($this->imageUrl,$this->firstName);
 
     // execute query
     if($stmt->execute()){
@@ -131,6 +135,15 @@ class tblClient
 
     }
 
+     function UploadImageToDirectory($base64string,$fileName){
+        $base_to_php = explode(',', $base64string);
+        $data = base64_decode($base_to_php[1]);
+        $filepath= getcwd()."\images\\".$fileName.".png";
+        echo($filepath);
+        file_put_contents($filepath,$data);
+    }
+
+    
     private function InsertIntoTblTendencies($clientId){
 
         $query = "INSERT INTO
