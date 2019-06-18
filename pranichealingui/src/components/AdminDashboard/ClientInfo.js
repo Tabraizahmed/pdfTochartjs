@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFemale, faMale } from "@fortawesome/free-solid-svg-icons";
 import { confirmAlert } from "react-confirm-alert"; // Import
 import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
+import EditClientInfo from "./EditClientInfo";
 
 class ClientInfo extends Component {
   constructor() {
@@ -18,7 +19,9 @@ class ClientInfo extends Component {
       clientTendencies: [],
       open: false,
       habitPopup: false,
-      addNewClient: false
+      addNewClient: false,
+      editClient: false,
+      clientToEdit: {}
     };
   }
 
@@ -126,7 +129,12 @@ class ClientInfo extends Component {
                     <option value="2">View Client Habits Info</option>
                   </select>
                   &nbsp;
-                  <button className="btn btn-success btn-sm">Edit</button>{" "}
+                  <button
+                    className="btn btn-success btn-sm"
+                    onClick={e => this.onEditClick(client.id)}
+                  >
+                    Edit
+                  </button>{" "}
                   &nbsp;
                   <button
                     onClick={e => this.onDeleteClick(client.id)}
@@ -199,11 +207,25 @@ class ClientInfo extends Component {
   toggleAddNewSection = () => {
     this.setState({ addNewClient: !this.state.addNewClient });
   };
+
+  onEditClick = clientId => {
+    this.setState({
+      clientToEdit: this.completeData.records.find(
+        element => element.id === clientId
+      )
+    });
+    this.setState({ editClient: true });
+  };
   render() {
-    const { open, habitPopup, addNewClient } = this.state;
+    const { open, habitPopup, addNewClient, editClient } = this.state;
     let addClientSection;
     if (addNewClient) {
       addClientSection = <AddClientInfo />;
+    }
+    if (editClient) {
+      addClientSection = (
+        <EditClientInfo clientdetails={this.state.clientToEdit} />
+      );
     }
     return (
       <div>
