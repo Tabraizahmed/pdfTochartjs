@@ -94,3 +94,7 @@ body {
   border-left: 0 !important;
   border-color: #343a40 !important;
 }
+.form-group.required .control-label:after {
+  content: "*";
+  color: red;
+}

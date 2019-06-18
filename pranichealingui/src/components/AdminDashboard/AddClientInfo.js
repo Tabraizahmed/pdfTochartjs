@@ -19,9 +19,9 @@ class AddClientInfo extends Component {
       Occupation: "engineer",
       imageUrl: "",
 
-      isSmoke: true,
-      isAlcohol: true,
-      isDrugs: true,
+      isSmoke: false,
+      isAlcohol: false,
+      isDrugs: false,
       meditationOrSpiritualPractice: "nops",
       tendenciesToRemove: "yes",
       typeOfAilment: "dad",
@@ -41,6 +41,11 @@ class AddClientInfo extends Component {
 
     this.setState({ imageUrl: files.base64 });
   }
+  // set sex in state
+  SetSexInState = e => {
+    console.log(e.target.value);
+    this.setState({ sex: e.target.value });
+  };
   SaveClientInfoOnSubmit = e => {
     e.preventDefault();
     console.log(this.state);
@@ -59,20 +64,23 @@ class AddClientInfo extends Component {
       }
     )
       .then(function(response) {
-        toast.success(
-          "New Cient has been created, Page is going to be refreshed"
-        );
-        setTimeout(function() {
-          window.location.reload();
-        }, 3000);
-        console.log("success data= " + response);
+        if (response.status === 201) {
+          toast.success(
+            "New Cient has been created, Page is going to be refreshed"
+          );
+          setTimeout(function() {
+            window.location.reload();
+          }, 3000);
+        } else if (!response.ok) {
+          toast.error("There is error in application. Please try later");
+        }
       })
       .then(function(data) {
         if (data !== undefined) {
           toast.error("There is error in application. Please try later");
-          console.log("success data= " + data);
         }
-      });
+      })
+      .catch(error => console.log(error));
   };
   render() {
     return (
@@ -81,8 +89,13 @@ class AddClientInfo extends Component {
           <h3>Add new client</h3>
           <div className="row">
             <div className="col-lg-6 col-sm-12">
-              <div className="form-group">
-                <label htmlFor="formGroupExampleInput">First Name</label>
+              <div className="form-group required">
+                <label
+                  className="control-label"
+                  htmlFor="formGroupExampleInput"
+                >
+                  First Name
+                </label>
                 <input
                   type="text"
                   required
@@ -92,8 +105,13 @@ class AddClientInfo extends Component {
                 />
               </div>
 
-              <div className="form-group">
-                <label htmlFor="formGroupExampleInput">Email</label>
+              <div className="form-group required">
+                <label
+                  className="control-label"
+                  htmlFor="formGroupExampleInput"
+                >
+                  Email
+                </label>
                 <input
                   value={this.state.email}
                   required
@@ -103,8 +121,13 @@ class AddClientInfo extends Component {
                 />
               </div>
 
-              <div className="form-group">
-                <label htmlFor="formGroupExampleInput">Country</label>
+              <div className="form-group required">
+                <label
+                  className="control-label"
+                  htmlFor="formGroupExampleInput"
+                >
+                  Country
+                </label>
                 <input
                   required
                   value={this.state.country}
@@ -114,8 +137,13 @@ class AddClientInfo extends Component {
                 />
               </div>
 
-              <div className="form-group">
-                <label htmlFor="formGroupExampleInput">Date Of Birth</label>
+              <div className="form-group required">
+                <label
+                  className="control-label"
+                  htmlFor="formGroupExampleInput"
+                >
+                  Date Of Birth
+                </label>
                 <input
                   type="Date"
                   required
@@ -125,8 +153,13 @@ class AddClientInfo extends Component {
                 />
               </div>
 
-              <div className="form-group">
-                <label htmlFor="formGroupExampleInput">Martial Staus</label>
+              <div className="form-group required">
+                <label
+                  className="control-label"
+                  htmlFor="formGroupExampleInput"
+                >
+                  Martial Staus
+                </label>
                 <input
                   type="text"
                   required
@@ -143,14 +176,8 @@ class AddClientInfo extends Component {
                 <FileBase64
                   multiple={false}
                   onDone={this.getFiles.bind(this)}
+                  required={true}
                 />
-                {/* <input
-                  type="file"
-                  required
-                  value={this.state.imageUrl}
-                  onChange={e => this.setState({ imageUrl: e.target.value })}
-                  className="form-control"
-                /> */}
               </div>
 
               <div className="form-group">
@@ -213,9 +240,15 @@ class AddClientInfo extends Component {
             </div>
             {/* main div partion */}
             <div className="col-lg-6 col-sm-12">
-              <div className="form-group">
-                <label htmlFor="formGroupExampleInput">Last Name</label>
+              <div className="form-group required">
+                <label
+                  className="control-label"
+                  htmlFor="formGroupExampleInput"
+                >
+                  Last Name
+                </label>
                 <input
+                  required
                   type="text"
                   value={this.state.lastName}
                   onChange={e => this.setState({ lastName: e.target.value })}
@@ -223,8 +256,13 @@ class AddClientInfo extends Component {
                 />
               </div>
 
-              <div className="form-group">
-                <label htmlFor="formGroupExampleInput">Contact Number</label>
+              <div className="form-group required">
+                <label
+                  className="control-label"
+                  htmlFor="formGroupExampleInput"
+                >
+                  Contact Number
+                </label>
                 <input
                   type="text"
                   required
@@ -240,22 +278,28 @@ class AddClientInfo extends Component {
                 <label htmlFor="formGroupExampleInput">skypeId</label>
                 <input
                   type="text"
-                  required
                   value={this.state.skypeId}
                   onChange={e => this.setState({ skypeId: e.target.value })}
                   className="form-control"
                 />
               </div>
 
-              <div className="form-group">
-                <label htmlFor="formGroupExampleInput">sex</label>
-                <input
-                  type="text"
+              <div className="form-group required">
+                <label
+                  className="control-label"
+                  htmlFor="formGroupExampleInput"
+                >
+                  sex
+                </label>
+
+                <select
                   required
-                  value={this.state.sex}
-                  onChange={e => this.setState({ sex: e.target.value })}
                   className="form-control"
-                />
+                  onChange={this.SetSexInState}
+                >
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                </select>
               </div>
 
               <div className="form-group">

@@ -28,7 +28,7 @@ $client=new tblClient($db);
 $data = json_decode(file_get_contents("php://input"));
 
 if(!empty($data->firstName) && !empty($data->lastName) && !empty($data->email) && !empty($data->contactNumber) && !empty($data->dateOfBirth) &&
-    !empty($data->sex) && !empty($data->martialStaus) && !empty($data->Occupation) && !empty($data->imageUrl) && !empty($data->country) && !empty($data->skypeId))  
+    !empty($data->sex) && !empty($data->martialStaus) && !empty($data->Occupation)   && !empty($data->country) && !empty($data->skypeId))  
     {
         // Set values when data is not null
         $client->firstName=$data->firstName;
@@ -74,8 +74,8 @@ if(!empty($data->firstName) && !empty($data->lastName) && !empty($data->email) &
         // if unable to create the product, tell the user
         else{
      
-            // set response code - 503 service unavailable
-            http_response_code(503);
+            // set response code - 500
+            http_response_code(500);
      
             // tell the user
             echo json_encode(array("message" => "Unable to create product."));

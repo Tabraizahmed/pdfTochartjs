@@ -84,5 +84,9 @@
     echo json_encode($clients_arr);
     }
     else{
+        http_response_code(204);
+
         array_push($clients_arr["records"], null);
+
+        echo json_encode($clients_arr);
     }

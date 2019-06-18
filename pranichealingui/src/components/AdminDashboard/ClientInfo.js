@@ -3,6 +3,10 @@ import Modal from "react-responsive-modal";
 import AddClientInfo from "./AddClientInfo";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFemale, faMale } from "@fortawesome/free-solid-svg-icons";
+import { confirmAlert } from "react-confirm-alert"; // Import
+import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
 
 class ClientInfo extends Component {
   constructor() {
@@ -70,8 +74,9 @@ class ClientInfo extends Component {
       "http://localhost:5514/pdfTochartjs/pranichealingApi/api/tblclient/Read.php"
     )
       .then(result => {
-        if (result !== undefined) {
+        if (result.status === 200) {
           return result.json();
+        } else {
         }
       })
       .then(data => {
@@ -79,6 +84,29 @@ class ClientInfo extends Component {
           this.completeData = data;
 
           let mappedData = data.records.map(client => {
+            let imageToDisplay;
+            if (client.imageUrl.indexOf("base64") < 0) {
+              if (client.sex.toLowerCase() === "male") {
+                imageToDisplay = (
+                  <FontAwesomeIcon icon={faMale} size="2x" color="chocolate" />
+                );
+              } else if (client.sex.toLowerCase() === "female") {
+                imageToDisplay = (
+                  <FontAwesomeIcon icon={faFemale} size="2x" color="deeppink" />
+                );
+              }
+            } else {
+              imageToDisplay = (
+                <img
+                  alt={client.firstName}
+                  src={client.imageUrl}
+                  className="image-fluid"
+                  width="50"
+                  height="50"
+                />
+              );
+            }
+
             return (
               <tr key={client.id}>
                 <td>{client.id}</td>
@@ -90,13 +118,7 @@ class ClientInfo extends Component {
                 <td>{client.sex}</td>
                 <td>{client.email}</td>
                 <td>{client.contactNumber}</td>
-                <td>
-                  <img
-                    alt={client.firstName}
-                    className="img-fluid"
-                    src={client.imageUrl}
-                  />
-                </td>
+                <td className="text-center">{imageToDisplay}</td>
                 <td>
                   <select onChange={e => this.onActionddlChange(e, client.id)}>
                     <option value="0">--Select--</option>
@@ -128,36 +150,51 @@ class ClientInfo extends Component {
       let clientRowToDelete = {
         id: clientId
       };
-
-      fetch(
-        "http://localhost:5514/pdfTochartjs/pranichealingApi/api/tblclient/Delete.php",
-        {
-          mode: "no-cors",
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*"
+      confirmAlert({
+        title: "Confirm to delete",
+        message: "Are you sure to delete this client?",
+        buttons: [
+          {
+            label: "Yes",
+            onClick: () => this.deleteClient(clientRowToDelete)
           },
-          body: JSON.stringify(clientRowToDelete)
-        }
-      )
-        .then(function(response) {
-          toast.success(
-            "Client has been deleted, Page is going to be refreshed"
-          );
-          setTimeout(function() {
-            window.location.reload();
-          }, 3000);
-          console.log("success data= " + response);
-        })
-        .then(function(data) {
-          if (data !== undefined) {
-            toast.error("There is error in application. Please try later");
-            console.log("success data= " + data);
+          {
+            label: "No"
           }
-        });
+        ],
+        closeOnEscape: false,
+        closeOnClickOutside: false
+      });
     }
+  };
+
+  deleteClient = clientId => {
+    fetch(
+      "http://localhost:5514/pdfTochartjs/pranichealingApi/api/tblclient/Delete.php",
+      {
+        mode: "no-cors",
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*"
+        },
+        body: JSON.stringify(clientId)
+      }
+    )
+      .then(function(response) {
+        toast.success("Client has been deleted, Page is going to be refreshed");
+        setTimeout(function() {
+          window.location.reload();
+        }, 3000);
+        console.log("success data= " + response);
+      })
+      .then(function(data) {
+        if (data !== undefined) {
+          toast.error("There is error in application. Please try later");
+          console.log("success data= " + data);
+        }
+      });
   };
   toggleAddNewSection = () => {
     this.setState({ addNewClient: !this.state.addNewClient });
