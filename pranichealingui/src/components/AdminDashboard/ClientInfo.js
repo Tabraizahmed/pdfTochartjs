@@ -34,12 +34,14 @@ class ClientInfo extends Component {
     clientToRender.push(ClientInfo);
     if (e.target.value === "1") {
       this.setState({ clientHealthInfo: "" });
+
       let clientHealthInfo = clientToRender.map(client => {
+        let clientsince = client.since === "1970-01-01" ? "" : client.since;
         return (
           <tr key={client.id}>
             <td>{client.typeOfAilment}</td>
             <td>{client.symptomsAndSeverity}</td>
-            <td>{client.since}</td>
+            <td>{clientsince}</td>
             <td>{client.medicalReport}</td>
             <td>{client.medicineUse}</td>
           </tr>
@@ -73,9 +75,14 @@ class ClientInfo extends Component {
     this.setState({ habitPopup: false });
   };
   componentDidMount() {
-    fetch(
-      "http://localhost:5514/pdfTochartjs/pranichealingApi/api/tblclient/Read.php"
-    )
+    let readUrl = "";
+    if (window.location.href.indexOf("localhost:5511") > 0) {
+      readUrl = "http://localhost:5511/pranichealingApi/api/tblClient/Read.php";
+    } else {
+      readUrl =
+        "http://localhost:5514/pdfTochartjs/pranichealingApi/api/tblclient/Read.php";
+    }
+    fetch(readUrl)
       .then(result => {
         if (result.status === 200) {
           return result.json();
@@ -152,6 +159,7 @@ class ClientInfo extends Component {
   }
   onAddNewClient = () => {
     this.setState({ addNewClient: true });
+    this.scrollToTop();
   };
   onDeleteClick = clientId => {
     if (clientId !== undefined) {
@@ -215,6 +223,11 @@ class ClientInfo extends Component {
       )
     });
     this.setState({ editClient: true });
+    this.scrollToTop();
+  };
+  scrollToTop = () => {
+    var html = document.documentElement;
+    html.scrollTop = 0;
   };
   render() {
     const { open, habitPopup, addNewClient, editClient } = this.state;

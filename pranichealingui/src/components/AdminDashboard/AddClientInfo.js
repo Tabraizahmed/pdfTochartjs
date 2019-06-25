@@ -7,29 +7,29 @@ class AddClientInfo extends Component {
   constructor() {
     super();
     this.state = {
-      firstName: "testName",
-      lastName: "testLastName",
-      email: "tabi_emi@hotmail.com",
-      contactNumber: "03155075202",
-      country: "pakistan",
-      skypeId: "hello",
-      dateOfBirth: "1983-04-11 00:35:07",
+      firstName: "",
+      lastName: "",
+      email: "",
+      contactNumber: "",
+      country: "",
+      skypeId: "",
+      dateOfBirth: "",
       sex: "male",
-      martialStaus: "married",
-      Occupation: "engineer",
+      martialStaus: "",
+      Occupation: "",
       imageUrl: "",
 
       isSmoke: false,
       isAlcohol: false,
       isDrugs: false,
-      meditationOrSpiritualPractice: "nops",
-      tendenciesToRemove: "yes",
-      typeOfAilment: "dad",
-      symptomsAndSeverity: "adfdf",
-      since: "",
+      meditationOrSpiritualPractice: "",
+      tendenciesToRemove: "",
+      typeOfAilment: "",
+      symptomsAndSeverity: "",
+      since: "1970-01-01",
       isAilmentInherited: false,
-      medicalReport: "dfda",
-      medicineUse: "adfdf"
+      medicalReport: "",
+      medicineUse: ""
     };
   }
   // Callback~
@@ -49,33 +49,35 @@ class AddClientInfo extends Component {
   SaveClientInfoOnSubmit = e => {
     e.preventDefault();
     console.log(this.state);
+    let readUrl = "";
+    if (window.location.href.indexOf("localhost:5511") > 0) {
+      readUrl =
+        "http://localhost:5511/pranichealingApi/api/tblClient/Create.php";
+    } else {
+      readUrl =
+        "http://localhost:5514/pdfTochartjs/pranichealingApi/api/tblclient/Create.php";
+    }
 
-    fetch(
-      "http://localhost:5514/pdfTochartjs/pranichealingApi/api/tblclient/Create.php",
-      {
-        mode: "no-cors",
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*"
-        },
-        body: JSON.stringify(this.state)
-      }
-    )
-      .then(function(response) {
-        if (response.status === 201) {
-          toast.success(
-            "New Cient has been created, Page is going to be refreshed"
-          );
-          setTimeout(function() {
-            window.location.reload();
-          }, 3000);
-        } else if (!response.ok) {
-          toast.error("There is error in application. Please try later");
-        }
+    fetch(readUrl, {
+      mode: "no-cors",
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      },
+      body: JSON.stringify(this.state)
+    })
+      .then(response => {
+        toast.success(
+          "New Cient has been created, Page is going to be refreshed"
+        );
+        // setTimeout(function() {
+        //   window.location.reload();
+        // }, 3000);
       })
       .then(function(data) {
+        debugger;
         if (data !== undefined) {
           toast.error("There is error in application. Please try later");
         }

@@ -6,20 +6,110 @@ import FileBase64 from "react-file-base64";
 class EditClientInfo extends Component {
   constructor(props) {
     super(props);
-    console.log(props.clientdetails);
+    this.state = {
+      clientId: "",
+      firstName: "",
+      lastName: "",
+      email: "",
+      contactNumber: "",
+      country: "",
+      skypeId: "",
+      dateOfBirth: "",
+      sex: "",
+      martialStaus: "",
+      Occupation: "",
+      imageUrl: "",
+
+      isSmoke: false,
+      isAlcohol: false,
+      isDrugs: false,
+      meditationOrSpiritualPractice: "",
+      tendenciesToRemove: "",
+      typeOfAilment: "",
+      symptomsAndSeverity: "",
+      since: "",
+      isAilmentInherited: false,
+      medicalReport: "",
+      medicineUse: ""
+    };
+
+    // Create refs
+    this.firstNameInput = React.createRef();
+    this.lastNameInput = React.createRef();
+    this.emailInput = React.createRef();
+    this.countryInput = React.createRef();
+    this.contactNumberInput = React.createRef();
+    this.dateOfBirthInput = React.createRef();
+
+    this.martialStausInput = React.createRef();
+
+    this.isAlcoholInput = React.createRef();
+
+    this.meditationOrSpiritualPracticeInput = React.createRef();
+    this.typeOfAilmentInput = React.createRef();
+    this.sinceInput = React.createRef();
+    this.medicineUseInput = React.createRef();
+    this.lastNameInput = React.createRef();
+    this.contactNumberInput = React.createRef();
+    this.skypeIdInput = React.createRef();
+    this.OccupationInput = React.createRef();
+
+    this.isSmokeInput = React.createRef();
+    this.isDrugsInput = React.createRef();
+    this.tendenciesToRemoveInput = React.createRef();
+    this.symptomsAndSeverityInput = React.createRef();
+    this.medicalReportInput = React.createRef();
+
+    this.sexInput = React.createRef();
+    this.imageInput = React.createRef();
   }
+
   getFiles(files) {
     if (files.file.size > 50000) {
       toast.error("File size should be less than 500 kb");
       return;
     }
-    this.props.clientdetails.imageUrl = files.base64;
+    this.setState({ imageUrl: files.base64 });
   }
+  onChange = e => {
+    this.props.clientdetails.firstName = e.target.defaultValue;
+  };
+  OnupdateClient = e => {
+    e.preventDefault();
+    const updateClient = {
+      clientId: this.props.clientdetails.id,
+      firstName: this.firstNameInput.current.value,
+      lastName: this.lastNameInput.current.value,
+      email: this.emailInput.current.value,
+      contactNumber: this.contactNumberInput.current.value,
+      country: this.countryInput.current.value,
+      skypeId: this.skypeIdInput.current.value,
+      dateOfBirth: this.dateOfBirthInput.current.value,
+      sex: this.sexInput.current.value,
+      martialStaus: this.martialStausInput.current.value,
+      Occupation: this.OccupationInput.current.value,
+      imageUrl: this.state.imageUrl,
+      isSmoke: this.isSmokeInput.current.value,
+      isAlcohol: this.isAlcoholInput.current.value,
+      isDrugs: this.isDrugsInput.current.value,
+      meditationOrSpiritualPractice: this.meditationOrSpiritualPracticeInput
+        .current.value,
+      tendenciesToRemove: this.tendenciesToRemoveInput.current.value,
+      typeOfAilment: this.typeOfAilmentInput.current.value,
+      symptomsAndSeverity: this.symptomsAndSeverityInput.current.value,
+      since: this.sinceInput.current.value,
+      // isAilmentInherited: this.isAilmentInheritedInput.current.value,
+      medicalReport: this.medicalReportInput.current.value,
+      medicineUse: this.medicineUseInput.current.value
+    };
+    console.log(updateClient);
+  };
+
   render() {
     return (
       <div>
-        <form>
-          <h3>Add new client</h3>
+        <form onSubmit={this.OnupdateClient}>
+          <h3>Edit client</h3>
           <div className="row">
             <div className="col-lg-6 col-sm-12">
               <div className="form-group required">
@@ -32,8 +122,8 @@ class EditClientInfo extends Component {
                 <input
                   type="text"
                   required
-                  value={this.props.clientdetails.firstName}
-                  onChange={e => this.setState({ firstName: e.target.value })}
+                  ref={this.firstNameInput}
+                  defaultValue={this.props.clientdetails.firstName}
                   className="form-control"
                 />
               </div>
@@ -46,9 +136,9 @@ class EditClientInfo extends Component {
                   Email
                 </label>
                 <input
-                  value={this.props.clientdetails.email}
+                  defaultValue={this.props.clientdetails.email}
+                  ref={this.emailInput}
                   required
-                  onChange={e => this.setState({ email: e.target.value })}
                   type="email"
                   className="form-control"
                 />
@@ -63,8 +153,8 @@ class EditClientInfo extends Component {
                 </label>
                 <input
                   required
-                  value={this.props.clientdetails.country}
-                  onChange={e => this.setState({ country: e.target.value })}
+                  defaultValue={this.props.clientdetails.country}
+                  ref={this.countryInput}
                   type="text"
                   className="form-control"
                 />
@@ -80,8 +170,8 @@ class EditClientInfo extends Component {
                 <input
                   type="Date"
                   required
-                  value={this.props.clientdetails.dateOfBirth}
-                  onChange={e => this.setState({ dateOfBirth: e.target.value })}
+                  defaultValue={this.props.clientdetails.dateOfBirth}
+                  ref={this.dateOfBirthInput}
                   className="form-control"
                 />
               </div>
@@ -96,16 +186,22 @@ class EditClientInfo extends Component {
                 <input
                   type="text"
                   required
-                  value={this.props.clientdetails.martialStaus}
-                  onChange={e =>
-                    this.setState({ martialStaus: e.target.value })
-                  }
+                  defaultValue={this.props.clientdetails.martialStaus}
+                  ref={this.martialStausInput}
                   className="form-control"
                 />
               </div>
-
               <div className="form-group">
-                <label htmlFor="formGroupExampleInput">Upload Image</label>
+                <label htmlFor="formGroupExampleInput">Existing Image</label>
+                <img
+                  src={this.props.clientdetails.imageUrl}
+                  alt="client existing"
+                  width="50"
+                  height="50"
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="formGroupExampleInput">Upload new Image</label>
                 <FileBase64
                   multiple={false}
                   onDone={this.getFiles.bind(this)}
@@ -117,8 +213,8 @@ class EditClientInfo extends Component {
                 <label htmlFor="formGroupExampleInput">Is Alchol</label>
                 <input
                   type="checkbox"
-                  value={this.props.clientdetails.isAlcohol}
-                  onChange={e => this.setState({ isAlcohol: e.target.checked })}
+                  defaultValue={this.props.clientdetails.isAlcohol}
+                  ref={this.isAlcoholInput}
                   className="form-control"
                 />
               </div>
@@ -129,12 +225,10 @@ class EditClientInfo extends Component {
                 </label>
                 <input
                   type="checkbox"
-                  value={this.props.clientdetails.meditationOrSpiritualPractice}
-                  onChange={e =>
-                    this.setState({
-                      meditationOrSpiritualPractice: e.target.checked
-                    })
+                  defaultValue={
+                    this.props.clientdetails.meditationOrSpiritualPractice
                   }
+                  ref={this.meditationOrSpiritualPracticeInput}
                   className="form-control"
                 />
               </div>
@@ -143,10 +237,8 @@ class EditClientInfo extends Component {
                 <label htmlFor="formGroupExampleInput">Type Of Ailment</label>
                 <input
                   type="text"
-                  value={this.props.clientdetails.typeOfAilment}
-                  onChange={e =>
-                    this.setState({ typeOfAilment: e.target.value })
-                  }
+                  defaultValue={this.props.clientdetails.typeOfAilment || ""}
+                  ref={this.typeOfAilmentInput}
                   className="form-control"
                 />
               </div>
@@ -155,8 +247,8 @@ class EditClientInfo extends Component {
                 <label htmlFor="formGroupExampleInput">Since</label>
                 <input
                   type="date"
-                  value={this.props.clientdetails.since}
-                  onChange={e => this.setState({ since: e.target.value })}
+                  defaultValue={this.props.clientdetails.since}
+                  ref={this.sinceInput}
                   className="form-control"
                 />
               </div>
@@ -165,8 +257,8 @@ class EditClientInfo extends Component {
                 <label htmlFor="formGroupExampleInput">Medicine Use</label>
                 <input
                   type="text"
-                  value={this.props.clientdetails.medicineUse}
-                  onChange={e => this.setState({ medicineUse: e.target.value })}
+                  defaultValue={this.props.clientdetails.medicineUse}
+                  ref={this.medicineUseInput}
                   className="form-control"
                 />
               </div>
@@ -183,8 +275,8 @@ class EditClientInfo extends Component {
                 <input
                   required
                   type="text"
-                  value={this.props.clientdetails.lastName}
-                  onChange={e => this.setState({ lastName: e.target.value })}
+                  defaultValue={this.props.clientdetails.lastName}
+                  ref={this.lastNameInput}
                   className="form-control"
                 />
               </div>
@@ -199,10 +291,8 @@ class EditClientInfo extends Component {
                 <input
                   type="text"
                   required
-                  value={this.props.clientdetails.contactNumber}
-                  onChange={e =>
-                    this.setState({ contactNumber: e.target.value })
-                  }
+                  defaultValue={this.props.clientdetails.contactNumber}
+                  ref={this.contactNumberInput}
                   className="form-control"
                 />
               </div>
@@ -211,8 +301,8 @@ class EditClientInfo extends Component {
                 <label htmlFor="formGroupExampleInput">skypeId</label>
                 <input
                   type="text"
-                  value={this.props.clientdetails.skypeId}
-                  onChange={e => this.setState({ skypeId: e.target.value })}
+                  defaultValue={this.props.clientdetails.skypeId}
+                  ref={this.skypeIdInput}
                   className="form-control"
                 />
               </div>
@@ -228,7 +318,8 @@ class EditClientInfo extends Component {
                 <select
                   required
                   className="form-control"
-                  onChange={this.SetSexInState}
+                  defaultValue={this.props.clientdetails.sex}
+                  ref={this.sexInput}
                 >
                   <option value="male">Male</option>
                   <option value="female">Female</option>
@@ -239,8 +330,8 @@ class EditClientInfo extends Component {
                 <label htmlFor="formGroupExampleInput">Occupation</label>
                 <input
                   type="text"
-                  value={this.props.clientdetails.Occupation}
-                  onChange={e => this.setState({ Occupation: e.target.value })}
+                  defaultValue={this.props.clientdetails.Occupation}
+                  ref={this.OccupationInput}
                   className="form-control"
                 />
               </div>
@@ -249,8 +340,9 @@ class EditClientInfo extends Component {
                 <label htmlFor="formGroupExampleInput">Is Smoke</label>
                 <input
                   type="checkbox"
-                  value={this.props.clientdetails.isSmoke}
-                  onChange={e => this.setState({ isSmoke: e.target.checked })}
+                  // checked={isSmoked}
+                  defaultValue={this.props.clientdetails.isSmoke}
+                  ref={this.isSmokeInput}
                   className="form-control"
                 />
               </div>
@@ -259,8 +351,8 @@ class EditClientInfo extends Component {
                 <label htmlFor="formGroupExampleInput">Is Drugs</label>
                 <input
                   type="checkbox"
-                  value={this.props.clientdetails.isDrugs}
-                  onChange={e => this.setState({ isDrugs: e.target.checked })}
+                  defaultValue={this.props.clientdetails.isDrugs}
+                  ref={this.isDrugsInput}
                   className="form-control"
                 />
               </div>
@@ -271,10 +363,8 @@ class EditClientInfo extends Component {
                 </label>
                 <input
                   type="text"
-                  value={this.props.clientdetails.tendenciesToRemove}
-                  onChange={e =>
-                    this.setState({ tendenciesToRemove: e.target.value })
-                  }
+                  defaultValue={this.props.clientdetails.tendenciesToRemove}
+                  ref={this.tendenciesToRemoveInput}
                   className="form-control"
                 />
               </div>
@@ -285,10 +375,8 @@ class EditClientInfo extends Component {
                 </label>
                 <input
                   type="text"
-                  value={this.props.clientdetails.symptomsAndSeverity}
-                  onChange={e =>
-                    this.setState({ symptomsAndSeverity: e.target.value })
-                  }
+                  defaultValue={this.props.clientdetails.symptomsAndSeverity}
+                  ref={this.symptomsAndSeverityInput}
                   className="form-control"
                 />
               </div>
@@ -297,10 +385,8 @@ class EditClientInfo extends Component {
                 <label htmlFor="formGroupExampleInput">Medical Report</label>
                 <input
                   type="text"
-                  value={this.props.clientdetails.medicalReport}
-                  onChange={e =>
-                    this.setState({ medicalReport: e.target.value })
-                  }
+                  defaultValue={this.props.clientdetails.medicalReport}
+                  ref={this.medicalReportInput}
                   className="form-control"
                 />
               </div>

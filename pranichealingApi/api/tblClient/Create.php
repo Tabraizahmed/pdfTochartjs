@@ -28,7 +28,7 @@ $client=new tblClient($db);
 $data = json_decode(file_get_contents("php://input"));
 
 if(!empty($data->firstName) && !empty($data->lastName) && !empty($data->email) && !empty($data->contactNumber) && !empty($data->dateOfBirth) &&
-    !empty($data->sex) && !empty($data->martialStaus) && !empty($data->Occupation)   && !empty($data->country) && !empty($data->skypeId))  
+    !empty($data->sex) && !empty($data->martialStaus)  && !empty($data->country))  
     {
         // Set values when data is not null
         $client->firstName=$data->firstName;
@@ -90,7 +90,7 @@ if(!empty($data->firstName) && !empty($data->lastName) && !empty($data->email) &
     http_response_code(400);
  
     // tell the user
-    echo json_encode(array("message" => "Unable to create product. Data is incomplete."));
+    echo json_encode(array("message" => "Unable to create client. Data is incomplete."));
     }
 
 ?>
