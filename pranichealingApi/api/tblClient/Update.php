@@ -21,10 +21,6 @@ $client=new tblClient($db);
 // get posted data
 $data = json_decode(file_get_contents("php://input"));
 
-
-
-// Set data values 
-
 // Set values when data is not null
 $client->clientId=$data->clientId;
 $client->firstName=$data->firstName;
@@ -51,16 +47,18 @@ $client->tendenciesToRemove=$data->tendenciesToRemove;
 $client->typeOfAilment=$data->typeOfAilment;
 $client->symptomsAndSeverity=$data->symptomsAndSeverity;
 $client->since=$data->since;
-$client->isAilmentInherited=$data->isAilmentInherited;
+//$client->isAilmentInherited=$data->isAilmentInherited;
 $client->medicalReport=$data->medicalReport;
 $client->medicineUse=$data->medicineUse;
 
 // update the product
 
-if($client->update()){
+
+
+if($client->update()==101){
 
     // set http response
-    http_response_code(200);
+    http_response_code(201);
     // tell the user
     echo (json_encode(array("message"=>"client has been updated")));
 

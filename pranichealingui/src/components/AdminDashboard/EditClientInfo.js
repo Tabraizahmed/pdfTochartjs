@@ -102,7 +102,42 @@ class EditClientInfo extends Component {
       medicalReport: this.medicalReportInput.current.value,
       medicineUse: this.medicineUseInput.current.value
     };
+
     console.log(updateClient);
+    // send this object to api to update
+    let readUrl = "";
+    if (window.location.href.indexOf("localhost:5511") > 0) {
+      readUrl =
+        "http://localhost:5511/pranichealingApi/api/tblClient/update.php";
+    } else {
+      readUrl =
+        "http://localhost:5514/pdfTochartjs/pranichealingApi/api/tblclient/update.php";
+    }
+
+    fetch(readUrl, {
+      mode: "no-cors",
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      },
+      body: JSON.stringify(updateClient)
+    })
+      .then(Response => {
+        toast.success(
+          "New Cient has been updated, Page is going to be refreshed"
+        );
+        setTimeout(function() {
+          window.location.reload();
+        }, 3000);
+      })
+      .then(function(data) {
+        if (data !== undefined) {
+          toast.error("There is error in application. Please try later");
+        }
+      })
+      .catch(error => console.log(error));
   };
 
   render() {

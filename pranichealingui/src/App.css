@@ -98,3 +98,14 @@ body {
   content: "*";
   color: red;
 }
+.form-small-banner {
+  background-color: #343a40;
+  height: 8vh;
+}
+.text-box-client-form {
+  border-radius: 0px;
+  background-color: #f4f1f1cc;
+
+  border: 0px;
+  border-bottom: 1px solid black;
+}

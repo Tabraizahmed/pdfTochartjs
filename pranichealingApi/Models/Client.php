@@ -300,7 +300,7 @@ class tblClient
     }
 
     private function updateClient($clientId){
-
+        
         $query = "UPDATE
         " . $this->table_client . "
             SET
@@ -349,7 +349,7 @@ class tblClient
             $this->update_health_info($clientId);
             $this->update_tendencies($clientId);
 
-            return $clientId;
+            return 101;
            }
 
            return false;

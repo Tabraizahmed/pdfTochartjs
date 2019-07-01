@@ -19,7 +19,7 @@ class ClientInfo extends Component {
       clientTendencies: [],
       open: false,
       habitPopup: false,
-      addNewClient: false,
+      addNewClient: true,
       editClient: false,
       clientToEdit: {}
     };
