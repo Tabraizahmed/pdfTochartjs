@@ -17,32 +17,60 @@ class tblClient
     public $lastName;
     public $email;
     public $contactNumber;
-    public $country;
-    public $skypeId;
+    // public $country;
+    // public $skypeId;
     public $dateOfBirth;
-    public $sex;
-    public $martialStaus;
-    public $Occupation;
-    public $imageUrl;
+    // public $sex;
+    // public $martialStaus;
+    // public $Occupation;
+    // public $imageUrl;
     public $isActive;
+
+    // new fields
+
+    public $street;
+    public $AptNo;
+    public $city;
+    public $state;
+    public $zipCode;
+
+    public $Age;
+
+    public $purposeOfVisit;
+    public $ClientCommentsAfterVisit;
+
+   public $isBloodPressure;
+   public $isPregent;
+   public $isDrugs;
+   public $drugsDetails;
+   public $isContagiousDisease;
+   public $contagiousDiseaseDetails;
+   public $ispsycho;
+   public $psychologicalDisorderDetails;
+   public $isSeriousInjury;
+   public $seriousInjuryDetails;
+
+   public $clientSignature;
+   public $formDate;
+
     // tblclienthabitsandtendencies model
 
     public $habitsTendenciesId;
     public $isSmoke;
     public $isAlcohol;
-    public $isDrugs;
-    public $meditationOrSpiritualPractice;
-    public $tendenciesToRemove;
+    
+    // public $meditationOrSpiritualPractice;
+    // public $tendenciesToRemove;
 
     // tblclienthealthinfo
 
-    public $healthInfoId;
-    public $typeOfAilment;
-    public $symptomsAndSeverity;
-    public $since;
-    public $isAilmentInherited;
-    public $medicalReport;
-    public $medicineUse;
+    // public $healthInfoId;
+    // public $typeOfAilment;
+    // public $symptomsAndSeverity;
+    // public $since;
+    // public $isAilmentInherited;
+    // public $medicalReport;
+    // public $medicineUse;
 
 
     // constructor 
@@ -78,8 +106,9 @@ class tblClient
     " . $this->table_client . "
         SET
         firstName=:firstName, lastName=:lastName, email=:email, contactNumber=:contactNumber,
-        country=:country,skypeId=:skypeId,
-        dateOfBirth=:dateOfBirth, sex=:sex,martialStaus=:martialStaus,Occupation=:Occupation,imageUrl=:imageUrl,isActive=:isActive ";
+        street=:street,aptno=:aptno,city=:city,state=:state,zipcode=:zipcode,purposeOfVisit=:purposeOfVisit,
+        ClientCommentsAfterVisit=:ClientCommentsAfterVisit,
+        isActive=:isActive ";
 
         // prepare query
     $stmt = $this->conn->prepare($query);
@@ -90,30 +119,30 @@ class tblClient
      $this->email=htmlspecialchars(strip_tags($this->email));
      $this->contactNumber=htmlspecialchars(strip_tags($this->contactNumber));
 
-     $this->country=htmlspecialchars(strip_tags($this->country));
-     $this->skypeId=htmlspecialchars(strip_tags($this->skypeId));
-     
+     $this->street=htmlspecialchars(strip_tags($this->street));
+     $this->AptNo=htmlspecialchars(strip_tags($this->AptNo));
+     $this->city=htmlspecialchars(strip_tags($this->city));
+     $this->state=htmlspecialchars(strip_tags($this->state));
+     $this->zipCode=htmlspecialchars(strip_tags($this->zipCode));
+     $this->purposeOfVisit=htmlspecialchars(strip_tags($this->purposeOfVisit));
+
+     $this->ClientCommentsAfterVisit=htmlspecialchars(strip_tags($this->ClientCommentsAfterVisit));
      $this->dateOfBirth=htmlspecialchars(strip_tags($this->dateOfBirth));
-     $this->sex=htmlspecialchars(strip_tags($this->sex));
-     $this->martialStaus=htmlspecialchars(strip_tags($this->martialStaus));
-     $this->Occupation=htmlspecialchars(strip_tags($this->Occupation));
-     $this->imageUrl=htmlspecialchars(strip_tags($this->imageUrl));
 
-
-       // bind values
+    // bind values
     $stmt->bindParam(":firstName", $this->firstName);
     $stmt->bindParam(":lastName", $this->lastName);
     $stmt->bindParam(":email", $this->email);
     $stmt->bindParam(":contactNumber", $this->contactNumber);
 
-    $stmt->bindParam(":country", $this->country);
-    $stmt->bindParam(":skypeId", $this->skypeId);
+    $stmt->bindParam(":street", $this->street);
+    $stmt->bindParam(":aptno", $this->AptNo);
 
-    $stmt->bindParam(":dateOfBirth", $this->dateOfBirth);
-    $stmt->bindParam(":sex", $this->sex);
-    $stmt->bindParam(":martialStaus", $this->martialStaus);
-    $stmt->bindParam(":Occupation", $this->Occupation);
-    $stmt->bindParam(":imageUrl", $this->imageUrl);
+    $stmt->bindParam(":city", $this->city);
+    $stmt->bindParam(":state", $this->state);
+    $stmt->bindParam(":zipcode", $this->zipcode);
+    $stmt->bindParam(":purposeOfVisit", $this->purposeOfVisit);
+    $stmt->bindParam(":ClientCommentsAfterVisit", $this->ClientCommentsAfterVisit);
     $value=0;
     $stmt->bindParam(":isActive",$value);
 
@@ -125,7 +154,7 @@ class tblClient
     
         $clientId=$this->conn->lastInsertId();
         $this->InsertIntoTblTendencies($clientId);
-        $this->InsertIntoTblHealthInfo($clientId);
+        //$this->InsertIntoTblHealthInfo($clientId);
 
         return $clientId;
     }
@@ -150,28 +179,61 @@ class tblClient
         " . $this->table_clienthabitsandtendencies . "
             SET
             clientId=:clientId, isSmoke=:isSmoke, isAlcohol=:isAlcohol, isDrugs=:isDrugs,
-            meditationOrSpiritualPractice=:meditationOrSpiritualPractice,tendenciesToRemove=:tendenciesToRemove";
+            IsBloodPressure=:IsBloodPressure,isPregrent=:isPregrent,Drugs_Medications_details=:drugsDetails,
+            Iscontagiousdisease=:Iscontagiousdisease,contagiousdisease_details=:contagiousDiseaseDetails,
+            psychological_disorder_detail=:psychologicalDisorderDetails,
+            isphysicalinjury=:isphysicalinjury,physicalinjury_details=:seriousInjuryDetails";
+
+
 
     // prepare query
     $stmt = $this->conn->prepare($query);
 
-     $this->isSmoke=htmlspecialchars(strip_tags($this->isSmoke));
-     $this->isAlcohol=htmlspecialchars(strip_tags($this->isAlcohol));
-     $this->isDrugs=htmlspecialchars(strip_tags($this->isDrugs));
-     $this->meditationOrSpiritualPractice=htmlspecialchars(strip_tags($this->meditationOrSpiritualPractice));
-     $this->tendenciesToRemove=htmlspecialchars(strip_tags($this->tendenciesToRemove));
+     $this->drugsDetails=htmlspecialchars(strip_tags($this->drugsDetails));
+     $this->contagiousDiseaseDetails=htmlspecialchars(strip_tags($this->contagiousDiseaseDetails));
+     $this->psychologicalDisorderDetails=htmlspecialchars(strip_tags($this->psychologicalDisorderDetails));
+     $this->seriousInjuryDetails=htmlspecialchars(strip_tags($this->seriousInjuryDetails));
+
 
      $stmt->bindParam(":clientId", $clientId);
      $smoke=$this->isSmoke==true?1:0;
      $stmt->bindParam(":isSmoke", $smoke);
+
      $aclchol=$this->isAlcohol==true?1:0;
      $stmt->bindParam(":isAlcohol", $aclchol);
+
      $drugs=$this->isDrugs==true?1:0;
      $stmt->bindParam(":isDrugs", $drugs);
-     $stmt->bindParam(":meditationOrSpiritualPractice", $this->meditationOrSpiritualPractice);
-     $stmt->bindParam(":tendenciesToRemove", $this->tendenciesToRemove);
+
+     $bp=$this->isBloodPressure==true?1:0;
+     $stmt->bindParam(":IsBloodPressure", $bp);
+
+     $Pregrent=$this->isPregent==true?1:0;
+     $stmt->bindParam(":isPregrent", $Pregrent);
+
+     $stmt->bindParam(":drugsDetails",$this->drugsDetails);
+
+
+     $contagiousdisease=$this->isContagiousDisease==true?1:0;
+     $stmt->bindParam(":Iscontagiousdisease", $contagiousdisease);
+
+     $stmt->bindParam(":contagiousDiseaseDetails",$this->contagiousDiseaseDetails);
+
     
-     $stmt->execute();
+    // $psychologicalDisorder=$this->$ispsycho==true?1:0;
+    //  $stmt->bindParam(":IspsychologicalDisorder",$psychologicalDisorder);
+
+     $stmt->bindParam(":psychologicalDisorderDetails",$this->psychologicalDisorderDetails);
+
+     $physicalinjury=$this->isSeriousInjury==true?1:0;
+     $stmt->bindParam(":physicalinjury",$physicalinjury);
+
+    
+     $stmt->bindParam(":seriousInjuryDetails",$this->seriousInjuryDetails);
+
+
+
+    $stmt->execute();
 
     }
 

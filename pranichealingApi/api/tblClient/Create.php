@@ -24,40 +24,67 @@ $db=$database->connect();
 
 $client=new tblClient($db);
 
+print_r($client);
+
 // get posted data
 $data = json_decode(file_get_contents("php://input"));
 
-if(!empty($data->firstName) && !empty($data->lastName) && !empty($data->email) && !empty($data->contactNumber) && !empty($data->dateOfBirth) &&
-    !empty($data->sex) && !empty($data->martialStaus)  && !empty($data->country))  
+
+
+
+if(!empty($data->firstName) && !empty($data->lastName) && !empty($data->email) && !empty($data->contactNumber) 
+    && !empty($data->dateOfBirth)  && !empty($data->state))  
     {
         // Set values when data is not null
         $client->firstName=$data->firstName;
         $client->lastName=$data->lastName;
         $client->email=$data->email;
         $client->contactNumber=$data->contactNumber;
-        $client->country=$data->country;
-        $client->skypeId=$data->skypeId;
         $client->dateOfBirth=$data->dateOfBirth;
-        $client->sex=$data->sex;
-        $client->martialStaus=$data->martialStaus;
-        $client->Occupation=$data->Occupation;
-        $client->imageUrl=$data->imageUrl;
+        $client->street=$data->street;
+        $client->AptNo=$data->AptNo;
+        $client->state=$data->state;
+        $client->city=$data->city;
+        $client->zipCode=$data->zipCode;
+        $client->purposeOfVisit=$data->purposeOfVisit;
+        $client->ClientCommentsAfterVisit=$data->ClientCommentsAfterVisit;
+       
+
+
+        // $client->country=$data->country;
+        // $client->skypeId=$data->skypeId;
+        // $client->sex=$data->sex;
+        // $client->martialStaus=$data->martialStaus;
+        // $client->Occupation=$data->Occupation;
+        // $client->imageUrl=$data->imageUrl;
 
         // tblclienthabitsandtendencies model
+
         $client->isSmoke=$data->isSmoke;
         $client->isAlcohol=$data->isAlcohol;
         $client->isDrugs=$data->isDrugs;
-        $client->meditationOrSpiritualPractice=$data->meditationOrSpiritualPractice;
-        $client->tendenciesToRemove=$data->tendenciesToRemove;
+        $client->drugsDetails=$data->drugsDetails;
+        $client->isContagiousDisease=$data->isContagiousDisease;
+
+        $client->contagiousDiseaseDetails=$data->contagiousDiseaseDetails;
+        $client->ispsycho=$data->ispsychologicalDisorder;
+        $client->psychologicalDisorderDetails=$data->psychologicalDisorderDetails;
+        $client->isSeriousInjury=$data->isSeriousInjury;
+
+        $client->seriousInjuryDetails=$data->seriousInjuryDetails;
+        $client->clientSignature=$data->clientSignature;
+        $client->formDate=$data->formDate;
+
+
        
         // tblclienthealthinfo
 
-        $client->typeOfAilment=$data->typeOfAilment;
-        $client->symptomsAndSeverity=$data->symptomsAndSeverity;
-        $client->since=$data->since;
-        $client->isAilmentInherited=$data->isAilmentInherited;
-        $client->medicalReport=$data->medicalReport;
-        $client->medicineUse=$data->medicineUse;
+        // $client->typeOfAilment=$data->typeOfAilment;
+        // $client->symptomsAndSeverity=$data->symptomsAndSeverity;
+        // $client->since=$data->since;
+        // $client->isAilmentInherited=$data->isAilmentInherited;
+        // $client->medicalReport=$data->medicalReport;
+        // $client->medicineUse=$data->medicineUse;
 
 
         $clientId=$client->create();
