@@ -24,12 +24,10 @@ $db=$database->connect();
 
 $client=new tblClient($db);
 
-print_r($client);
+
 
 // get posted data
 $data = json_decode(file_get_contents("php://input"));
-
-
 
 
 if(!empty($data->firstName) && !empty($data->lastName) && !empty($data->email) && !empty($data->contactNumber) 
@@ -47,7 +45,7 @@ if(!empty($data->firstName) && !empty($data->lastName) && !empty($data->email) &
         $client->city=$data->city;
         $client->zipCode=$data->zipCode;
         $client->purposeOfVisit=$data->purposeOfVisit;
-        $client->ClientCommentsAfterVisit=$data->ClientCommentsAfterVisit;
+        $client->ClientCommentsAfterVisit=$data->clientCommentsAfterExamination;
        
 
 
@@ -65,6 +63,10 @@ if(!empty($data->firstName) && !empty($data->lastName) && !empty($data->email) &
         $client->isDrugs=$data->isDrugs;
         $client->drugsDetails=$data->drugsDetails;
         $client->isContagiousDisease=$data->isContagiousDisease;
+
+        $client->isBloodPressure=$data->isBloodPressure;
+        $client->isPregent=$data->isPregent;
+
 
         $client->contagiousDiseaseDetails=$data->contagiousDiseaseDetails;
         $client->ispsycho=$data->ispsychologicalDisorder;

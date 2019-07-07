@@ -21,6 +21,7 @@
 
     $stmt= $client->readClient();
 
+    
     // Get row count
 
     $num= $stmt->rowCount();
@@ -38,38 +39,45 @@
         // this will make $row['name'] to
         // just $name only
         extract($row);
- 
+      
         $client_item=array(
             "id" => $clientId,
             "firstName" => $firstName,
             "lastName" => $lastName,
             "email" => $email,
             "contactNumber" => $contactNumber,
-            "country" => $country,
-            "skypeId" => $skypeId,
-            "dateOfBirth" => $dateOfBirth,
-            "sex" => $sex,
-            "martialStaus" => $martialStaus,
-            "Occupation" => $Occupation,
-            "imageUrl" => $imageUrl,
+            "street" => $street,
+            "aptno" => $aptno,
+            "city" => $city,
+           
+            "state" => $state,
+            "zipcode" => $zipcode,
+          
 
             // tblclienthabitsandtendencies model
             
-            "habitsTendenciesId" => $habitsTendenciesId,
-            "isSmoke" => $isSmoke,
-            "isAlcohol" => $isAlcohol,
+            "purposeOfVisit" => $purposeOfVisit,
+            "ClientCommentsAfterVisit" => $ClientCommentsAfterVisit,
+            "isPregrent" => $isPregrent,
             "isDrugs" => $isDrugs,
-            "meditationOrSpiritualPractice" => $meditationOrSpiritualPractice,
-            "tendenciesToRemove" => $tendenciesToRemove,
+            "DrugsMedicationsdetails" => $DrugsMedicationsdetails,
+            "Iscontagiousdisease" => $Iscontagiousdisease,
           
             // tblclienthealthinfo
 
-            "healthInfoId" => $healthInfoId,
-            "typeOfAilment" => $typeOfAilment,
-            "symptomsAndSeverity" => $symptomsAndSeverity,
-            "since" => $since,
-            "medicalReport" => $medicalReport,
-            "medicineUse" => $medicineUse,
+            "contagiousdisease_details" => $contagiousdisease_details,
+            "IspsychologicalDisorder" => $IspsychologicalDisorder,
+            "psychological_disorder_detail" => $psychological_disorder_detail,
+            "isphysicalinjury" => $isphysicalinjury,
+            "physicalinjury_details"=>$physicalinjury_details,
+            // "clientSignature" => $clientSignature,
+            // "formDate" => $formDate,
+            "habitsTendenciesId"=>$habitsTendenciesId,
+            "isSmoke"=>$isSmoke,
+            "isAlcohol"=>$isAlcohol,
+            "IsBloodPressure"=>$IsBloodPressure,
+            "isPregrent"=>$isPregrent,
+            "isDrugs"=>$isDrugs
 
 
         );

@@ -84,7 +84,7 @@ class tblClient
         //create a query
 
         $query='select * from '.$this->table_client.' client INNER JOIN tblclienthabitsandtendencies habits on client.clientId=habits.clientId
-         INNER JOIN tblclienthealthinfo healing on client.clientId=healing.clientId where client.isActive=0 order by 1 desc';
+          where client.isActive=0 order by 1 desc';
 
         // prepare statment
 
@@ -108,7 +108,7 @@ class tblClient
         firstName=:firstName, lastName=:lastName, email=:email, contactNumber=:contactNumber,
         street=:street,aptno=:aptno,city=:city,state=:state,zipcode=:zipcode,purposeOfVisit=:purposeOfVisit,
         ClientCommentsAfterVisit=:ClientCommentsAfterVisit,
-        isActive=:isActive ";
+        isActive=:isActive,dateOfBirth=:dob ";
 
         // prepare query
     $stmt = $this->conn->prepare($query);
@@ -134,13 +134,16 @@ class tblClient
     $stmt->bindParam(":lastName", $this->lastName);
     $stmt->bindParam(":email", $this->email);
     $stmt->bindParam(":contactNumber", $this->contactNumber);
+    $stmt->bindParam(":dob",$this->dateOfBirth);
 
+  
+   
     $stmt->bindParam(":street", $this->street);
     $stmt->bindParam(":aptno", $this->AptNo);
 
     $stmt->bindParam(":city", $this->city);
     $stmt->bindParam(":state", $this->state);
-    $stmt->bindParam(":zipcode", $this->zipcode);
+    $stmt->bindParam(":zipcode", $this->zipCode);
     $stmt->bindParam(":purposeOfVisit", $this->purposeOfVisit);
     $stmt->bindParam(":ClientCommentsAfterVisit", $this->ClientCommentsAfterVisit);
     $value=0;
@@ -163,7 +166,7 @@ class tblClient
     return false;
 
     }
-
+   
      function UploadImageToDirectory($base64string,$fileName){
         $base_to_php = explode(',', $base64string);
         $data = base64_decode($base_to_php[1]);
@@ -179,12 +182,13 @@ class tblClient
         " . $this->table_clienthabitsandtendencies . "
             SET
             clientId=:clientId, isSmoke=:isSmoke, isAlcohol=:isAlcohol, isDrugs=:isDrugs,
-            IsBloodPressure=:IsBloodPressure,isPregrent=:isPregrent,Drugs_Medications_details=:drugsDetails,
+            IsBloodPressure=:IsBloodPressure,isPregrent=:isPregrent,DrugsMedicationsdetails=:drugsDetails,
             Iscontagiousdisease=:Iscontagiousdisease,contagiousdisease_details=:contagiousDiseaseDetails,
+            IspsychologicalDisorder=:IspsychologicalDisorder,
             psychological_disorder_detail=:psychologicalDisorderDetails,
             isphysicalinjury=:isphysicalinjury,physicalinjury_details=:seriousInjuryDetails";
 
-
+     
 
     // prepare query
     $stmt = $this->conn->prepare($query);
@@ -220,13 +224,13 @@ class tblClient
      $stmt->bindParam(":contagiousDiseaseDetails",$this->contagiousDiseaseDetails);
 
     
-    // $psychologicalDisorder=$this->$ispsycho==true?1:0;
-    //  $stmt->bindParam(":IspsychologicalDisorder",$psychologicalDisorder);
+     $psychologicalDisorder=$this->ispsycho==true?1:0;
+     $stmt->bindParam(":IspsychologicalDisorder",$psychologicalDisorder);
 
      $stmt->bindParam(":psychologicalDisorderDetails",$this->psychologicalDisorderDetails);
 
      $physicalinjury=$this->isSeriousInjury==true?1:0;
-     $stmt->bindParam(":physicalinjury",$physicalinjury);
+     $stmt->bindParam(":isphysicalinjury",$physicalinjury);
 
     
      $stmt->bindParam(":seriousInjuryDetails",$this->seriousInjuryDetails);

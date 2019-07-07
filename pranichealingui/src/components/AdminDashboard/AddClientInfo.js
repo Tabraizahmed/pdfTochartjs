@@ -1,44 +1,44 @@
 import React, { Component } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import FileBase64 from "react-file-base64";
+//import FileBase64 from "react-file-base64";
 
 class AddClientInfo extends Component {
   constructor() {
     super();
     this.state = {
-      firstName: "",
-      lastName: "",
+      firstName: "test-fristname",
+      lastName: "test-Lastname",
       // Address fields
-      street: "",
-      AptNo: "",
-      city: "",
-      state: "",
-      zipCode: "",
-      email: "",
-      contactNumber: "",
-      Age: "",
+      street: "22",
+      AptNo: "45",
+      city: "rawalpindi",
+      state: "pakistan ",
+      zipCode: "4000",
+      email: "test@test.com",
+      contactNumber: "03320510769",
+      Age: "45",
       // new health tendencies fields
-      isBloodPressure: false,
-      isPregent: false,
+      isBloodPressure: true,
+      isPregent: true,
       isDrugs: false,
-      drugsDetails: "",
+      drugsDetails: "these are drugs details",
       isContagiousDisease: false,
-      contagiousDiseaseDetails: "",
+      contagiousDiseaseDetails: "conagious details",
       ispsychologicalDisorder: false,
-      psychologicalDisorderDetails: "",
+      psychologicalDisorderDetails: "Psychological disorder details",
       isSeriousInjury: false,
-      seriousInjuryDetails: "",
+      seriousInjuryDetails: "serious injury comments",
       // Comments section
-      purposeOfVisit: "",
-      clientCommentsAfterExamination: "",
+      purposeOfVisit: "purpose of comments",
+      clientCommentsAfterExamination: "clients comments after examincation",
       // form footer
-      clientSignature: "",
+      clientSignature: "client signature",
       formDate: "",
 
       country: "",
       skypeId: "",
-      dateOfBirth: "",
+      dateOfBirth: "26/01/1992",
       sex: "male",
       martialStaus: "",
       Occupation: "",
@@ -73,8 +73,7 @@ class AddClientInfo extends Component {
   };
   SaveClientInfoOnSubmit = e => {
     e.preventDefault();
-    console.log(this.state);
-    return;
+
     let readUrl = "";
     if (window.location.href.indexOf("localhost:5511") > 0) {
       readUrl =
@@ -98,12 +97,11 @@ class AddClientInfo extends Component {
         toast.success(
           "New Cient has been created, Page is going to be refreshed"
         );
-        setTimeout(function() {
-          window.location.reload();
-        }, 3000);
+        // setTimeout(function() {
+        //   window.location.reload();
+        // }, 3000);
       })
       .then(function(data) {
-        debugger;
         if (data !== undefined) {
           toast.error("There is error in application. Please try later");
         }
@@ -113,9 +111,7 @@ class AddClientInfo extends Component {
   render() {
     return (
       <div>
-        <h3 className="text-uppercase text-center">
-          Pranic healing&reg; session record
-        </h3>
+        <h3 className="text-uppercase text-center">&reg; session record</h3>
         <h4 className="text-center text-uppercase">Client Form</h4>
         <div className="row">
           <div className="col-12 form-small-banner text-uppercase text-light">
@@ -351,7 +347,7 @@ class AddClientInfo extends Component {
                     className="form-check-input"
                     type="radio"
                     value={this.state.isBloodPressure}
-                    onChange={e => this.setState({ isBloodPressure: false })}
+                    onChange={e => this.setState({ isBloodPressure: true })}
                     name="isbp"
                     value="option1"
                   />
