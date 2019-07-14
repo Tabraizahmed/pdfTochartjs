@@ -47,24 +47,36 @@ class ClientInfo extends Component {
 
       let clientTendencies = clientToRender.map(client => {
         return (
-          <tr key={client.id}>
-            <td>{isSmoke}</td>
-            <td>{isAlchol}</td>
-            <td>{isDrugs}</td>
-            <td>{isBloodPressure}</td>
-            <td>{isPregrent}</td>
-            <td>{client.DrugsMedicationsdetails}</td>
-            <td>{Iscontagiousdisease}</td>
-            <td>{client.contagiousdisease_details}</td>
-            <td>{IspsychologicalDisorder}</td>
-            <td>{client.psychological_disorder_detail}</td>
-            <td>{isphysicalinjury}</td>
-            <td>{client.psychological_disorder_detail}</td>
-          </tr>
+          <ul className="list-group" key={client.id}>
+            <li className="list-group-item">{isSmoke}</li>
+            <li className="list-group-item">{isAlchol}</li>
+            <li className="list-group-item">{isDrugs}</li>
+            <li className="list-group-item">{isBloodPressure}</li>
+            <li className="list-group-item">{isPregrent}</li>
+
+            <li className="list-group-item">
+              {client.DrugsMedicationsdetails}
+            </li>
+            <li className="list-group-item">{Iscontagiousdisease}</li>
+            <li className="list-group-item">
+              {client.contagiousdisease_details}
+            </li>
+
+            <li className="list-group-item">{IspsychologicalDisorder}</li>
+            <li className="list-group-item">
+              {client.psychological_disorder_detail}
+            </li>
+            <li className="list-group-item">
+              {client.psychological_disorder_detail}
+            </li>
+            <li className="list-group-item">{client.physicalinjury_details}</li>
+          </ul>
         );
       });
       this.setState({ clientTendencies: clientTendencies });
       this.setState({ habitPopup: true });
+    } else if (e.target.value === "2") {
+      window.location.href = "/chakaragraph?clinetId=" + clientId;
     }
   };
   onCloseModal = () => {
@@ -111,6 +123,7 @@ class ClientInfo extends Component {
                   <select onChange={e => this.onActionddlChange(e, client.id)}>
                     <option value="0">--Select--</option>
                     <option value="1">Client Health Tendencies Info</option>
+                    <option value="2">Client Chakara Graph</option>
                   </select>
                   &nbsp;
                   <button
@@ -250,28 +263,26 @@ class ClientInfo extends Component {
 
         <Modal open={habitPopup} onClose={this.onCloseModal} center>
           <h3>Clients Habits</h3>
-          <div className="table-responsive">
-            <table className="table mt-2">
-              <thead>
-                <tr>
-                  <th scope="Col">Is Somking</th>
-                  <th scope="Col">Is Alcohol</th>
-                  <th scope="Col">Is Drugs</th>
-                  <th scope="Col">Is BloodPressure</th>
-                  <th scope="Col">Is Pregrent</th>
+          <div className="float-left">
+            <ul className="list-group">
+              <li className="list-group-item">Is Somking</li>
+              <li className="list-group-item">Is Alcohol</li>
+              <li className="list-group-item">Is Drugs</li>
+              <li className="list-group-item">Is BloodPressure</li>
+              <li className="list-group-item">Is Pregrent</li>
+              <li className="list-group-item">Drugs Details</li>
+              <li className="list-group-item">Is Contagious Disease</li>
 
-                  <th scope="Col">Drugs Details</th>
-                  <th scope="Col">Is Contagious Disease</th>
-                  <th scope="Col">Contagious Disease details</th>
-                  <th scope="Col">Is Psychological disorder</th>
-                  <th scope="Col">Psychological disorder details</th>
-                  <th scope="Col">Is serious Injury</th>
-                  <th scope="Col">Serious Injury details</th>
-                </tr>
-              </thead>
-              <tbody>{this.state.clientTendencies}</tbody>
-            </table>
+              <li className="list-group-item">Contagious Disease details</li>
+              <li className="list-group-item">Is Psychological disorder</li>
+              <li className="list-group-item">
+                Psychological disorder details
+              </li>
+              <li className="list-group-item">Is serious Injury</li>
+              <li className="list-group-item">Serious Injury details</li>
+            </ul>
           </div>
+          <div className="float-right">{this.state.clientTendencies}</div>
         </Modal>
         <ToastContainer />
       </div>
