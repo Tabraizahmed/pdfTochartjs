@@ -71,6 +71,17 @@ class AddClientInfo extends Component {
     console.log(e.target.value);
     this.setState({ sex: e.target.value });
   };
+  CalculateAge = e => {
+    var today = new Date();
+    var birthDate = new Date(e.target.value);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age = age - 1;
+    }
+
+    this.setState({ Age: age });
+  };
   SaveClientInfoOnSubmit = e => {
     e.preventDefault();
 
@@ -97,9 +108,9 @@ class AddClientInfo extends Component {
         toast.success(
           "New Cient has been created, Page is going to be refreshed"
         );
-        // setTimeout(function() {
-        //   window.location.reload();
-        // }, 3000);
+        setTimeout(function() {
+          window.location.reload();
+        }, 3000);
       })
       .then(function(data) {
         if (data !== undefined) {
@@ -155,6 +166,7 @@ class AddClientInfo extends Component {
               <input
                 type="Date"
                 required
+                onBlur={this.CalculateAge}
                 value={this.state.dateOfBirth}
                 onChange={e => this.setState({ dateOfBirth: e.target.value })}
                 className="form-control  text-box-client-form"
@@ -658,6 +670,7 @@ class AddClientInfo extends Component {
                 type="text"
                 className="form-control text-box-client-form"
                 maxLength="12"
+                required
                 value={this.state.clientSignature}
                 onChange={e =>
                   this.setState({
@@ -671,7 +684,8 @@ class AddClientInfo extends Component {
             </div>
             <div className="col-md-2 p-0">
               <input
-                type="date"
+                type="datetime-local"
+                required
                 value={this.state.formDate}
                 onChange={e =>
                   this.setState({

@@ -26,30 +26,49 @@ $client->clientId=$data->clientId;
 $client->firstName=$data->firstName;
 $client->lastName=$data->lastName;
 $client->email=$data->email;
-$client->contactNumber=$data->contactNumber;
-$client->country=$data->country;
-$client->skypeId=$data->skypeId;
+$client->contactNumber=$data->telephone;
 $client->dateOfBirth=$data->dateOfBirth;
-$client->sex=$data->sex;
-$client->martialStaus=$data->martialStaus;
-$client->Occupation=$data->Occupation;
-$client->imageUrl=$data->imageUrl;
+
+$client->street=$data->street;
+$client->AptNo=$data->AptNo;
+$client->city=$data->city;
+$client->state=$data->state;
+$client->zipCode=$data->zipCode;
+
+$client->purposeOfVisit=$data->purposeOfVisit;
+$client->ClientCommentsAfterVisit=$data->clientCommentsAfterExamination;
+
+
+
+// $client->country=$data->country;
+// $client->skypeId=$data->skypeId;
+// $client->sex=$data->sex;
+// $client->martialStaus=$data->martialStaus;
+// $client->Occupation=$data->Occupation;
+// $client->imageUrl=$data->imageUrl;
 
 // tblclienthabitsandtendencies model
-$client->isSmoke=$data->isSmoke;
-$client->isAlcohol=$data->isAlcohol;
-$client->isDrugs=$data->isDrugs;
-$client->meditationOrSpiritualPractice=$data->meditationOrSpiritualPractice;
-$client->tendenciesToRemove=$data->tendenciesToRemove;
+        $client->isSmoke=$data->isSmoke;
+        $client->isAlcohol=$data->isAlcohol;
+        $client->isDrugs=$data->isDrugs;
+        $client->drugsDetails=$data->DrugsDetails;
+        $client->isContagiousDisease=$data->isContagiousDisease;
 
-// tblclienthealthinfo
+        $client->isBloodPressure=$data->isBloodPressure;
+        $client->isPregent=$data->isPregent;
 
-$client->typeOfAilment=$data->typeOfAilment;
-$client->symptomsAndSeverity=$data->symptomsAndSeverity;
-$client->since=$data->since;
-//$client->isAilmentInherited=$data->isAilmentInherited;
-$client->medicalReport=$data->medicalReport;
-$client->medicineUse=$data->medicineUse;
+
+        $client->contagiousDiseaseDetails=$data->contagiousDiseaseDetails;
+        $client->ispsycho=$data->ispsychologicalDisorder;
+        $client->psychologicalDisorderDetails=$data->psychologicalDisorderDetails;
+        $client->isSeriousInjury=$data->isSeriousInjury;
+
+        $client->seriousInjuryDetails=$data->seriousInjuryDetails;
+      
+        $client->clientSignature=$data->clientSignature;
+        $client->formDate=$data->formDate;
+
+
 
 // update the product
 

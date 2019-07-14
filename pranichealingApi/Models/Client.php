@@ -107,7 +107,8 @@ class tblClient
         SET
         firstName=:firstName, lastName=:lastName, email=:email, contactNumber=:contactNumber,
         street=:street,aptno=:aptno,city=:city,state=:state,zipcode=:zipcode,purposeOfVisit=:purposeOfVisit,
-        ClientCommentsAfterVisit=:ClientCommentsAfterVisit,
+        ClientCommentsAfterVisit=:ClientCommentsAfterVisit,clientSignature=:clientSignature,formDate=:formDate,
+        
         isActive=:isActive,dateOfBirth=:dob ";
 
         // prepare query
@@ -146,6 +147,11 @@ class tblClient
     $stmt->bindParam(":zipcode", $this->zipCode);
     $stmt->bindParam(":purposeOfVisit", $this->purposeOfVisit);
     $stmt->bindParam(":ClientCommentsAfterVisit", $this->ClientCommentsAfterVisit);
+      
+    $stmt->bindParam(":clientSignature", $this->clientSignature);
+    $stmt->bindParam(":formDate", $this->formDate);
+    
+
     $value=0;
     $stmt->bindParam(":isActive",$value);
 
@@ -295,41 +301,7 @@ class tblClient
     return false;
     }
 
-    private function update_health_info($clientId){
-
-        // update the healthinfo table 
-        $query = "UPDATE
-        " . $this->table_clienthealthinfo . "
-            SET
-            typeOfAilment=:typeOfAilment, symptomsAndSeverity=:symptomsAndSeverity, since=:since, isAilmentInherited=:isAilmentInherited,
-            medicalReport=:medicalReport,medicineUse=:medicineUse where
-            clientId=:clientId";
-
-         // prepare query
-    $stmt = $this->conn->prepare($query);
-
-    $this->typeOfAilment=htmlspecialchars(strip_tags($this->typeOfAilment));
-    $this->symptomsAndSeverity=htmlspecialchars(strip_tags($this->symptomsAndSeverity));
-    $this->since=htmlspecialchars(strip_tags($this->since));
-    $this->isAilmentInherited=htmlspecialchars(strip_tags($this->isAilmentInherited));
-    $this->medicalReport=htmlspecialchars(strip_tags($this->medicalReport));
-    $this->medicineUse=htmlspecialchars(strip_tags($this->medicineUse));
-
-    $stmt->bindParam(":typeOfAilment", $typeOfAilment);
-    $stmt->bindParam(":symptomsAndSeverity", $this->symptomsAndSeverity);
-    $stmt->bindParam(":since", $this->since);
-    $isIherited=$this->isAilmentInherited==true?1:0;
-    $stmt->bindParam(":isAilmentInherited", $isIherited);
-    $stmt->bindParam(":medicalReport", $this->medicalReport);
-    $stmt->bindParam(":medicineUse", $this->medicineUse);
-    $stmt->bindParam(":clientId", $clientId);
-
-    if($stmt->execute()){
-        return true;
-    }
-    return false;
-
-    }
+    
 
     private function update_tendencies($clientId){
 
@@ -337,27 +309,58 @@ class tblClient
     " . $this->table_clienthabitsandtendencies . "
         SET
         isSmoke=:isSmoke, isAlcohol=:isAlcohol, isDrugs=:isDrugs,
-        meditationOrSpiritualPractice=:meditationOrSpiritualPractice,tendenciesToRemove=:tendenciesToRemove
+        IsBloodPressure=:IsBloodPressure,isPregrent=:isPregrent,DrugsMedicationsdetails=:drugsDetails,
+        Iscontagiousdisease=:Iscontagiousdisease,contagiousdisease_details=:contagiousDiseaseDetails,
+        IspsychologicalDisorder=:IspsychologicalDisorder,
+        psychological_disorder_detail=:psychologicalDisorderDetails,
+        isphysicalinjury=:isphysicalinjury,physicalinjury_details=:seriousInjuryDetails
+        
         where clientId=:clientId";
 
               // prepare query
     $stmt = $this->conn->prepare($query);
 
-    $this->isSmoke=htmlspecialchars(strip_tags($this->isSmoke));
-    $this->isAlcohol=htmlspecialchars(strip_tags($this->isAlcohol));
-    $this->isDrugs=htmlspecialchars(strip_tags($this->isDrugs));
-    $this->meditationOrSpiritualPractice=htmlspecialchars(strip_tags($this->meditationOrSpiritualPractice));
-    $this->tendenciesToRemove=htmlspecialchars(strip_tags($this->tendenciesToRemove));
+    $this->drugsDetails=htmlspecialchars(strip_tags($this->drugsDetails));
+    $this->contagiousDiseaseDetails=htmlspecialchars(strip_tags($this->contagiousDiseaseDetails));
+    $this->psychologicalDisorderDetails=htmlspecialchars(strip_tags($this->psychologicalDisorderDetails));
+    $this->seriousInjuryDetails=htmlspecialchars(strip_tags($this->seriousInjuryDetails));
 
     $stmt->bindParam(":clientId", $clientId);
     $smoke=$this->isSmoke==true?1:0;
     $stmt->bindParam(":isSmoke", $smoke);
+
     $aclchol=$this->isAlcohol==true?1:0;
     $stmt->bindParam(":isAlcohol", $aclchol);
+
     $drugs=$this->isDrugs==true?1:0;
     $stmt->bindParam(":isDrugs", $drugs);
-    $stmt->bindParam(":meditationOrSpiritualPractice", $this->meditationOrSpiritualPractice);
-    $stmt->bindParam(":tendenciesToRemove", $this->tendenciesToRemove);
+
+    $bp=$this->isBloodPressure==true?1:0;
+    $stmt->bindParam(":IsBloodPressure", $bp);
+
+    $Pregrent=$this->isPregent==true?1:0;
+    $stmt->bindParam(":isPregrent", $Pregrent);
+
+    $stmt->bindParam(":drugsDetails",$this->drugsDetails);
+
+
+    $contagiousdisease=$this->isContagiousDisease==true?1:0;
+    $stmt->bindParam(":Iscontagiousdisease", $contagiousdisease);
+
+    $stmt->bindParam(":contagiousDiseaseDetails",$this->contagiousDiseaseDetails);
+
+   
+    $psychologicalDisorder=$this->ispsycho==true?1:0;
+    $stmt->bindParam(":IspsychologicalDisorder",$psychologicalDisorder);
+
+    $stmt->bindParam(":psychologicalDisorderDetails",$this->psychologicalDisorderDetails);
+
+    $physicalinjury=$this->isSeriousInjury==true?1:0;
+    $stmt->bindParam(":isphysicalinjury",$physicalinjury);
+
+
+   
+    $stmt->bindParam(":seriousInjuryDetails",$this->seriousInjuryDetails);
    
     if($stmt->execute()){
         return true;
@@ -371,8 +374,10 @@ class tblClient
         " . $this->table_client . "
             SET
             firstName=:firstName, lastName=:lastName, email=:email, contactNumber=:contactNumber,
-            country=:country,skypeId=:skypeId,
-            dateOfBirth=:dateOfBirth, sex=:sex,martialStaus=:martialStaus,Occupation=:Occupation,imageUrl=:imageUrl
+            street=:street,aptno=:aptno,city=:city,state=:state,zipcode=:zipcode,purposeOfVisit=:purposeOfVisit,
+            ClientCommentsAfterVisit=:ClientCommentsAfterVisit,
+            dateOfBirth=:dob,
+            clientSignature=:clientSignature,formDate=:formDate
             where  clientId=:clientId";
 
             $stmt = $this->conn->prepare($query);
@@ -383,36 +388,39 @@ class tblClient
             $this->email=htmlspecialchars(strip_tags($this->email));
             $this->contactNumber=htmlspecialchars(strip_tags($this->contactNumber));
        
-            $this->country=htmlspecialchars(strip_tags($this->country));
-            $this->skypeId=htmlspecialchars(strip_tags($this->skypeId));
-            
+            $this->street=htmlspecialchars(strip_tags($this->street));
+            $this->AptNo=htmlspecialchars(strip_tags($this->AptNo));
+            $this->city=htmlspecialchars(strip_tags($this->city));
+            $this->state=htmlspecialchars(strip_tags($this->state));
+            $this->zipCode=htmlspecialchars(strip_tags($this->zipCode));
+            $this->purposeOfVisit=htmlspecialchars(strip_tags($this->purposeOfVisit));
+       
+            $this->ClientCommentsAfterVisit=htmlspecialchars(strip_tags($this->ClientCommentsAfterVisit));
             $this->dateOfBirth=htmlspecialchars(strip_tags($this->dateOfBirth));
-            $this->sex=htmlspecialchars(strip_tags($this->sex));
-            $this->martialStaus=htmlspecialchars(strip_tags($this->martialStaus));
-            $this->Occupation=htmlspecialchars(strip_tags($this->Occupation));
-            $this->imageUrl=htmlspecialchars(strip_tags($this->imageUrl));
        
        
               // bind values
-           $stmt->bindParam(":clientId",$this->clientId);
-           $stmt->bindParam(":firstName", $this->firstName);
-           $stmt->bindParam(":lastName", $this->lastName);
-           $stmt->bindParam(":email", $this->email);
-           $stmt->bindParam(":contactNumber", $this->contactNumber);
-       
-           $stmt->bindParam(":country", $this->country);
-           $stmt->bindParam(":skypeId", $this->skypeId);
-       
-           $stmt->bindParam(":dateOfBirth", $this->dateOfBirth);
-           $stmt->bindParam(":sex", $this->sex);
-           $stmt->bindParam(":martialStaus", $this->martialStaus);
-           $stmt->bindParam(":Occupation", $this->Occupation);
-           $stmt->bindParam(":imageUrl", $this->imageUrl);
-
+              $stmt->bindParam(":firstName", $this->firstName);
+              $stmt->bindParam(":lastName", $this->lastName);
+              $stmt->bindParam(":email", $this->email);
+              $stmt->bindParam(":contactNumber", $this->contactNumber);
+              
+              $stmt->bindParam(":street", $this->street);
+              $stmt->bindParam(":aptno", $this->AptNo);
+          
+              $stmt->bindParam(":city", $this->city);
+              $stmt->bindParam(":state", $this->state);
+              $stmt->bindParam(":zipcode", $this->zipCode);
+              $stmt->bindParam(":purposeOfVisit", $this->purposeOfVisit);
+              $stmt->bindParam(":ClientCommentsAfterVisit", $this->ClientCommentsAfterVisit);
+              $stmt->bindParam(":dob",$this->dateOfBirth);
+              $stmt->bindParam(":clientSignature", $this->clientSignature);
+              $stmt->bindParam(":formDate", $this->formDate);
+              $stmt->bindParam(":clientId",$clientId);
 
            if($stmt->execute()){
 
-            $this->update_health_info($clientId);
+            
             $this->update_tendencies($clientId);
 
             return 101;
