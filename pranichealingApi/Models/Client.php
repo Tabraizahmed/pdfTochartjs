@@ -437,5 +437,61 @@ class tblClient
         return true;
     }
     
+    public function GetClientById(){
+
+        $query='select * from '.$this->table_client.' client INNER JOIN tblclienthabitsandtendencies habits on client.clientId=habits.clientId
+        where client.isActive=0 and client.clientId = ? order by 1 desc';
+
+        // prepare query statement
+        $stmt = $this->conn->prepare( $query );
+        
+        // bind id of client to be updated
+        $stmt->bindParam(1, $this->clientId);
+
+         // execute query
+        $stmt->execute();
+    
+        // get retrieved row
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        
+
+        $this->firstName = $row['firstName'];
+        $this->lastName = $row['lastName'];
+        $this->email = $row['email'];
+        $this->contactNumber = $row['contactNumber'];
+        $this->dateOfBirth = $row['dateOfBirth'];
+
+
+        $this->street = $row['street'];
+        $this->AptNo = $row['aptno'];
+        $this->city = $row['city'];
+        $this->state = $row['state'];
+        $this->zipCode = $row['zipcode'];
+        // $this->Age = $row['Age'];
+
+
+        $this->purposeOfVisit = $row['purposeOfVisit'];
+        $this->ClientCommentsAfterVisit = $row['ClientCommentsAfterVisit'];
+        $this->isBloodPressure = $row['IsBloodPressure'];
+        $this->isPregent = $row['isPregrent'];
+        $this->isDrugs = $row['isDrugs'];
+
+        $this->drugsDetails = $row['DrugsMedicationsdetails'];
+        $this->isContagiousDisease = $row['Iscontagiousdisease'];
+        $this->contagiousDiseaseDetails = $row['contagiousdisease_details'];
+        $this->psychologicalDisorderDetails = $row['psychological_disorder_detail'];
+        $this->isSeriousInjury = $row['isphysicalinjury'];
+        $this->seriousInjuryDetails = $row['physicalinjury_details'];
+        $this->clientSignature = $row['clientSignature'];
+
+        $this->formDate = $row['formDate'];
+
+        $this->habitsTendenciesId = $row['habitsTendenciesId'];
+        $this->isSmoke = $row['isSmoke'];
+        $this->isAlcohol = $row['isAlcohol'];
+
+
+    }
 }
 ?>
