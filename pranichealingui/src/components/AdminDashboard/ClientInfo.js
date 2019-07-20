@@ -85,7 +85,7 @@ class ClientInfo extends Component {
   };
   componentDidMount() {
     let readUrl = "";
-    if (window.location.href.indexOf("localhost:5511") > 0) {
+    if (window.location.href.indexOf("tabraiz") > 0) {
       readUrl = "http://localhost:5511/pranichealingApi/api/tblClient/Read.php";
     } else {
       readUrl =

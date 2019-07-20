@@ -26,7 +26,7 @@ class EditClientInfo extends Component {
       isDrugs: false,
       isBloodPressure: false,
       isPregrent: false,
-      isDrugs: false,
+
       Iscontagiousdisease: false,
       isphysicalinjury: false,
       IspsychologicalDisorder: false,
@@ -142,7 +142,7 @@ class EditClientInfo extends Component {
 
     // send this object to api to update
     let readUrl = "";
-    if (window.location.href.indexOf("localhost:5511") > 0) {
+    if (window.location.href.indexOf("tabraiz") > 0) {
       readUrl =
         "http://localhost:5511/pranichealingApi/api/tblClient/update.php";
     } else {
@@ -164,9 +164,9 @@ class EditClientInfo extends Component {
         toast.success(
           "New Cient has been updated, Page is going to be refreshed"
         );
-        // setTimeout(function() {
-        //   window.location.reload();
-        // }, 3000);
+        setTimeout(function() {
+          window.location.reload();
+        }, 3000);
       })
       .then(function(data) {
         if (data !== undefined) {

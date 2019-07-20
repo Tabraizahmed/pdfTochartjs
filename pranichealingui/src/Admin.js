@@ -4,6 +4,7 @@ import Footer from "./components/Footer";
 import ClientInfo from "./components/AdminDashboard/ClientInfo";
 
 import "bootstrap/dist/css/bootstrap.min.css";
+
 import "./App.css";
 
 function App() {

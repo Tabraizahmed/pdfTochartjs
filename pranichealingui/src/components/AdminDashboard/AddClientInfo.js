@@ -86,7 +86,7 @@ class AddClientInfo extends Component {
     e.preventDefault();
 
     let readUrl = "";
-    if (window.location.href.indexOf("localhost:5511") > 0) {
+    if (window.location.href.indexOf("tabraiz") > 0) {
       readUrl =
         "http://localhost:5511/pranichealingApi/api/tblClient/Create.php";
     } else {
