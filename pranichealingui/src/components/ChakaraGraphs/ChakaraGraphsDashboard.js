@@ -1,11 +1,15 @@
 import React, { Component } from "react";
 import ClinetDetail from "./ClinetDetail";
+import Modal from "react-responsive-modal";
+import ChakraGraphForm from "./ChakraGraphForm";
+
 export default class ChakaraGraphsDashboard extends Component {
   constructor() {
     super();
     this.state = {
-      open: true,
-      clientInformation: []
+      open: false,
+      clientInformation: [],
+      showChakraGraph: true
     };
   }
 
@@ -40,9 +44,14 @@ export default class ChakaraGraphsDashboard extends Component {
         this.setState({ clientInformation: data });
       });
   }
-
+  openAddChakraForm = () => {
+    this.setState({ showChakraGraph: true });
+  };
+  onCloseModal = () => {
+    this.setState({ showChakraGraph: false });
+  };
   render() {
-    const { open, clientInformation } = this.state;
+    const { open, clientInformation, showChakraGraph } = this.state;
     let loadClientInformation;
     if (open) {
       loadClientInformation = <ClinetDetail data={clientInformation} />;
@@ -61,8 +70,26 @@ export default class ChakaraGraphsDashboard extends Component {
           </div>
         </div>
         <div className="row">
-          <div className="col-12">{loadClientInformation}</div>
+          <div className="col-12 mt-1">{loadClientInformation}</div>
         </div>
+        <div className="row">
+          <div className="col-12 text-center">
+            <button
+              onClick={this.openAddChakraForm}
+              className="btn btn-lg btn-warning btn-secondary"
+            >
+              Add Chakra Graph for client
+            </button>
+            &nbsp;
+            <button className="btn btn-lg btn-info btn-secondary">
+              View client Chakra Graph history
+            </button>
+          </div>
+        </div>
+
+        <Modal open={showChakraGraph} onClose={this.onCloseModal} center>
+          <ChakraGraphForm />
+        </Modal>
       </div>
     );
   }

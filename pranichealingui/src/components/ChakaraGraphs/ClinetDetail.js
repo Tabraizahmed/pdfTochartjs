@@ -6,6 +6,18 @@ export default class ClinetDetail extends Component {
   }
 
   render() {
+    let isSmoke = this.props.data.isSmoke === "1" ? "Yes" : "No";
+    let isAlchol = this.props.data.isAlcohol === "1" ? "Yes" : "No";
+    let isDrugs = this.props.data.isDrugs === "1" ? "Yes" : "No";
+    let isBloodPressure =
+      this.props.data.IsBloodPressure === "1" ? "Yes" : "No";
+    let isPregrent = this.props.data.isPregrent === "1" ? "Yes" : "No";
+    let Iscontagiousdisease =
+      this.props.data.Iscontagiousdisease === "1" ? "Yes" : "No";
+    let IspsychologicalDisorder =
+      this.props.data.IspsychologicalDisorder === "1" ? "Yes" : "No";
+    let isphysicalinjury =
+      this.props.data.isphysicalinjury === "1" ? "Yes" : "No";
     return (
       <div>
         <div className="col-md-6 float-left">
@@ -45,32 +57,24 @@ export default class ClinetDetail extends Component {
             </li>
 
             <li className="list-group-item">{this.props.data.contactNumber}</li>
-            <li className="list-group-item">{this.props.data.isSmoke}</li>
-            <li className="list-group-item">{this.props.data.isAlcohol}</li>
-            <li className="list-group-item">{this.props.data.isDrugs}</li>
-            <li className="list-group-item">
-              {this.props.data.IsBloodPressure}
-            </li>
-            <li className="list-group-item">{this.props.data.isPregrent}</li>
+            <li className="list-group-item">{isSmoke}</li>
+            <li className="list-group-item">{isAlchol}</li>
+            <li className="list-group-item">{isDrugs}</li>
+            <li className="list-group-item">{isBloodPressure}</li>
+            <li className="list-group-item">{isPregrent}</li>
             <li className="list-group-item">
               {this.props.data.DrugsMedicationsdetails}
             </li>
-            <li className="list-group-item">
-              {this.props.data.Iscontagiousdisease}
-            </li>
+            <li className="list-group-item">{Iscontagiousdisease}</li>
 
             <li className="list-group-item">
               {this.props.data.contagiousdisease_details}
             </li>
-            <li className="list-group-item">
-              {this.props.data.IspsychologicalDisorder}
-            </li>
+            <li className="list-group-item">{IspsychologicalDisorder}</li>
             <li className="list-group-item">
               {this.props.data.psychological_disorder_detail}
             </li>
-            <li className="list-group-item">
-              {this.props.data.isphysicalinjury}
-            </li>
+            <li className="list-group-item">{isphysicalinjury}</li>
             <li className="list-group-item">
               {this.props.data.physicalinjury_details}
             </li>
