@@ -10,9 +10,6 @@ header("Access-Control-Allow-Credentials:true");
 header('Access-Control-Max-Age: 1000');
 header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
 
-
-
-
 include_once '../../config/Database.php';
 
 // Model to insert
