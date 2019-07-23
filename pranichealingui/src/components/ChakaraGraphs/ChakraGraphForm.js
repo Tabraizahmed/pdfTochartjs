@@ -5,7 +5,24 @@ import "react-quill/dist/quill.snow.css";
 export default class ChakraGraphForm extends Component {
   constructor(props) {
     super(props);
-    this.state = { text: "" }; // You can also pass a Quill Delta here
+    this.state = {
+      text: "", // Rich text editor state
+      clientId: "",
+      CrownChakra: "",
+      ForeheadChakra: "",
+      AjnaChakra: "",
+      ThroatChakra: "",
+      HeartChakra_front: "",
+      HeartChakra_back: "",
+      SolarPlexCharka_front: "",
+      SolarPlexCharka_back: "",
+      SpleenChakra_front: "",
+      SpleenChakra_back: "",
+      MengMeinChakra: "",
+      SexChakra: "",
+      BasicChakra: "",
+      graphReport: ""
+    };
   }
   handleChange = value => {
     this.setState({ text: value });
@@ -27,71 +44,160 @@ export default class ChakraGraphForm extends Component {
               <form id="graphForm">
                 <div className="form-group">
                   <label htmlFor="formGroupExampleInput">Crown Chakra</label>
-                  <input type="text" className="form-control" />
+                  <input
+                    type="text"
+                    value={this.state.CrownChakra}
+                    onChange={e =>
+                      this.setState({ CrownChakra: e.target.value })
+                    }
+                    className="form-control"
+                  />
                 </div>
                 <div className="form-group">
                   <label htmlFor="formGroupExampleInput2">
                     Forehead Chakra
                   </label>
-                  <input type="text" className="form-control" />
+                  <input
+                    type="text"
+                    value={this.state.ForeheadChakra}
+                    onChange={e =>
+                      this.setState({ ForeheadChakra: e.target.value })
+                    }
+                    className="form-control"
+                  />
                 </div>
                 <div className="form-group">
                   <label htmlFor="formGroupExampleInput2">Ajna Chakra</label>
-                  <input type="text" className="form-control" />
+                  <input
+                    type="text"
+                    value={this.state.AjnaChakra}
+                    onChange={e =>
+                      this.setState({ AjnaChakra: e.target.value })
+                    }
+                    className="form-control"
+                  />
                 </div>
                 <div className="form-group">
                   <label htmlFor="formGroupExampleInput2">Throat Chakra</label>
-                  <input type="text" className="form-control" />
+                  <input
+                    type="text"
+                    value={this.state.ThroatChakra}
+                    onChange={e =>
+                      this.setState({ ThroatChakra: e.target.value })
+                    }
+                    className="form-control"
+                  />
                 </div>
                 <div className="form-group">
                   <label htmlFor="formGroupExampleInput2">
                     Heart Chakra (Front)
                   </label>
-                  <input type="text" className="form-control" />
+                  <input
+                    type="text"
+                    value={this.state.HeartChakra_front}
+                    onChange={e =>
+                      this.setState({ HeartChakra_front: e.target.value })
+                    }
+                    className="form-control"
+                  />
                 </div>
                 <div className="form-group">
                   <label htmlFor="formGroupExampleInput2">
                     Heart Chakra (Back)
                   </label>
-                  <input type="text" className="form-control" />
+                  <input
+                    type="text"
+                    value={this.state.HeartChakra_back}
+                    onChange={e =>
+                      this.setState({ HeartChakra_back: e.target.value })
+                    }
+                    className="form-control"
+                  />
                 </div>
                 <div className="form-group">
                   <label htmlFor="formGroupExampleInput2">
                     Solar Plex Charka (Front)
                   </label>
-                  <input type="text" className="form-control" />
+                  <input
+                    type="text"
+                    value={this.state.SolarPlexCharka_front}
+                    onChange={e =>
+                      this.setState({ SolarPlexCharka_front: e.target.value })
+                    }
+                    className="form-control"
+                  />
                 </div>
                 <div className="form-group">
                   <label htmlFor="formGroupExampleInput2">
                     Solar Plex Charka (Back)
                   </label>
-                  <input type="text" className="form-control" />
+                  <input
+                    type="text"
+                    value={this.state.SolarPlexCharka_back}
+                    onChange={e =>
+                      this.setState({ SolarPlexCharka_back: e.target.value })
+                    }
+                    className="form-control"
+                  />
                 </div>
                 <div className="form-group">
                   <label htmlFor="formGroupExampleInput2">
                     Spleen Chakra (Front)
                   </label>
-                  <input type="text" className="form-control" />
+                  <input
+                    type="text"
+                    value={this.state.SpleenChakra_front}
+                    onChange={e =>
+                      this.setState({ SpleenChakra_front: e.target.value })
+                    }
+                    className="form-control"
+                  />
                 </div>
                 <div className="form-group">
                   <label htmlFor="formGroupExampleInput2">
                     Spleen Chakra (Back)
                   </label>
-                  <input type="text" className="form-control" />
+                  <input
+                    type="text"
+                    value={this.state.SpleenChakra_back}
+                    onChange={e =>
+                      this.setState({ SpleenChakra_back: e.target.value })
+                    }
+                    className="form-control"
+                  />
                 </div>
                 <div className="form-group">
                   <label htmlFor="formGroupExampleInput2">
                     Meng Mein Chakra
                   </label>
-                  <input type="text" className="form-control" />
+                  <input
+                    type="text"
+                    value={this.state.MengMeinChakra}
+                    onChange={e =>
+                      this.setState({ MengMeinChakra: e.target.value })
+                    }
+                    className="form-control"
+                  />
                 </div>
                 <div className="form-group">
                   <label htmlFor="formGroupExampleInput2">Sex Chakra </label>
-                  <input type="text" className="form-control" />
+                  <input
+                    type="text"
+                    value={this.state.SexChakra}
+                    onChange={e => this.setState({ SexChakra: e.target.value })}
+                    className="form-control"
+                  />
                 </div>
                 <div className="form-group">
                   <label htmlFor="formGroupExampleInput2">Basic Chakra</label>
-                  <input type="text" className="form-control" />
+                  <input
+                    type="text"
+                    value={this.state.BasicChakra}
+                    onChange={e =>
+                      this.setState({ BasicChakra: e.target.value })
+                    }
+                    className="form-control"
+                  />
                 </div>
               </form>
             </div>

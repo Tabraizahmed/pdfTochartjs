@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -94,7 +95,9 @@ class EditClientInfo extends Component {
       isphysicalinjury: this.props.clientdetails.isphysicalinjury
     });
   }
-
+  onCancelEdit = () => {
+    this.props.onEditCancelHandler();
+  };
   OnupdateClient = e => {
     e.preventDefault();
     const updateClient = {
@@ -142,9 +145,8 @@ class EditClientInfo extends Component {
 
     // send this object to api to update
     let readUrl = "";
-    if (window.location.href.indexOf("tabraiz") > 0) {
-      readUrl =
-        "http://localhost:5511/pranichealingApi/api/tblClient/update.php";
+    if (window.location.href.indexOf("berkeleypranichealing") > 0) {
+      readUrl = "http://api.berkeleypranichealing.com/api/tblClient/update.php";
     } else {
       readUrl =
         "http://localhost:5514/pdfTochartjs/pranichealingApi/api/tblclient/update.php";
@@ -738,6 +740,7 @@ class EditClientInfo extends Component {
               <input
                 type="reset"
                 value="Cancel"
+                onClick={this.onCancelEdit}
                 className="btn btn-lg btn-danger"
               />
             </div>
@@ -747,5 +750,7 @@ class EditClientInfo extends Component {
     );
   }
 }
-
+EditClientInfo.propTypes = {
+  onEditCancelHandler: PropTypes.func.isRequired
+};
 export default EditClientInfo;

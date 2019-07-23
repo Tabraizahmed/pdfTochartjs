@@ -27,12 +27,18 @@ export default class ChakaraGraphsDashboard extends Component {
   };
   componentDidMount() {
     const clientId = this.getUrlParameter("clinetId");
+    let readUrl = "";
+    if (window.location.href.indexOf("berkeleypranichealing") > 0) {
+      readUrl =
+        "http://api.berkeleypranichealing.com/api/tblclient/GetClientById.php?id=" +
+        clientId;
+    } else {
+      readUrl =
+        "http://localhost:5514/pdfTochartjs/pranichealingApi/api/tblclient/GetClientById.php?id=" +
+        clientId;
+    }
 
-    let apiUrl =
-      "http://localhost:5514/pdfTochartjs/pranichealingApi/api/tblclient/GetClientById.php?id=" +
-      clientId;
-
-    fetch(apiUrl)
+    fetch(readUrl)
       .then(result => {
         if (result.status === 200) {
           return result.json();

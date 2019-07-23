@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 //import FileBase64 from "react-file-base64";
@@ -7,39 +8,39 @@ class AddClientInfo extends Component {
   constructor() {
     super();
     this.state = {
-      firstName: "test-fristname",
-      lastName: "test-Lastname",
+      firstName: "",
+      lastName: "",
       // Address fields
-      street: "22",
-      AptNo: "45",
-      city: "rawalpindi",
-      state: "pakistan ",
-      zipCode: "4000",
-      email: "test@test.com",
-      contactNumber: "03320510769",
-      Age: "45",
+      street: "",
+      AptNo: "",
+      city: "",
+      state: " ",
+      zipCode: "",
+      email: "",
+      contactNumber: "",
+      Age: "",
       // new health tendencies fields
       isBloodPressure: true,
       isPregent: true,
       isDrugs: false,
-      drugsDetails: "these are drugs details",
+      drugsDetails: "",
       isContagiousDisease: false,
-      contagiousDiseaseDetails: "conagious details",
+      contagiousDiseaseDetails: "",
       ispsychologicalDisorder: false,
-      psychologicalDisorderDetails: "Psychological disorder details",
+      psychologicalDisorderDetails: "",
       isSeriousInjury: false,
-      seriousInjuryDetails: "serious injury comments",
+      seriousInjuryDetails: "",
       // Comments section
-      purposeOfVisit: "purpose of comments",
-      clientCommentsAfterExamination: "clients comments after examincation",
+      purposeOfVisit: "",
+      clientCommentsAfterExamination: "",
       // form footer
-      clientSignature: "client signature",
+      clientSignature: "",
       formDate: "",
 
       country: "",
       skypeId: "",
-      dateOfBirth: "26/01/1992",
-      sex: "male",
+      dateOfBirth: "",
+      sex: "",
       martialStaus: "",
       Occupation: "",
       imageUrl: "",
@@ -51,12 +52,15 @@ class AddClientInfo extends Component {
       tendenciesToRemove: "",
       typeOfAilment: "",
       symptomsAndSeverity: "",
-      since: "1970-01-01",
+      since: "",
       isAilmentInherited: false,
       medicalReport: "",
       medicineUse: ""
     };
   }
+  onCancelAddClientForm = () => {
+    this.props.cancelClickHandler();
+  };
   // Callback~
   getFiles(files) {
     if (files.file.size > 50000) {
@@ -71,6 +75,7 @@ class AddClientInfo extends Component {
     console.log(e.target.value);
     this.setState({ sex: e.target.value });
   };
+
   CalculateAge = e => {
     var today = new Date();
     var birthDate = new Date(e.target.value);
@@ -86,9 +91,8 @@ class AddClientInfo extends Component {
     e.preventDefault();
 
     let readUrl = "";
-    if (window.location.href.indexOf("tabraiz") > 0) {
-      readUrl =
-        "http://localhost:5511/pranichealingApi/api/tblClient/Create.php";
+    if (window.location.href.indexOf("berkeleypranichealing") > 0) {
+      readUrl = "http://api.berkeleypranichealing.com/api/tblClient/Create.php";
     } else {
       readUrl =
         "http://localhost:5514/pdfTochartjs/pranichealingApi/api/tblclient/Create.php";
@@ -704,6 +708,7 @@ class AddClientInfo extends Component {
               <input
                 type="reset"
                 value="Cancel"
+                onClick={this.onCancelAddClientForm}
                 className="btn btn-lg btn-danger"
               />
             </div>
@@ -713,5 +718,7 @@ class AddClientInfo extends Component {
     );
   }
 }
-
+AddClientInfo.propTypes = {
+  cancelClickHandler: PropTypes.func.isRequired
+};
 export default AddClientInfo;

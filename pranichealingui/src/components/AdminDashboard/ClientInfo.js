@@ -83,10 +83,11 @@ class ClientInfo extends Component {
     this.setState({ open: false });
     this.setState({ habitPopup: false });
   };
+
   componentDidMount() {
     let readUrl = "";
-    if (window.location.href.indexOf("tabraiz") > 0) {
-      readUrl = "http://localhost:5511/pranichealingApi/api/tblClient/Read.php";
+    if (window.location.href.indexOf("berkeleypranichealing") > 0) {
+      readUrl = "http://api.berkeleypranichealing.com/api/tblClient/Read.php";
     } else {
       readUrl =
         "http://localhost:5514/pdfTochartjs/pranichealingApi/api/tblclient/Read.php";
@@ -219,15 +220,26 @@ class ClientInfo extends Component {
     var html = document.documentElement;
     html.scrollTop = 0;
   };
+  cancelAddNewClient = () => {
+    this.setState({ addNewClient: false });
+  };
+  cancelEditClient = () => {
+    this.setState({ editClient: false });
+  };
   render() {
     const { open, habitPopup, addNewClient, editClient } = this.state;
     let addClientSection;
     if (addNewClient) {
-      addClientSection = <AddClientInfo />;
+      addClientSection = (
+        <AddClientInfo cancelClickHandler={this.cancelAddNewClient} />
+      );
     }
     if (editClient) {
       addClientSection = (
-        <EditClientInfo clientdetails={this.state.clientToEdit} />
+        <EditClientInfo
+          clientdetails={this.state.clientToEdit}
+          onEditCancelHandler={this.cancelEditClient}
+        />
       );
     }
     return (
