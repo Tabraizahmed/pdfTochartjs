@@ -2,13 +2,11 @@
 
 
 // required headers
-header("Content-Type: application/json; charset=UTF-8");
-
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: *");
 header("Access-Control-Allow-Credentials:true");
 header('Access-Control-Max-Age: 1000');
-header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
+header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization');
 
 include_once '../../config/Database.php';
 

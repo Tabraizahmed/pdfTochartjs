@@ -58,6 +58,7 @@ class AddClientInfo extends Component {
       medicineUse: ""
     };
   }
+
   onCancelAddClientForm = () => {
     this.props.cancelClickHandler();
   };
@@ -365,7 +366,6 @@ class AddClientInfo extends Component {
                     value={this.state.isBloodPressure}
                     onChange={e => this.setState({ isBloodPressure: true })}
                     name="isbp"
-                    value="option1"
                   />
                   <label className="form-check-label" htmlFor="inlineCheckbox1">
                     yes
@@ -378,7 +378,6 @@ class AddClientInfo extends Component {
                     value={this.state.isBloodPressure}
                     onChange={e => this.setState({ isBloodPressure: false })}
                     name="isbp"
-                    value="option2"
                   />
                   <label className="form-check-label" htmlFor="inlineCheckbox2">
                     No

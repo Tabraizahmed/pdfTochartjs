@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 
 export default class ClinetDetail extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     let isSmoke = this.props.data.isSmoke === "1" ? "Yes" : "No";
     let isAlchol = this.props.data.isAlcohol === "1" ? "Yes" : "No";

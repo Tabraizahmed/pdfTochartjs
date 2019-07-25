@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import ClinetDetail from "./ClinetDetail";
 import Modal from "react-responsive-modal";
 import ChakraGraphForm from "./ChakraGraphForm";
+import { GetValuesFromQueryString } from "../Util";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default class ChakaraGraphsDashboard extends Component {
   constructor() {
@@ -9,7 +12,7 @@ export default class ChakaraGraphsDashboard extends Component {
     this.state = {
       open: false,
       clientInformation: [],
-      showChakraGraph: true
+      showChakraGraph: false
     };
   }
 
@@ -17,16 +20,8 @@ export default class ChakaraGraphsDashboard extends Component {
     this.setState({ open: !this.state.open });
   };
 
-  getUrlParameter = name => {
-    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
-    var results = regex.exec(window.location.search);
-    return results === null
-      ? ""
-      : decodeURIComponent(results[1].replace(/\+/g, " "));
-  };
   componentDidMount() {
-    const clientId = this.getUrlParameter("clinetId");
+    const clientId = GetValuesFromQueryString("clinetId");
     let readUrl = "";
     if (window.location.href.indexOf("berkeleypranichealing") > 0) {
       readUrl =
@@ -54,8 +49,12 @@ export default class ChakaraGraphsDashboard extends Component {
     this.setState({ showChakraGraph: true });
   };
   onCloseModal = () => {
+    toast.success("Chakra form has been saved successfully", {
+      position: toast.POSITION.BOTTOM_LEFT
+    });
     this.setState({ showChakraGraph: false });
   };
+
   render() {
     const { open, clientInformation, showChakraGraph } = this.state;
     let loadClientInformation;
@@ -65,6 +64,7 @@ export default class ChakaraGraphsDashboard extends Component {
 
     return (
       <div>
+        <ToastContainer />
         <div className="row">
           <div className="col-12">
             <button
@@ -94,7 +94,7 @@ export default class ChakaraGraphsDashboard extends Component {
         </div>
 
         <Modal open={showChakraGraph} onClose={this.onCloseModal} center>
-          <ChakraGraphForm />
+          <ChakraGraphForm formCancelHandler={this.onCloseModal} />
         </Modal>
       </div>
     );

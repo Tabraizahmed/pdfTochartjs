@@ -43,7 +43,6 @@ class ClientInfo extends Component {
         ClientInfo.Iscontagiousdisease === "1" ? "Yes" : "No";
       let IspsychologicalDisorder =
         ClientInfo.IspsychologicalDisorder === "1" ? "Yes" : "No";
-      let isphysicalinjury = ClientInfo.isphysicalinjury === "1" ? "Yes" : "No";
 
       let clientTendencies = clientToRender.map(client => {
         return (
@@ -227,7 +226,7 @@ class ClientInfo extends Component {
     this.setState({ editClient: false });
   };
   render() {
-    const { open, habitPopup, addNewClient, editClient } = this.state;
+    const { habitPopup, addNewClient, editClient } = this.state;
     let addClientSection;
     if (addNewClient) {
       addClientSection = (
