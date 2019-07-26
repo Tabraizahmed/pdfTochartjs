@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Radar } from "react-chartjs-2";
 
-class BenchMarkChakraGraph extends Component {
+class Home extends Component {
   constructor(props) {
     super(props);
     this.commonOptions = {
@@ -148,4 +148,4 @@ class BenchMarkChakraGraph extends Component {
   }
 }
 
-export default BenchMarkChakraGraph;
+export default Home;

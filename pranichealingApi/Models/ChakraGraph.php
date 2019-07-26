@@ -78,6 +78,17 @@ class tblChakra{
             return false;
     }
 
+    public function getClientGraph(){
+
+        $query="SELECT * FROM `tblchakaragraph` WHERE clientId=".$this->clientId." ORDER BY 1 DESC LIMIT 1";
+
+        $stmt=$this->conn->prepare($query);
+
+        $stmt->execute();
+
+        return $stmt;
+    }
+
 }
 
 
