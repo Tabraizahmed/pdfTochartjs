@@ -4,8 +4,8 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./Home";
 import ClientInfo from "./components/AdminDashboard/ClientInfo";
-import ChakaraGraphs from "./components/ChakaraGraphs/ChakaraGraphsDashboard";
-import GraphView from "./components/ClientGraphs/GraphView";
+import ClientDashboard from "./components/ClientReportDashboard/ClientDashboard";
+import GraphViewHandler from "./components/Graphs/GraphViewHandler";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -19,8 +19,8 @@ function App() {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/clientsdetail" component={ClientInfo} />
-            <Route exact path="/chakaragraph" component={ChakaraGraphs} />
-            <Route exact path="/GraphView" component={GraphView} />
+            <Route exact path="/chakaragraph" component={ClientDashboard} />
+            <Route exact path="/GraphView" component={GraphViewHandler} />
           </Switch>
         </div>
         <Footer />

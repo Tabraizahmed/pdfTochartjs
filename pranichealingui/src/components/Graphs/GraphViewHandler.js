@@ -5,7 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ChakraGraph from "./ChakraGraph";
 
-export default class GraphView extends Component {
+export default class GraphViewHandler extends Component {
   constructor(props) {
     super(props);
     this.state = {

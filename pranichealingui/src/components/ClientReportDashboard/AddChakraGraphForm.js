@@ -6,7 +6,7 @@ import { GetValuesFromQueryString } from "../Util";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-class ChakraGraphForm extends Component {
+class AddChakraGraphForm extends Component {
   constructor(props) {
     super(props);
 
@@ -286,8 +286,8 @@ class ChakraGraphForm extends Component {
   }
 }
 
-ChakraGraphForm.propTypes = {
+AddChakraGraphForm.propTypes = {
   formCancelHandler: PropTypes.func.isRequired
 };
 
-export default ChakraGraphForm;
+export default AddChakraGraphForm;

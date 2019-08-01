@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import ClinetDetail from "./ClinetDetail";
 import Modal from "react-responsive-modal";
-import ChakraGraphForm from "./ChakraGraphForm";
+import AddChakraGraphForm from "./AddChakraGraphForm";
 import { GetValuesFromQueryString } from "../Util";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export default class ChakaraGraphsDashboard extends Component {
+export default class ClientDashboard extends Component {
   constructor() {
     super();
     this.state = {
@@ -54,7 +54,9 @@ export default class ChakaraGraphsDashboard extends Component {
     });
     this.setState({ showChakraGraph: false });
   };
-
+  onCrossClick = () => {
+    this.setState({ showChakraGraph: false });
+  };
   render() {
     const { open, clientInformation, showChakraGraph } = this.state;
     let loadClientInformation;
@@ -95,11 +97,11 @@ export default class ChakaraGraphsDashboard extends Component {
 
         <Modal
           open={showChakraGraph}
-          onClose={this.onCloseModal}
+          onClose={this.onCrossClick}
           center
           closeOnOverlayClick={false}
         >
-          <ChakraGraphForm formCancelHandler={this.onCloseModal} />
+          <AddChakraGraphForm formCancelHandler={this.onCloseModal} />
         </Modal>
       </div>
     );

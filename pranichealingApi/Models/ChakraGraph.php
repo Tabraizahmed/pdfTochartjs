@@ -69,10 +69,14 @@ class tblChakra{
             // execute query
             if($stmt->execute()){
                 
-                $ChakraGraphId=$this->conn->lastInsertId();
+                $this->ChakraGraphId=$this->conn->lastInsertId();
+
+                // insert into client graph detail table 
+
+                $this->AddChakraRefrenceIntoClientGraphDetailTable();
                
 
-                return $ChakraGraphId;
+                return $this->ChakraGraphId;
             }
 
             return false;
@@ -87,6 +91,19 @@ class tblChakra{
         $stmt->execute();
 
         return $stmt;
+    }
+
+    public function AddChakraRefrenceIntoClientGraphDetailTable(){
+
+            $query_detail="insert into tblclientgraphsdetail set clientId=:clientId,ChakraGraphId=:ChakraGraphId";
+
+            $stmt_detail = $this->conn->prepare($query_detail);
+
+            $stmt_detail->bindParam(":clientId", $this->clientId);
+            $stmt_detail->bindParam(":ChakraGraphId", $this->ChakraGraphId);
+
+            $stmt_detail->execute();
+
     }
 
 }
