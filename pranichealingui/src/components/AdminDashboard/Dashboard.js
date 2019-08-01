@@ -75,7 +75,7 @@ class ClientInfo extends Component {
       this.setState({ clientTendencies: clientTendencies });
       this.setState({ habitPopup: true });
     } else if (e.target.value === "2") {
-      window.location.href = "/chakaragraph?clinetId=" + clientId;
+      window.location.href = "/ClientDashboard?clinetId=" + clientId;
     }
   };
   onCloseModal = () => {

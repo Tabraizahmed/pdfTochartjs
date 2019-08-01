@@ -94,6 +94,9 @@ export default class ClientDashboard extends Component {
             </button>
           </div>
         </div>
+        <div className="row">
+          <div className="col-12" />
+        </div>
 
         <Modal
           open={showChakraGraph}
