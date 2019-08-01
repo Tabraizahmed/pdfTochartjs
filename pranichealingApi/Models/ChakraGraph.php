@@ -78,9 +78,9 @@ class tblChakra{
             return false;
     }
 
-    public function getClientGraph(){
+    public function getChakraGraphById(){
 
-        $query="SELECT * FROM `tblchakaragraph` WHERE clientId=".$this->clientId." ORDER BY 1 DESC LIMIT 1";
+        $query="SELECT * FROM `tblchakaragraph` WHERE ChakraGraphId=".$this->ChakraGraphId." ORDER BY 1 DESC";
 
         $stmt=$this->conn->prepare($query);
 

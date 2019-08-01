@@ -25,11 +25,11 @@ export default class ChakaraGraphsDashboard extends Component {
     let readUrl = "";
     if (window.location.href.indexOf("berkeleypranichealing") > 0) {
       readUrl =
-        "http://api.berkeleypranichealing.com/api/tblclient/GetClientById.php?id=" +
+        "http://api.berkeleypranichealing.com/api/tblClient/GetClientById.php?id=" +
         clientId;
     } else {
       readUrl =
-        "http://localhost:5514/pdfTochartjs/pranichealingApi/api/tblclient/GetClientById.php?id=" +
+        "http://localhost:5514/pdfTochartjs/pranichealingApi/api/tblClient/GetClientById.php?id=" +
         clientId;
     }
 
@@ -93,7 +93,12 @@ export default class ChakaraGraphsDashboard extends Component {
           </div>
         </div>
 
-        <Modal open={showChakraGraph} onClose={this.onCloseModal} center>
+        <Modal
+          open={showChakraGraph}
+          onClose={this.onCloseModal}
+          center
+          closeOnOverlayClick={false}
+        >
           <ChakraGraphForm formCancelHandler={this.onCloseModal} />
         </Modal>
       </div>

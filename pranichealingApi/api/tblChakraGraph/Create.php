@@ -25,8 +25,8 @@ $ChakraGraph=new tblChakra($db);
 // get posted data
 $data = json_decode(file_get_contents("php://input"));
 
-
-// Data mapping 
+if(isset($data->clientId)){
+    // Data mapping 
 $ChakraGraph->clientId=$data->clientId;
 $ChakraGraph->CrownChakra=$data->CrownChakra;
 
@@ -61,7 +61,6 @@ else{
       // tell the user
       echo json_encode(array("message" => "Unable to Add Graph Data."));
 }
-
-
+}
 
 ?>

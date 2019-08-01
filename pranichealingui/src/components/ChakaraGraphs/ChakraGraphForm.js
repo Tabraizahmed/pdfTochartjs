@@ -37,7 +37,7 @@ class ChakraGraphForm extends Component {
   onCompleteInsertion = () => {
     this.props.formCancelHandler();
   };
-  SaveChakraForm = () => {
+  SaveChakraForm = isView => {
     let readUrl = "";
     if (window.location.href.indexOf("berkeleypranichealing") > 0) {
       readUrl =
@@ -61,6 +61,15 @@ class ChakraGraphForm extends Component {
           console.log(response);
           let id = parseInt(data);
           if (id > 0) {
+            if (isView) {
+              let url =
+                "http://" +
+                window.location.host +
+                "/GraphView?graphId=" +
+                id +
+                "&type=1";
+              window.open(url, "_blank");
+            }
             this.onCompleteInsertion();
           }
         });
@@ -256,13 +265,14 @@ class ChakraGraphForm extends Component {
               <div className="mt-2">
                 <button
                   type="button"
-                  onClick={this.SaveChakraForm}
+                  onClick={e => this.SaveChakraForm(false)}
                   className="btn btn-primary btn-warning btn-lg btn-block"
                 >
                   Save Graph
                 </button>
                 <button
                   type="button"
+                  onClick={e => this.SaveChakraForm(true)}
                   className="btn btn-secondary btn-success btn-lg btn-block"
                 >
                   Save and View Graph
