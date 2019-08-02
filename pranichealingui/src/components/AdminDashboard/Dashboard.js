@@ -123,7 +123,7 @@ class ClientInfo extends Component {
                   <select onChange={e => this.onActionddlChange(e, client.id)}>
                     <option value="0">--Select--</option>
                     <option value="1">Client Health Tendencies Info</option>
-                    <option value="2">Client Chakara Graph</option>
+                    <option value="2">Client Dashboard</option>
                   </select>
                   &nbsp;
                   <button
