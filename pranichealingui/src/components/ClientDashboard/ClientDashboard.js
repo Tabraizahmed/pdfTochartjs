@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ClinetDetail from "./ClinetDetail";
 import Modal from "react-responsive-modal";
 import AddChakraGraphForm from "./AddChakraGraphForm";
+import AddChakraActivationGraphForm from "./AddChakraActivationGraphForm";
 import { GetValuesFromQueryString } from "../Util";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -13,6 +14,7 @@ export default class ClientDashboard extends Component {
       open: false,
       clientInformation: [],
       showChakraGraph: false,
+      showActivationGraph: false,
       clientDetailsToRender: ""
     };
   }
@@ -103,20 +105,53 @@ export default class ClientDashboard extends Component {
     this.GetClientGraphDetails();
   }
 
-  openAddChakraForm = () => {
-    this.setState({ showChakraGraph: true });
+  openForm = val => {
+    switch (val) {
+      case 1:
+        this.setState({ showChakraGraph: true });
+        break;
+      case 2:
+        this.setState({ showActivationGraph: true });
+        break;
+      default:
+    }
   };
-  onCloseModal = () => {
-    toast.success("Chakra form has been saved successfully", {
-      position: toast.POSITION.BOTTOM_LEFT
-    });
-    this.setState({ showChakraGraph: false });
+  onCloseModal = val => {
+    switch (val) {
+      case 1:
+        this.setState({ showChakraGraph: false });
+        toast.success("Chakra form has been saved successfully", {
+          position: toast.POSITION.BOTTOM_LEFT
+        });
+        break;
+      case 2:
+        this.setState({ showActivationGraph: false });
+        toast.success("Chakra activation form has been saved successfully", {
+          position: toast.POSITION.BOTTOM_LEFT
+        });
+        break;
+      default:
+    }
   };
-  onCrossClick = () => {
-    this.setState({ showChakraGraph: false });
+  closePopup = val => {
+    switch (val) {
+      case 1:
+        this.setState({ showChakraGraph: false });
+        break;
+      case 2:
+        this.setState({ showActivationGraph: false });
+        break;
+
+      default:
+    }
   };
   render() {
-    const { open, clientInformation, showChakraGraph } = this.state;
+    const {
+      open,
+      clientInformation,
+      showChakraGraph,
+      showActivationGraph
+    } = this.state;
     let loadClientInformation;
     if (open) {
       loadClientInformation = <ClinetDetail data={clientInformation} />;
@@ -141,13 +176,16 @@ export default class ClientDashboard extends Component {
         <div className="row mt-3">
           <div className="col-12 text-center">
             <button
-              onClick={this.openAddChakraForm}
+              onClick={e => this.openForm(1)}
               className="btn btn-sm btn-warning btn-secondary"
             >
               Add Chakra Graph for client
             </button>
             &nbsp;
-            <button className="btn btn-sm btn-info btn-secondary">
+            <button
+              onClick={e => this.openForm(2)}
+              className="btn btn-sm btn-info btn-secondary"
+            >
               Add Chakra Activation Graph
             </button>
             &nbsp;
@@ -195,11 +233,22 @@ export default class ClientDashboard extends Component {
 
         <Modal
           open={showChakraGraph}
-          onClose={this.onCrossClick}
+          onClose={e => this.closePopup(1)}
           center
           closeOnOverlayClick={false}
         >
-          <AddChakraGraphForm formCancelHandler={this.onCloseModal} />
+          <AddChakraGraphForm formCancelHandler={e => this.onCloseModal(1)} />
+        </Modal>
+
+        <Modal
+          open={showActivationGraph}
+          onClose={e => this.closePopup(2)}
+          center
+          closeOnOverlayClick={false}
+        >
+          <AddChakraActivationGraphForm
+            formCancelHandler={e => this.onCloseModal(2)}
+          />
         </Modal>
       </div>
     );

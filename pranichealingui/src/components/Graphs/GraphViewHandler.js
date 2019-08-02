@@ -45,12 +45,46 @@ export default class GraphViewHandler extends Component {
       })
       .catch(error => console.log(error));
   };
-
+  loadClientActivationGraph = id => {
+    let readUrl = "";
+    if (window.location.href.indexOf("berkeleypranichealing") > 0) {
+      readUrl =
+        "http://api.berkeleypranichealing.com/api/tblChakraActivationGraph/Read.php";
+    } else {
+      readUrl =
+        "http://localhost:5514/pdfTochartjs/pranichealingApi/api/tblChakraActivationGraph/Read.php";
+    }
+    fetch(readUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Request-Headers": "*",
+        "Access-Control-Request-Method": "*"
+      },
+      mode: "cors",
+      body: JSON.stringify({ id: id })
+    })
+      .then(response => {
+        response.json().then(data => {
+          this.setState({ chakraControl: <ChakraGraph graphData={data} /> });
+        });
+      })
+      .then(function(data) {
+        if (data !== undefined) {
+          toast.error("Error in application", {
+            position: toast.POSITION.BOTTOM_LEFT
+          });
+        }
+      })
+      .catch(error => console.log(error));
+  };
   componentDidMount() {
     var graphId = GetValuesFromQueryString("graphId");
     var graphType = GetValuesFromQueryString("type");
     if (graphType === "1") {
       this.loadClientChakraGraph(graphId);
+    } else if (graphType === "2") {
+      this.loadClientActivationGraph(graphId);
     }
   }
   render() {

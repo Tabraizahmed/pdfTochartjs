@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Radar } from "react-chartjs-2";
-import ReactHtmlParser from "react-html-parser";
+import RenderReportSection from "./RenderReportSection";
 
 export default class ChakraGraph extends Component {
   constructor(props) {
@@ -81,16 +81,7 @@ export default class ChakraGraph extends Component {
     return (
       <div>
         <Radar data={this.ChakraDataSet} options={this.options} />
-        <h2 className="text-center mt-3">REPORT COMMENTS</h2>
-        <div className="container mt-5 reportbg">
-          <div className="row">
-            <div className="col-lg-12 col-sm-6">
-              <p className="text-left">
-                {ReactHtmlParser(this.state.graphData.graphReport)}
-              </p>
-            </div>
-          </div>
-        </div>
+        {<RenderReportSection data={this.state.graphData.graphReport} />}
       </div>
     );
   }
