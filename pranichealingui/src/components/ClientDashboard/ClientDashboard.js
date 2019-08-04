@@ -3,6 +3,7 @@ import ClinetDetail from "./ClinetDetail";
 import Modal from "react-responsive-modal";
 import AddChakraGraphForm from "./AddChakraGraphForm";
 import AddChakraActivationGraphForm from "./AddChakraActivationGraphForm";
+import AddOrgansGraph from "./AddOrgansGraphForm";
 import { GetValuesFromQueryString } from "../Util";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -15,6 +16,7 @@ export default class ClientDashboard extends Component {
       clientInformation: [],
       showChakraGraph: false,
       showActivationGraph: false,
+      ShowOrgansGraph: false,
       clientDetailsToRender: ""
     };
   }
@@ -113,6 +115,9 @@ export default class ClientDashboard extends Component {
       case 2:
         this.setState({ showActivationGraph: true });
         break;
+      case 3:
+        this.setState({ ShowOrgansGraph: true });
+        break;
       default:
     }
   };
@@ -130,6 +135,12 @@ export default class ClientDashboard extends Component {
           position: toast.POSITION.BOTTOM_LEFT
         });
         break;
+      case 3:
+        this.setState({ ShowOrgansGraph: false });
+        toast.success("Organs Chart part-1 form has been saved successfully", {
+          position: toast.POSITION.BOTTOM_LEFT
+        });
+        break;
       default:
     }
   };
@@ -141,7 +152,9 @@ export default class ClientDashboard extends Component {
       case 2:
         this.setState({ showActivationGraph: false });
         break;
-
+      case 3:
+        this.setState({ ShowOrgansGraph: false });
+        break;
       default:
     }
   };
@@ -150,7 +163,8 @@ export default class ClientDashboard extends Component {
       open,
       clientInformation,
       showChakraGraph,
-      showActivationGraph
+      showActivationGraph,
+      ShowOrgansGraph
     } = this.state;
     let loadClientInformation;
     if (open) {
@@ -189,7 +203,10 @@ export default class ClientDashboard extends Component {
               Add Chakra Activation Graph
             </button>
             &nbsp;
-            <button className="btn btn-sm btn-danger btn-secondary">
+            <button
+              className="btn btn-sm btn-danger btn-secondary"
+              onClick={e => this.openForm(3)}
+            >
               Add Organs chart part-1 Graph
             </button>
             &nbsp;
@@ -249,6 +266,15 @@ export default class ClientDashboard extends Component {
           <AddChakraActivationGraphForm
             formCancelHandler={e => this.onCloseModal(2)}
           />
+        </Modal>
+
+        <Modal
+          open={ShowOrgansGraph}
+          onClose={e => this.closePopup(3)}
+          center
+          closeOnOverlayClick={false}
+        >
+          <AddOrgansGraph formCancelHandler={e => this.onCloseModal(3)} />
         </Modal>
       </div>
     );

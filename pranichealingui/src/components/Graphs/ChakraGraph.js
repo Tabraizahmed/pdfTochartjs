@@ -5,9 +5,10 @@ import RenderReportSection from "./RenderReportSection";
 export default class ChakraGraph extends Component {
   constructor(props) {
     super(props);
-
+    console.log(props);
     this.state = {
-      graphData: props.graphData.data[0]
+      graphData: props.graphData,
+      reportData: props.reportData
     };
     this.commonOptions = {
       label: "Set one",
@@ -22,42 +23,14 @@ export default class ChakraGraph extends Component {
       pointHoverRadius: 2
     };
 
-    this.labels = [
-      "Crown Chakra",
-      "Forehead Chakra",
-      "Ajna Chakra",
-      "Throat Chakra",
-      "Heart Chakra (Front)",
-      "Heart Chakra (Back)",
-      "Solar Plex Charka (Front)",
-      "Solar Plex Charka (Back)",
-      "Spleen Chakra (Front)",
-      "Spleen Chakra (Back)",
-      "Meng Mein Chakra",
-      "Sex Chakra",
-      "Basic Chakra"
-    ];
+    this.labels = this.props.labels;
 
     this.ChakraDataSet = {
       labels: this.labels,
       datasets: [
         {
           ...this.commonOptions,
-          data: [
-            this.state.graphData.CrownChakra,
-            this.state.graphData.ForeheadChakra,
-            this.state.graphData.AjnaChakra,
-            this.state.graphData.ThroatChakra,
-            this.state.graphData.HeartChakra_front,
-            this.state.graphData.HeartChakra_back,
-            this.state.graphData.SolarPlexCharka_front,
-            this.state.graphData.SolarPlexCharka_back,
-            this.state.graphData.SpleenChakra_front,
-            this.state.graphData.SpleenChakra_back,
-            this.state.graphData.MengMeinChakra,
-            this.state.graphData.SexChakra,
-            this.state.graphData.BasicChakra
-          ]
+          data: this.state.graphData
         }
       ]
     };
@@ -81,7 +54,7 @@ export default class ChakraGraph extends Component {
     return (
       <div>
         <Radar data={this.ChakraDataSet} options={this.options} />
-        {<RenderReportSection data={this.state.graphData.graphReport} />}
+        {<RenderReportSection data={this.state.reportData} />}
       </div>
     );
   }
