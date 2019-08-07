@@ -1,5 +1,3 @@
-import { array } from "prop-types";
-
 export const GetValuesFromQueryString = variableName => {
   variableName = variableName.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
   var regex = new RegExp("[\\?&]" + variableName + "=([^&#]*)");
@@ -47,6 +45,28 @@ export const GetGraphsLabelsAgainstGraphType = type => {
       "Stomach",
       "Pancreas"
     ];
+  } else if (type === 4) {
+    return [
+      "Large Intestine (left)",
+      "Large Intestine (right)",
+      "Spieen (left)",
+      "Kidneys (left)",
+      "Kidneys (right)",
+      "Prostate (M) Uterus (W)",
+      "Bladder",
+      "Perineum m.chakra",
+      "Armpits (left)",
+      "Armpits (right)",
+      "Hands (left)",
+      "Hands (right)",
+      "Spine",
+      "Hips m.Chakra (left)",
+      "Hips m.Chakra (right)",
+      "Knees(left)",
+      "Knees(right)",
+      "Feet (left)",
+      "Feet (right)"
+    ];
   }
 };
 
@@ -59,7 +79,8 @@ export const GetGraphDataAgainstGraphType = data => {
         propName !== "clientId" &&
         propName !== "graphReport" &&
         propName !== "ChakraGraphId" &&
-        propName !== "oransChartPartOneId"
+        propName !== "oransChartPartOneId" &&
+        propName !== "oransChartPartTwoId"
       )
         result.push(extractData[propName]);
     }

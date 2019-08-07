@@ -140,6 +140,47 @@ export default class GraphViewHandler extends Component {
       })
       .catch(error => console.log(error));
   };
+  loadOrgansChartPartTwoGraph = id => {
+    let readUrl = "";
+    if (window.location.href.indexOf("berkeleypranichealing") > 0) {
+      readUrl =
+        "http://api.berkeleypranichealing.com/api/tblOrganChartPartTwo/Read.php";
+    } else {
+      readUrl =
+        "http://localhost:5514/pdfTochartjs/pranichealingApi/api/tblOrganChartPartTwo/Read.php";
+    }
+    fetch(readUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Request-Headers": "*",
+        "Access-Control-Request-Method": "*"
+      },
+      mode: "cors",
+      body: JSON.stringify({ id: id })
+    })
+      .then(response => {
+        response.json().then(data => {
+          this.setState({
+            chakraControl: (
+              <ChakraGraph
+                labels={GetGraphsLabelsAgainstGraphType(4)}
+                graphData={GetGraphDataAgainstGraphType(data)}
+                reportData={GetReportData(data)}
+              />
+            )
+          });
+        });
+      })
+      .then(function(data) {
+        if (data !== undefined) {
+          toast.error("Error in application", {
+            position: toast.POSITION.BOTTOM_LEFT
+          });
+        }
+      })
+      .catch(error => console.log(error));
+  };
   componentDidMount() {
     var graphId = GetValuesFromQueryString("graphId");
     var graphType = GetValuesFromQueryString("type");
@@ -149,6 +190,8 @@ export default class GraphViewHandler extends Component {
       this.loadClientActivationGraph(graphId);
     } else if (graphType === "3") {
       this.loadOrgansChartPartOneGraph(graphId);
+    } else if (graphType === "4") {
+      this.loadOrgansChartPartTwoGraph(graphId);
     }
   }
   render() {

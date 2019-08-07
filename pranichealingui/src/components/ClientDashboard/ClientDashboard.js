@@ -4,6 +4,7 @@ import Modal from "react-responsive-modal";
 import AddChakraGraphForm from "./AddChakraGraphForm";
 import AddChakraActivationGraphForm from "./AddChakraActivationGraphForm";
 import AddOrgansGraph from "./AddOrgansGraphForm";
+import AddOrgansPartTwoForm from "./AddOrgansPartTwoForm";
 import { GetValuesFromQueryString } from "../Util";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -17,6 +18,7 @@ export default class ClientDashboard extends Component {
       showChakraGraph: false,
       showActivationGraph: false,
       ShowOrgansGraph: false,
+      ShowOrgansGraphPartTwo: false,
       clientDetailsToRender: ""
     };
   }
@@ -118,6 +120,9 @@ export default class ClientDashboard extends Component {
       case 3:
         this.setState({ ShowOrgansGraph: true });
         break;
+      case 4:
+        this.setState({ ShowOrgansGraphPartTwo: true });
+        break;
       default:
     }
   };
@@ -141,6 +146,12 @@ export default class ClientDashboard extends Component {
           position: toast.POSITION.BOTTOM_LEFT
         });
         break;
+      case 4:
+        this.setState({ ShowOrgansGraphPartTwo: false });
+        toast.success("Organs Chart part-1 form has been saved successfully", {
+          position: toast.POSITION.BOTTOM_LEFT
+        });
+        break;
       default:
     }
   };
@@ -155,6 +166,9 @@ export default class ClientDashboard extends Component {
       case 3:
         this.setState({ ShowOrgansGraph: false });
         break;
+      case 4:
+        this.setState({ ShowOrgansGraphPartTwo: false });
+        break;
       default:
     }
   };
@@ -164,7 +178,8 @@ export default class ClientDashboard extends Component {
       clientInformation,
       showChakraGraph,
       showActivationGraph,
-      ShowOrgansGraph
+      ShowOrgansGraph,
+      ShowOrgansGraphPartTwo
     } = this.state;
     let loadClientInformation;
     if (open) {
@@ -210,11 +225,10 @@ export default class ClientDashboard extends Component {
               Add Organs chart part-1 Graph
             </button>
             &nbsp;
-            <button className="btn btn-sm btn-success btn-secondary">
-              Add Organs chart part-1 Graph
-            </button>
-            &nbsp;
-            <button className="btn btn-sm btn-primary">
+            <button
+              className="btn btn-sm btn-primary"
+              onClick={e => this.openForm(4)}
+            >
               Add Organs chart part-2 Graph
             </button>
             &nbsp;
@@ -275,6 +289,15 @@ export default class ClientDashboard extends Component {
           closeOnOverlayClick={false}
         >
           <AddOrgansGraph formCancelHandler={e => this.onCloseModal(3)} />
+        </Modal>
+
+        <Modal
+          open={ShowOrgansGraphPartTwo}
+          onClose={e => this.closePopup(4)}
+          center
+          closeOnOverlayClick={false}
+        >
+          <AddOrgansPartTwoForm formCancelHandler={e => this.onCloseModal(4)} />
         </Modal>
       </div>
     );
