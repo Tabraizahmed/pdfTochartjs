@@ -3,6 +3,8 @@ import { GetValuesFromQueryString } from "../Util";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ChakraGraph from "./ChakraGraph";
+import D3Graph from "./D3Graph";
+
 import {
   GetGraphsLabelsAgainstGraphType,
   GetGraphDataAgainstGraphType,
@@ -192,6 +194,8 @@ export default class GraphViewHandler extends Component {
       this.loadOrgansChartPartOneGraph(graphId);
     } else if (graphType === "4") {
       this.loadOrgansChartPartTwoGraph(graphId);
+    } else if (graphType === "5") {
+      this.setState({ chakraControl: <D3Graph /> });
     }
   }
   render() {
