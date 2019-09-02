@@ -14,8 +14,17 @@ import {
   Facet,
   Util
 } from "bizcharts";
+import RenderReportSection from "./RenderReportSection";
 
 export default class D3Graph extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      graphData: props.graphData,
+      reportData: props.reportData
+    };
+  }
   render() {
     const { Region } = Guide;
     const data = [

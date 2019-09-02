@@ -5,6 +5,8 @@ import AddChakraGraphForm from "./AddChakraGraphForm";
 import AddChakraActivationGraphForm from "./AddChakraActivationGraphForm";
 import AddOrgansGraph from "./AddOrgansGraphForm";
 import AddOrgansPartTwoForm from "./AddOrgansPartTwoForm";
+import AddPsychologicalFormPartOne from "./AddPsychologicalFormPartOne";
+import AddPsychologicalFormPartTwo from "./AddPsychologicalFormPartTwo";
 import { GetValuesFromQueryString } from "../Util";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -19,6 +21,8 @@ export default class ClientDashboard extends Component {
       showActivationGraph: false,
       ShowOrgansGraph: false,
       ShowOrgansGraphPartTwo: false,
+      ShowPsychologicalGraphPartOne: false,
+      ShowPsychologicalGraphPartTwo: false,
       clientDetailsToRender: ""
     };
   }
@@ -123,6 +127,11 @@ export default class ClientDashboard extends Component {
       case 4:
         this.setState({ ShowOrgansGraphPartTwo: true });
         break;
+      case 5:
+        this.setState({ ShowPsychologicalGraphPartOne: true });
+        break;
+      case 6:
+        this.setState({ ShowPsychologicalGraphPartTwo: true });
       default:
     }
   };
@@ -152,6 +161,24 @@ export default class ClientDashboard extends Component {
           position: toast.POSITION.BOTTOM_LEFT
         });
         break;
+      case 5:
+        this.setState({ ShowPsychologicalGraphPartOne: false });
+        toast.success(
+          "Psychological part one form has been saved successfully",
+          {
+            position: toast.POSITION.BOTTOM_LEFT
+          }
+        );
+        break;
+      case 6:
+        this.setState({ ShowPsychologicalGraphPartTwo: false });
+        toast.success(
+          "Psychological part two form has been saved successfully",
+          {
+            position: toast.POSITION.BOTTOM_LEFT
+          }
+        );
+        break;
       default:
     }
   };
@@ -169,6 +196,12 @@ export default class ClientDashboard extends Component {
       case 4:
         this.setState({ ShowOrgansGraphPartTwo: false });
         break;
+      case 5:
+        this.setState({ ShowPsychologicalGraphPartOne: false });
+        break;
+      case 6:
+        this.setState({ ShowPsychologicalGraphPartTwo: false });
+        break;
       default:
     }
   };
@@ -179,7 +212,9 @@ export default class ClientDashboard extends Component {
       showChakraGraph,
       showActivationGraph,
       ShowOrgansGraph,
-      ShowOrgansGraphPartTwo
+      ShowOrgansGraphPartTwo,
+      ShowPsychologicalGraphPartOne,
+      ShowPsychologicalGraphPartTwo
     } = this.state;
     let loadClientInformation;
     if (open) {
@@ -232,11 +267,17 @@ export default class ClientDashboard extends Component {
               Add Organs chart part-2 Graph
             </button>
             &nbsp;
-            <button className="btn btn-sm btn-warning btn-secondary">
+            <button
+              className="btn btn-sm btn-warning btn-secondary"
+              onClick={e => this.openForm(5)}
+            >
               Add Psychological part-1 Graph
             </button>
             &nbsp;
-            <button className="btn btn-sm btn-info btn-secondary">
+            <button
+              className="btn btn-sm btn-info btn-secondary"
+              onClick={e => this.openForm(6)}
+            >
               Add Psychological part-2 Graph
             </button>
           </div>
@@ -298,6 +339,27 @@ export default class ClientDashboard extends Component {
           closeOnOverlayClick={false}
         >
           <AddOrgansPartTwoForm formCancelHandler={e => this.onCloseModal(4)} />
+        </Modal>
+
+        <Modal
+          open={ShowPsychologicalGraphPartOne}
+          onClose={e => this.closePopup(5)}
+          center
+          closeOnOverlayClick={false}
+        >
+          <AddPsychologicalFormPartOne
+            formCancelHandler={e => this.onCloseModal(5)}
+          />
+        </Modal>
+        <Modal
+          open={ShowPsychologicalGraphPartTwo}
+          onClose={e => this.closePopup(6)}
+          center
+          closeOnOverlayClick={false}
+        >
+          <AddPsychologicalFormPartTwo
+            formCancelHandler={e => this.onCloseModal(6)}
+          />
         </Modal>
       </div>
     );

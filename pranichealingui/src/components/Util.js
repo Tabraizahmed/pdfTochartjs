@@ -67,6 +67,16 @@ export const GetGraphsLabelsAgainstGraphType = type => {
       "Feet (left)",
       "Feet (right)"
     ];
+  } else if (type === 5) {
+    return [
+      "Dynamism % \n basic",
+      "Ability to attract money % \n basic",
+      "Productivity % \n basic",
+      "Sexual Drive % \n sex",
+      "Physical Violence % \n meng mein",
+      "Sixth Sense % \n navel",
+      "Depression % \n solar plexus"
+    ];
   }
 };
 
@@ -80,7 +90,8 @@ export const GetGraphDataAgainstGraphType = data => {
         propName !== "graphReport" &&
         propName !== "ChakraGraphId" &&
         propName !== "oransChartPartOneId" &&
-        propName !== "oransChartPartTwoId"
+        propName !== "oransChartPartTwoId" &&
+        propName !== "PsychologicalParametersId"
       )
         result.push(extractData[propName]);
     }
