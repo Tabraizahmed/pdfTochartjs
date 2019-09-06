@@ -114,7 +114,7 @@ export const GetReportData = data => {
   return [extractData.graphReport];
 };
 
-export const GetApiUrlsAgainstTypeAndEnviornment = type => {
+const GetApiUrlsAgainstTypeAndEnviornment = type => {
   let url;
   let result;
   if (window.location.href.indexOf("berkeleypranichealing") > 0) {
@@ -150,7 +150,15 @@ const ApiUrl = {
   CHAKRAORGANSPARTGRAPHONEAPI: "api/tblOrgansChartPartOne/Read.php",
   CHAKRAORGANSPARTGRAPHTWOAPI: "api/tblOrganChartPartTwo/Read.php",
   D3PSYCHOLOGICALGRAPHONEAPI: "api/tblpsychologicalparameterspart1/Read.php",
-  D3PSYCHOLOGICALGRAPHTWOAPI: "api/tblpsychologicalparameterspart2/Read.php"
+  D3PSYCHOLOGICALGRAPHTWOAPI: "api/tblpsychologicalparameterspart2/Read.php",
+  ACHAKRAGRAPHAPI: "api/tblChakraGraph/Create.php",
+  ACHAKRAACTIVATIONGRAPHAPI: "api/tblChakraActivationGraph/Create.php",
+  ADDORGANSCHARTPARTONEGRAPHAPI: "api/tblOrgansChartPartOne/Create.php",
+  ADDORGANSCHARTPARTTWOGRAPHAPI: "api/tblOrganChartPartTwo/Create.php",
+  ADDPSYCHOLOGICALPARTONEGRAPHAPI:
+    "api/tblpsychologicalparameterspart1/Create.php",
+  ADDPSYCHOLOGICALPARTTWOGRAPHAPI:
+    "api/tblpsychologicalparameterspart2/Create.php"
 };
 export const UrlTypes = {
   CHAKRAGRAPHAPI: 0,
@@ -158,13 +166,24 @@ export const UrlTypes = {
   CHAKRAORGANSPARTGRAPHONEAPI: 2,
   CHAKRAORGANSPARTGRAPHTWOAPI: 3,
   D3PSYCHOLOGICALGRAPHONEAPI: 4,
-  D3PSYCHOLOGICALGRAPHTWOAPI: 5
+  D3PSYCHOLOGICALGRAPHTWOAPI: 5,
+  ADDCHAKRAGRAPH: 6,
+  ADDCHAKRAACTIVATIONGRAPH: 7,
+  ADDORGANSCHARTPARTONEGRAPH: 8,
+  ADDORGANSCHARTPARTTWOGRAPH: 9,
+  ADDPSYCHOLOGICALPARTONE: 10,
+  ADDPSYCHOLOGICALPARTTWO: 11
 };
 
-export const GetValueFromEnum = key => {
+const GetValueFromEnum = key => {
   for (var p in UrlTypes) {
     if (UrlTypes.hasOwnProperty(p) && UrlTypes[p] === key) {
       return p;
     }
   }
+};
+export const GetApiUrlByType = type => {
+  var value = GetValueFromEnum(parseInt(type));
+  const apiUrl = GetApiUrlsAgainstTypeAndEnviornment(UrlTypes[value]);
+  return apiUrl;
 };

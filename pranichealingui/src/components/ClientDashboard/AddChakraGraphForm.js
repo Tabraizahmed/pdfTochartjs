@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { GetValuesFromQueryString } from "../Util";
+import { GetValuesFromQueryString, GetApiUrlByType } from "../Util";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { AddGraphsFormApiRequest, LoadGraphView } from "../MethodsUtil";
 
 class AddChakraGraphForm extends Component {
   constructor(props) {
@@ -38,50 +39,11 @@ class AddChakraGraphForm extends Component {
     this.props.formCancelHandler();
   };
   SaveChakraForm = isView => {
-    let readUrl = "";
-    if (window.location.href.indexOf("berkeleypranichealing") > 0) {
-      readUrl =
-        "http://api.berkeleypranichealing.com/api/tblChakraGraph/Create.php";
-    } else {
-      readUrl =
-        "http://localhost:5514/pdfTochartjs/pranichealingApi/api/tblChakraGraph/Create.php";
-    }
-    fetch(readUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Request-Headers": "*",
-        "Access-Control-Request-Method": "*"
-      },
-      mode: "cors",
-      body: JSON.stringify(this.state)
-    })
-      .then(response => {
-        response.json().then(data => {
-          console.log(response);
-          let id = parseInt(data);
-          if (id > 0) {
-            if (isView) {
-              let url =
-                "http://" +
-                window.location.host +
-                "/GraphView?graphId=" +
-                id +
-                "&type=0";
-              window.open(url, "_blank");
-            }
-            this.onCompleteInsertion();
-          }
-        });
-      })
-      .then(function(data) {
-        if (data !== undefined) {
-          toast.error("Error in application", {
-            position: toast.POSITION.BOTTOM_LEFT
-          });
-        }
-      })
-      .catch(error => console.log(error));
+    const apiUrl = GetApiUrlByType(0);
+    AddGraphsFormApiRequest(this.state, apiUrl).then(data => {
+      LoadGraphView(data, 0);
+      this.onCompleteInsertion();
+    });
   };
   render() {
     return (

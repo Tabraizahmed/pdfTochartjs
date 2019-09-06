@@ -14,8 +14,32 @@ export const GetClientGraphDetails = (id, apiUrl) => {
     body: JSON.stringify({ id: id })
   }).then(res => (res.status != 204 ? res.json() : ThrowException()));
 };
+export const AddGraphsFormApiRequest = (formData, apiUrl) => {
+  return fetch(apiUrl, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Request-Headers": "*",
+      "Access-Control-Request-Method": "*"
+    },
+    mode: "cors",
+    body: JSON.stringify({ formData })
+  }).then(res => (res.status != 204 ? res.json() : ThrowException()));
+};
 function ThrowException() {
   toast.error(errorText, {
     position: toast.POSITION.BOTTOM_LEFT
   });
 }
+export const LoadGraphView = (graphid, graphType, showGraph) => {
+  if (showGraph) {
+    let url =
+      "http://" +
+      window.location.host +
+      "/GraphView?graphId=" +
+      graphid +
+      "&type=" +
+      graphType;
+    window.open(url, "_blank");
+  }
+};

@@ -10,9 +10,7 @@ import {
   GetGraphsLabelsAgainstGraphType,
   GetGraphDataAgainstGraphType,
   GetReportData,
-  UrlTypes,
-  GetApiUrlsAgainstTypeAndEnviornment,
-  GetValueFromEnum
+  GetApiUrlByType
 } from "../Util";
 
 export default class GraphViewHandler extends Component {
@@ -54,9 +52,8 @@ export default class GraphViewHandler extends Component {
 
   componentDidMount() {
     var graphId = GetValuesFromQueryString("graphId");
-    var graphType = parseInt(GetValuesFromQueryString("type"));
-    var value = GetValueFromEnum(graphType);
-    const apiUrl = GetApiUrlsAgainstTypeAndEnviornment(UrlTypes[value]);
+    var graphType = GetValuesFromQueryString("type");
+    const apiUrl = GetApiUrlByType(graphType);
 
     if (
       graphType === 0 ||
