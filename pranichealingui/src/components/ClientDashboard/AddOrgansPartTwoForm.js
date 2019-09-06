@@ -75,7 +75,7 @@ class AddOrgansPartTwoForm extends Component {
                 window.location.host +
                 "/GraphView?graphId=" +
                 id +
-                "&type=4";
+                "&type=3";
               window.open(url, "_blank");
             }
             this.onCompleteInsertion();

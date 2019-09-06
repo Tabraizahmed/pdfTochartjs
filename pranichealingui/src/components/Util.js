@@ -8,7 +8,7 @@ export const GetValuesFromQueryString = variableName => {
 };
 
 export const GetGraphsLabelsAgainstGraphType = type => {
-  if (type === 1 || type === 2) {
+  if (type === 0 || type === 1) {
     return [
       "Crown Chakra",
       "Forehead Chakra",
@@ -24,7 +24,7 @@ export const GetGraphsLabelsAgainstGraphType = type => {
       "Sex Chakra",
       "Basic Chakra"
     ];
-  } else if (type === 3) {
+  } else if (type === 2) {
     return [
       "Brain (left)",
       "Brain (right)",
@@ -45,7 +45,7 @@ export const GetGraphsLabelsAgainstGraphType = type => {
       "Stomach",
       "Pancreas"
     ];
-  } else if (type === 4) {
+  } else if (type === 3) {
     return [
       "Large Intestine (left)",
       "Large Intestine (right)",
@@ -67,7 +67,7 @@ export const GetGraphsLabelsAgainstGraphType = type => {
       "Feet (left)",
       "Feet (right)"
     ];
-  } else if (type === 5) {
+  } else if (type === 4) {
     return [
       "Dynamism % \n basic",
       "Ability to attract money % \n basic",
@@ -76,6 +76,16 @@ export const GetGraphsLabelsAgainstGraphType = type => {
       "Physical Violence % \n meng mein",
       "Sixth Sense % \n navel",
       "Depression % \n solar plexus"
+    ];
+  } else if (type === 5) {
+    return [
+      "Chakra Stress \n solar plexus",
+      "Chakra Anger \n solar plexus",
+      "Chakra Fear/phobia \n solar plexus",
+      "Chakra Courage/phobia \n solar plexus",
+      "Chakra Perseverance \n solar plexus",
+      "Chakra Obession \n solar plexus",
+      "Chakra Self-Confidence"
     ];
   }
 };
@@ -102,4 +112,59 @@ export const GetGraphDataAgainstGraphType = data => {
 export const GetReportData = data => {
   var extractData = data.data[0];
   return [extractData.graphReport];
+};
+
+export const GetApiUrlsAgainstTypeAndEnviornment = type => {
+  let url;
+  let result;
+  if (window.location.href.indexOf("berkeleypranichealing") > 0) {
+    url = "http://api.berkeleypranichealing.com/";
+  } else {
+    url = "http://localhost:5514/pdfTochartjs/pranichealingApi/";
+  }
+  switch (type) {
+    case UrlTypes.CHAKRAGRAPHAPI:
+      result = url.concat(ApiUrl.CHAKRAGRAPHAPI);
+      break;
+    case UrlTypes.CHAKRAACTIVATIONGRAPHAPI:
+      result = url.concat(ApiUrl.CHAKRAACTIVATIONGRAPHAPI);
+      break;
+    case UrlTypes.CHAKRAORGANSPARTGRAPHONEAPI:
+      result = url.concat(ApiUrl.CHAKRAORGANSPARTGRAPHONEAPI);
+      break;
+    case UrlTypes.CHAKRAORGANSPARTGRAPHTWOAPI:
+      result = url.concat(ApiUrl.CHAKRAORGANSPARTGRAPHTWOAPI);
+      break;
+    case UrlTypes.D3PSYCHOLOGICALGRAPHONEAPI:
+      result = url.concat(ApiUrl.D3PSYCHOLOGICALGRAPHONEAPI);
+      break;
+    case UrlTypes.D3PSYCHOLOGICALGRAPHTWOAPI:
+      result = url.concat(ApiUrl.D3PSYCHOLOGICALGRAPHTWOAPI);
+      break;
+  }
+  return result;
+};
+const ApiUrl = {
+  CHAKRAGRAPHAPI: "api/tblChakraGraph/Read.php",
+  CHAKRAACTIVATIONGRAPHAPI: "api/tblChakraActivationGraph/Read.php",
+  CHAKRAORGANSPARTGRAPHONEAPI: "api/tblOrgansChartPartOne/Read.php",
+  CHAKRAORGANSPARTGRAPHTWOAPI: "api/tblOrganChartPartTwo/Read.php",
+  D3PSYCHOLOGICALGRAPHONEAPI: "api/tblpsychologicalparameterspart1/Read.php",
+  D3PSYCHOLOGICALGRAPHTWOAPI: "api/tblpsychologicalparameterspart2/Read.php"
+};
+export const UrlTypes = {
+  CHAKRAGRAPHAPI: 0,
+  CHAKRAACTIVATIONGRAPHAPI: 1,
+  CHAKRAORGANSPARTGRAPHONEAPI: 2,
+  CHAKRAORGANSPARTGRAPHTWOAPI: 3,
+  D3PSYCHOLOGICALGRAPHONEAPI: 4,
+  D3PSYCHOLOGICALGRAPHTWOAPI: 5
+};
+
+export const GetValueFromEnum = key => {
+  for (var p in UrlTypes) {
+    if (UrlTypes.hasOwnProperty(p) && UrlTypes[p] === key) {
+      return p;
+    }
+  }
 };

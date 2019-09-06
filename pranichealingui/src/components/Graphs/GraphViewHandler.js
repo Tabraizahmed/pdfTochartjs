@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { GetValuesFromQueryString } from "../Util";
+import { GetClientGraphDetails } from "../MethodsUtil";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ChakraGraph from "./ChakraGraph";
@@ -8,235 +9,64 @@ import D3Graph from "./D3Graph";
 import {
   GetGraphsLabelsAgainstGraphType,
   GetGraphDataAgainstGraphType,
-  GetReportData
+  GetReportData,
+  UrlTypes,
+  GetApiUrlsAgainstTypeAndEnviornment,
+  GetValueFromEnum
 } from "../Util";
 
 export default class GraphViewHandler extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      chakraControl: ""
+      chakraControl: "",
+      errorText: "There is error in application or no data against this Id."
     };
   }
-  loadClientChakraGraph = id => {
-    let readUrl = "";
-    if (window.location.href.indexOf("berkeleypranichealing") > 0) {
-      readUrl =
-        "http://api.berkeleypranichealing.com/api/tblChakraGraph/Read.php";
-    } else {
-      readUrl =
-        "http://localhost:5514/pdfTochartjs/pranichealingApi/api/tblChakraGraph/Read.php";
-    }
-    fetch(readUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Request-Headers": "*",
-        "Access-Control-Request-Method": "*"
-      },
-      mode: "cors",
-      body: JSON.stringify({ id: id })
-    })
-      .then(response => {
-        response.json().then(data => {
-          console.log(data);
-          this.setState({
-            chakraControl: (
-              <ChakraGraph
-                labels={GetGraphsLabelsAgainstGraphType(1)}
-                graphData={GetGraphDataAgainstGraphType(data)}
-                reportData={GetReportData(data)}
-              />
-            )
-          });
-        });
-      })
-      .then(function(data) {
-        if (data !== undefined) {
-          toast.error("Error in application", {
-            position: toast.POSITION.BOTTOM_LEFT
-          });
-        }
-      })
-      .catch(error => console.log(error));
+  RenderChakraGraph = (id, apiUrl, graphType) => {
+    GetClientGraphDetails(id, apiUrl).then(data => {
+      this.setState({
+        chakraControl: (
+          <ChakraGraph
+            labels={GetGraphsLabelsAgainstGraphType(graphType)}
+            graphData={GetGraphDataAgainstGraphType(data)}
+            reportData={GetReportData(data)}
+          />
+        )
+      });
+    });
   };
-  loadClientActivationGraph = id => {
-    let readUrl = "";
-    if (window.location.href.indexOf("berkeleypranichealing") > 0) {
-      readUrl =
-        "http://api.berkeleypranichealing.com/api/tblChakraActivationGraph/Read.php";
-    } else {
-      readUrl =
-        "http://localhost:5514/pdfTochartjs/pranichealingApi/api/tblChakraActivationGraph/Read.php";
-    }
-    fetch(readUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Request-Headers": "*",
-        "Access-Control-Request-Method": "*"
-      },
-      mode: "cors",
-      body: JSON.stringify({ id: id })
-    })
-      .then(response => {
-        response.json().then(data => {
-          this.setState({
-            chakraControl: (
-              <ChakraGraph
-                labels={GetGraphsLabelsAgainstGraphType(2)}
-                graphData={GetGraphDataAgainstGraphType(data)}
-                reportData={GetReportData(data)}
-              />
-            )
-          });
-        });
-      })
-      .then(function(data) {
-        if (data !== undefined) {
-          toast.error("Error in application", {
-            position: toast.POSITION.BOTTOM_LEFT
-          });
-        }
-      })
-      .catch(error => console.log(error));
+
+  RenderD3Graph = (id, apiUrl, graphType) => {
+    GetClientGraphDetails(id, apiUrl).then(data => {
+      this.setState({
+        chakraControl: (
+          <D3Graph
+            labels={GetGraphsLabelsAgainstGraphType(graphType)}
+            graphData={GetGraphDataAgainstGraphType(data)}
+            reportData={GetReportData(data)}
+          />
+        )
+      });
+    });
   };
-  loadOrgansChartPartOneGraph = id => {
-    let readUrl = "";
-    if (window.location.href.indexOf("berkeleypranichealing") > 0) {
-      readUrl =
-        "http://api.berkeleypranichealing.com/api/tblOrgansChartPartOne/Read.php";
-    } else {
-      readUrl =
-        "http://localhost:5514/pdfTochartjs/pranichealingApi/api/tblOrgansChartPartOne/Read.php";
-    }
-    fetch(readUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Request-Headers": "*",
-        "Access-Control-Request-Method": "*"
-      },
-      mode: "cors",
-      body: JSON.stringify({ id: id })
-    })
-      .then(response => {
-        response.json().then(data => {
-          this.setState({
-            chakraControl: (
-              <ChakraGraph
-                labels={GetGraphsLabelsAgainstGraphType(3)}
-                graphData={GetGraphDataAgainstGraphType(data)}
-                reportData={GetReportData(data)}
-              />
-            )
-          });
-        });
-      })
-      .then(function(data) {
-        if (data !== undefined) {
-          toast.error("Error in application", {
-            position: toast.POSITION.BOTTOM_LEFT
-          });
-        }
-      })
-      .catch(error => console.log(error));
-  };
-  loadOrgansChartPartTwoGraph = id => {
-    let readUrl = "";
-    if (window.location.href.indexOf("berkeleypranichealing") > 0) {
-      readUrl =
-        "http://api.berkeleypranichealing.com/api/tblOrganChartPartTwo/Read.php";
-    } else {
-      readUrl =
-        "http://localhost:5514/pdfTochartjs/pranichealingApi/api/tblOrganChartPartTwo/Read.php";
-    }
-    fetch(readUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Request-Headers": "*",
-        "Access-Control-Request-Method": "*"
-      },
-      mode: "cors",
-      body: JSON.stringify({ id: id })
-    })
-      .then(response => {
-        response.json().then(data => {
-          this.setState({
-            chakraControl: (
-              <ChakraGraph
-                labels={GetGraphsLabelsAgainstGraphType(4)}
-                graphData={GetGraphDataAgainstGraphType(data)}
-                reportData={GetReportData(data)}
-              />
-            )
-          });
-        });
-      })
-      .then(function(data) {
-        if (data !== undefined) {
-          toast.error("Error in application", {
-            position: toast.POSITION.BOTTOM_LEFT
-          });
-        }
-      })
-      .catch(error => console.log(error));
-  };
-  loadPsychologicalGraphPartOne = id => {
-    let readUrl = "";
-    if (window.location.href.indexOf("berkeleypranichealing") > 0) {
-      readUrl =
-        "http://api.berkeleypranichealing.com/api/tblpsychologicalparameterspart1/Read.php";
-    } else {
-      readUrl =
-        "http://localhost:5514/pdfTochartjs/pranichealingApi/api/tblpsychologicalparameterspart1/Read.php";
-    }
-    fetch(readUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Request-Headers": "*",
-        "Access-Control-Request-Method": "*"
-      },
-      mode: "cors",
-      body: JSON.stringify({ id: id })
-    })
-      .then(response => {
-        response.json().then(data => {
-          this.setState({
-            chakraControl: (
-              <D3Graph
-                labels={GetGraphsLabelsAgainstGraphType(5)}
-                graphData={GetGraphDataAgainstGraphType(data)}
-                reportData={GetReportData(data)}
-              />
-            )
-          });
-        });
-      })
-      .then(function(data) {
-        if (data !== undefined) {
-          toast.error("Error in application", {
-            position: toast.POSITION.BOTTOM_LEFT
-          });
-        }
-      })
-      .catch(error => console.log(error));
-  };
+
   componentDidMount() {
     var graphId = GetValuesFromQueryString("graphId");
-    var graphType = GetValuesFromQueryString("type");
-    if (graphType === "1") {
-      this.loadClientChakraGraph(graphId);
-    } else if (graphType === "2") {
-      this.loadClientActivationGraph(graphId);
-    } else if (graphType === "3") {
-      this.loadOrgansChartPartOneGraph(graphId);
-    } else if (graphType === "4") {
-      this.loadOrgansChartPartTwoGraph(graphId);
-    } else if (graphType === "5") {
-      this.setState({ chakraControl: <D3Graph /> });
+    var graphType = parseInt(GetValuesFromQueryString("type"));
+    var value = GetValueFromEnum(graphType);
+    const apiUrl = GetApiUrlsAgainstTypeAndEnviornment(UrlTypes[value]);
+
+    if (
+      graphType === 0 ||
+      graphType === 1 ||
+      graphType === 2 ||
+      graphType === 3
+    ) {
+      this.RenderChakraGraph(graphId, apiUrl, graphType);
+    } else if (graphType === 4 || graphType === 5) {
+      this.RenderD3Graph(graphId, apiUrl, graphType);
     }
   }
   render() {

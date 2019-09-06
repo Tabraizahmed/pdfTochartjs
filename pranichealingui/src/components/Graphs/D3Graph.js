@@ -15,6 +15,7 @@ import {
   Util
 } from "bizcharts";
 import RenderReportSection from "./RenderReportSection";
+import $ from "jquery";
 
 export default class D3Graph extends Component {
   constructor(props) {
@@ -22,74 +23,86 @@ export default class D3Graph extends Component {
 
     this.state = {
       graphData: props.graphData,
-      reportData: props.reportData
+      labels: props.labels,
+      reportData: props.reportData,
+      range: [20, 40, 60, 80, 100]
     };
   }
+  removeExtraFields = () => {
+    console.log("Function called");
+    var extraElements = $(".chartDiv").firstChild.children;
+    for (var i = 0; i < extraElements.length - 1; i++) {
+      $(extraElements)[i].remove();
+    }
+  };
   render() {
     const { Region } = Guide;
+
     const data = [
       {
-        title: "Dynamism % \n basic",
+        title: this.state.labels[0],
 
-        ranges: [20, 40, 60, 80, 100],
-        actual: 48,
-        target: 48
+        ranges: this.state.range,
+        actual: parseInt(this.state.graphData[0]),
+        target: parseInt(this.state.graphData[0])
       },
       {
-        title: "Ability to attract money % \n basic",
+        title: this.state.labels[1],
 
-        ranges: [20, 40, 60, 80, 100],
-        actual: 68,
-        target: 68
+        ranges: this.state.range,
+        actual: parseInt(this.state.graphData[1]),
+        target: parseInt(this.state.graphData[1])
       },
       {
-        title: "Productivity % \n basic",
+        title: this.state.labels[2],
 
-        ranges: [20, 40, 60, 80, 100],
-        actual: 60,
-        target: 60
+        ranges: this.state.range,
+        actual: parseInt(this.state.graphData[2]),
+        target: parseInt(this.state.graphData[2])
       },
       {
-        title: "Sexual Drive % \n sex",
+        title: this.state.labels[3],
 
-        ranges: [20, 40, 60, 80, 100],
-        actual: 58,
-        target: 58
+        ranges: this.state.range,
+        actual: parseInt(this.state.graphData[3]),
+        target: parseInt(this.state.graphData[3])
       },
       {
-        title: "Physical Violence % \n meng mein",
+        title: this.state.labels[4],
 
-        ranges: [20, 40, 60, 80, 100],
-        actual: 44,
-        target: 44
+        ranges: this.state.range,
+        actual: parseInt(this.state.graphData[4]),
+        target: parseInt(this.state.graphData[4])
       },
       {
-        title: "Sixth Sense % \n navel",
+        title: this.state.labels[5],
 
-        ranges: [20, 40, 60, 80, 100],
-        actual: 54,
-        target: 54
+        ranges: this.state.range,
+        actual: parseInt(this.state.graphData[5]),
+        target: parseInt(this.state.graphData[5])
       },
       {
-        title: "Depression % \n solar plexus",
+        title: this.state.labels[6],
 
-        ranges: [20, 40, 60, 80, 100],
-        actual: 50,
-        target: 50
+        ranges: this.state.range,
+        actual: parseInt(this.state.graphData[6]),
+        target: parseInt(this.state.graphData[6])
       }
     ];
+
     let y = 0;
     const yGap = 0.1;
     return (
       <div>
         <Chart
+          onAnimationEnd={this.removeExtraFields}
           className="chartDiv"
           height={window.innerHeight}
           padding={[200, 200]}
           forceFit
         >
           {data.map(data => {
-            const ranges = data.ranges;
+            const ranges = [20, 40, 60, 80, 100];
             const cols = {
               actual: {
                 min: 0,
@@ -185,6 +198,7 @@ export default class D3Graph extends Component {
             );
           })}
         </Chart>
+        {<RenderReportSection data={this.state.reportData} />}
       </div>
     );
   }

@@ -63,7 +63,7 @@ class AddPsychologicalFormPartOne extends Component {
                 window.location.host +
                 "/GraphView?graphId=" +
                 id +
-                "&type=5";
+                "&type=4";
               window.open(url, "_blank");
             }
             this.onCompleteInsertion();

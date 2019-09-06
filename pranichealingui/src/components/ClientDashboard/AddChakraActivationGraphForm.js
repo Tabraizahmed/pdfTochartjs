@@ -67,7 +67,7 @@ class AddChakraActivationGraphForm extends Component {
                 window.location.host +
                 "/GraphView?graphId=" +
                 id +
-                "&type=2";
+                "&type=1";
               window.open(url, "_blank");
             }
             this.onCompleteInsertion();

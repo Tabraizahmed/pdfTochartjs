@@ -74,7 +74,7 @@ class AddOrgansGraphForm extends Component {
                 window.location.host +
                 "/GraphView?graphId=" +
                 id +
-                "&type=3";
+                "&type=2";
               window.open(url, "_blank");
             }
             this.onCompleteInsertion();
