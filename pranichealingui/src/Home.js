@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Radar } from "react-chartjs-2";
+import { Helmet } from "react-helmet";
 
 class Home extends Component {
   constructor(props) {
@@ -99,6 +100,9 @@ class Home extends Component {
   render() {
     return (
       <div>
+        <Helmet>
+          <title>Energy Medicine Consulting::Home</title>
+        </Helmet>
         <h3 className="card-subtitle text-center">
           Major chakras size & activation level test
         </h3>

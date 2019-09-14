@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { confirmAlert } from "react-confirm-alert"; // Import
 import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
 import EditClientInfo from "./EditClientInfo";
+import { Helmet } from "react-helmet";
 
 class ClientInfo extends Component {
   constructor() {
@@ -243,6 +244,9 @@ class ClientInfo extends Component {
     }
     return (
       <div>
+        <Helmet>
+          <title>Admin Dashboard</title>
+        </Helmet>
         {addClientSection}
         <div className="table-responsive">
           <div className="text-right">

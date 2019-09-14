@@ -5,6 +5,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ChakraGraph from "./ChakraGraph";
 import D3Graph from "./D3Graph";
+import { Helmet } from "react-helmet";
 
 import {
   GetGraphsLabelsAgainstGraphType,
@@ -37,7 +38,6 @@ export default class GraphViewHandler extends Component {
   };
 
   RenderD3Graph = (id, apiUrl, graphType) => {
-    debugger;
     GetClientGraphDetails(id, apiUrl).then(data => {
       this.setState({
         chakraControl: (
@@ -52,7 +52,6 @@ export default class GraphViewHandler extends Component {
   };
 
   componentDidMount() {
-    debugger;
     var graphId = GetValuesFromQueryString("graphId");
     var graphType = parseInt(GetValuesFromQueryString("type"));
     const apiUrl = GetApiUrlByType(graphType);
@@ -71,6 +70,9 @@ export default class GraphViewHandler extends Component {
   render() {
     return (
       <div>
+        <Helmet>
+          <title>Client Graph</title>
+        </Helmet>
         <ToastContainer />
         {this.state.chakraControl}
       </div>

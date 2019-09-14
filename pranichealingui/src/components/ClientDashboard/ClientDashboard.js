@@ -10,7 +10,7 @@ import AddPsychologicalFormPartTwo from "./AddPsychologicalFormPartTwo";
 import { GetValuesFromQueryString } from "../Util";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { Helmet } from "react-helmet";
 export default class ClientDashboard extends Component {
   constructor() {
     super();
@@ -224,6 +224,9 @@ export default class ClientDashboard extends Component {
 
     return (
       <div>
+        <Helmet>
+          <title>Client Dashboard</title>
+        </Helmet>
         <ToastContainer />
         <div className="row">
           <div className="col-12">
