@@ -132,6 +132,7 @@ export default class ClientDashboard extends Component {
         break;
       case 6:
         this.setState({ ShowPsychologicalGraphPartTwo: true });
+        break;
       default:
     }
   };

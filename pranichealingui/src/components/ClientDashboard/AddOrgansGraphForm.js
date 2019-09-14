@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { GetValuesFromQueryString } from "../Util";
-import { ToastContainer, toast } from "react-toastify";
+import { GetValuesFromQueryString, UrlTypes, GetApiUrlByType } from "../Util";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { LoadGraphView, ExceptionHandler } from "../MethodsUtil";
 
 class AddOrgansGraphForm extends Component {
   constructor(props) {
@@ -44,15 +45,7 @@ class AddOrgansGraphForm extends Component {
     this.props.formCancelHandler();
   };
   SaveChakraForm = isView => {
-    console.log(this.state);
-    let readUrl = "";
-    if (window.location.href.indexOf("berkeleypranichealing") > 0) {
-      readUrl =
-        "http://api.berkeleypranichealing.com/api/tblOrgansChartPartOne/Create.php";
-    } else {
-      readUrl =
-        "http://localhost:5514/pdfTochartjs/pranichealingApi/api/tblOrgansChartPartOne/Create.php";
-    }
+    let readUrl = GetApiUrlByType(UrlTypes.ADDORGANSCHARTPARTONEGRAPH);
     fetch(readUrl, {
       method: "POST",
       headers: {
@@ -65,28 +58,14 @@ class AddOrgansGraphForm extends Component {
     })
       .then(response => {
         response.json().then(data => {
-          console.log(response);
-          let id = parseInt(data);
-          if (id > 0) {
-            if (isView) {
-              let url =
-                "http://" +
-                window.location.host +
-                "/GraphView?graphId=" +
-                id +
-                "&type=2";
-              window.open(url, "_blank");
-            }
-            this.onCompleteInsertion();
+          if (isView) {
+            LoadGraphView(data, 0);
           }
+          this.onCompleteInsertion();
         });
       })
       .then(function(data) {
-        if (data !== undefined) {
-          toast.error("Error in application", {
-            position: toast.POSITION.BOTTOM_LEFT
-          });
-        }
+        ExceptionHandler(data);
       })
       .catch(error => console.log(error));
   };

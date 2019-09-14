@@ -159,6 +159,7 @@ const GetApiUrlsAgainstTypeAndEnviornment = type => {
     case UrlTypes.D3PSYCHOLOGICALGRAPHTWOAPI:
       result = url.concat(ApiUrl.ADDPSYCHOLOGICALPARTTWOGRAPHAPI);
       break;
+    default:
   }
   return result;
 };

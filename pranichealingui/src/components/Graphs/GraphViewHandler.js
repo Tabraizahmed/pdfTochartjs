@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { GetValuesFromQueryString } from "../Util";
 import { GetClientGraphDetails } from "../MethodsUtil";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ChakraGraph from "./ChakraGraph";
 import D3Graph from "./D3Graph";

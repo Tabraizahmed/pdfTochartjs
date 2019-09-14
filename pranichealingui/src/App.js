@@ -11,7 +11,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 function App() {
-  const reload = () => window.location.reload();
   return (
     <Router>
       <div>

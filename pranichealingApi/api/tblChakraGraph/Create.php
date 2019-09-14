@@ -22,7 +22,7 @@ $ChakraGraph=new tblChakra($db);
 
 // get posted data
 $data = json_decode(file_get_contents("php://input"));
-return $data;
+
 if(isset($data->clientId)){
     // Data mapping 
 $ChakraGraph->clientId=$data->clientId;

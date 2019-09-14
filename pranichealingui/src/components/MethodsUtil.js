@@ -12,7 +12,7 @@ export const GetClientGraphDetails = (id, apiUrl) => {
     },
     mode: "cors",
     body: JSON.stringify({ id: id })
-  }).then(res => (res.status != 204 ? res.json() : ThrowException()));
+  }).then(res => (res.status !== 204 ? res.json() : ThrowException()));
 };
 export const AddGraphsFormApiRequest = (formData, apiUrl) => {
   return fetch(apiUrl, {
@@ -24,7 +24,7 @@ export const AddGraphsFormApiRequest = (formData, apiUrl) => {
     },
     mode: "cors",
     body: JSON.stringify({ formData })
-  }).then(res => (res.status != 204 ? res.json() : ThrowException()));
+  }).then(res => (res.status !== 204 ? res.json() : ThrowException()));
 };
 
 function ThrowException() {
@@ -32,15 +32,19 @@ function ThrowException() {
     position: toast.POSITION.BOTTOM_LEFT
   });
 }
-export const LoadGraphView = (graphid, graphType, showGraph) => {
-  if (showGraph) {
-    let url =
-      "http://" +
-      window.location.host +
-      "/GraphView?graphId=" +
-      graphid +
-      "&type=" +
-      graphType;
-    window.open(url, "_blank");
+
+export const ExceptionHandler = data => {
+  if (data !== undefined) {
+    ThrowException();
   }
+};
+export const LoadGraphView = (graphid, graphType) => {
+  let url =
+    "http://" +
+    window.location.host +
+    "/GraphView?graphId=" +
+    graphid +
+    "&type=" +
+    graphType;
+  window.open(url, "_blank");
 };
