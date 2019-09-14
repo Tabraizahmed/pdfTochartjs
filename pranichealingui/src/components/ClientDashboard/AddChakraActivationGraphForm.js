@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { GetValuesFromQueryString } from "../Util";
+import { GetValuesFromQueryString, GetApiUrlByType } from "../Util";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { AddGraphsFormApiRequest, LoadGraphView } from "../MethodsUtil";
 
 class AddChakraActivationGraphForm extends Component {
   constructor(props) {

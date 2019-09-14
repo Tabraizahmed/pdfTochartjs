@@ -37,6 +37,7 @@ export default class GraphViewHandler extends Component {
   };
 
   RenderD3Graph = (id, apiUrl, graphType) => {
+    debugger;
     GetClientGraphDetails(id, apiUrl).then(data => {
       this.setState({
         chakraControl: (
@@ -51,8 +52,9 @@ export default class GraphViewHandler extends Component {
   };
 
   componentDidMount() {
+    debugger;
     var graphId = GetValuesFromQueryString("graphId");
-    var graphType = GetValuesFromQueryString("type");
+    var graphType = parseInt(GetValuesFromQueryString("type"));
     const apiUrl = GetApiUrlByType(graphType);
 
     if (

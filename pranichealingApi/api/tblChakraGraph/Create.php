@@ -7,10 +7,8 @@ header("Access-Control-Allow-Credentials:true");
 header('Access-Control-Max-Age: 1000');
 header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization');
 
-
-
-
 include_once '../../config/Database.php';
+
 
 // Model to insert
 include_once '../../Models/ChakraGraph.php';
@@ -24,7 +22,7 @@ $ChakraGraph=new tblChakra($db);
 
 // get posted data
 $data = json_decode(file_get_contents("php://input"));
-
+return $data;
 if(isset($data->clientId)){
     // Data mapping 
 $ChakraGraph->clientId=$data->clientId;
@@ -50,7 +48,7 @@ $chakraGraphId=$ChakraGraph->Create();
 if($chakraGraphId>0){
      // set response code - 201 created
      http_response_code(201);
-     
+    
      // tell the user
      echo json_encode($chakraGraphId);
 }

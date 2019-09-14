@@ -26,6 +26,7 @@ export const AddGraphsFormApiRequest = (formData, apiUrl) => {
     body: JSON.stringify({ formData })
   }).then(res => (res.status != 204 ? res.json() : ThrowException()));
 };
+
 function ThrowException() {
   toast.error(errorText, {
     position: toast.POSITION.BOTTOM_LEFT

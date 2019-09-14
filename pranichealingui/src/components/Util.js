@@ -141,6 +141,24 @@ const GetApiUrlsAgainstTypeAndEnviornment = type => {
     case UrlTypes.D3PSYCHOLOGICALGRAPHTWOAPI:
       result = url.concat(ApiUrl.D3PSYCHOLOGICALGRAPHTWOAPI);
       break;
+    case UrlTypes.ADDCHAKRAGRAPH:
+      result = url.concat(ApiUrl.ACHAKRAGRAPHAPI);
+      break;
+    case UrlTypes.ADDCHAKRAACTIVATIONGRAPH:
+      result = url.concat(ApiUrl.ACHAKRAACTIVATIONGRAPHAPI);
+      break;
+    case UrlTypes.ADDORGANSCHARTPARTONEGRAPH:
+      result = url.concat(ApiUrl.ADDORGANSCHARTPARTONEGRAPHAPI);
+      break;
+    case UrlTypes.ADDORGANSCHARTPARTTWOGRAPH:
+      result = url.concat(ApiUrl.ADDORGANSCHARTPARTTWOGRAPHAPI);
+      break;
+    case UrlTypes.D3PSYCHOLOGICALGRAPHONEAPI:
+      result = url.concat(ApiUrl.ADDPSYCHOLOGICALPARTONEGRAPHAPI);
+      break;
+    case UrlTypes.D3PSYCHOLOGICALGRAPHTWOAPI:
+      result = url.concat(ApiUrl.ADDPSYCHOLOGICALPARTTWOGRAPHAPI);
+      break;
   }
   return result;
 };
@@ -151,6 +169,7 @@ const ApiUrl = {
   CHAKRAORGANSPARTGRAPHTWOAPI: "api/tblOrganChartPartTwo/Read.php",
   D3PSYCHOLOGICALGRAPHONEAPI: "api/tblpsychologicalparameterspart1/Read.php",
   D3PSYCHOLOGICALGRAPHTWOAPI: "api/tblpsychologicalparameterspart2/Read.php",
+  // Add Graph forms URL
   ACHAKRAGRAPHAPI: "api/tblChakraGraph/Create.php",
   ACHAKRAACTIVATIONGRAPHAPI: "api/tblChakraActivationGraph/Create.php",
   ADDORGANSCHARTPARTONEGRAPHAPI: "api/tblOrgansChartPartOne/Create.php",
