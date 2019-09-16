@@ -109,3 +109,6 @@ body {
   border: 0px;
   border-bottom: 1px solid black;
 }
+.chartdiv {
+  height: 400px !important;
+}

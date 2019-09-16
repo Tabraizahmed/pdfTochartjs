@@ -1,12 +1,5 @@
 import React, { Component } from "react";
-import {
-  Chart,
-  Geom,
-  Axis,
-  Coord,
-  View,
-  Guide,
-} from "bizcharts";
+import { Chart, Geom, Axis, Coord, View, Guide } from "bizcharts";
 import RenderReportSection from "./RenderReportSection";
 import $ from "jquery";
 
@@ -83,13 +76,12 @@ export default class D3Graph extends Component {
       }
     ];
 
-    let y = 0;
+    let y = -1;
     const yGap = 0.1;
     return (
       <div>
         <Chart
-          onAnimationEnd={this.removeExtraFields}
-          className="chartDiv"
+          className="chartdiv"
           height={window.innerHeight}
           padding={[200, 200]}
           forceFit
@@ -109,85 +101,86 @@ export default class D3Graph extends Component {
               }
             };
             return (
-              <View
-                className="view"
-                key={data.title}
-                start={{
-                  x: 0,
-                  y: y
-                }}
-                end={{
-                  x: 1,
-                  y: y + yGap
-                }}
-                data={[data]}
-                scale={cols}
-              >
-                <Coord transpose />
-                <Axis name="actual" position="right" />
-                <Axis name="target" visible={false} />
-                <Geom
-                  type="point"
-                  position="title*target"
-                  color="#eb2828"
-                  shape="line"
-                  size={12}
-                  style={{
-                    lineWidth: 2
+              <div>
+                <View
+                  className="view"
+                  key={data.title}
+                  start={{
+                    x: 0,
+                    y: y
                   }}
-                />
-                <Geom
-                  type="interval"
-                  position="title*actual"
-                  color="#663333"
-                  size={10}
-                />
-                <Guide>
-                  <Region
-                    start={[-1, 0]}
-                    end={[1, ranges[0]]}
+                  end={{
+                    x: 1,
+                    y: y + yGap
+                  }}
+                  data={[data]}
+                  scale={cols}
+                >
+                  <Coord transpose />
+                  <Axis name="actual" position="right" />
+                  <Axis name="target" visible={false} />
+                  <Geom
+                    type="point"
+                    position="title*target"
+                    color="#eb2828"
+                    shape="line"
+                    size={12}
                     style={{
-                      fill: "#66cc66",
-                      fillOpacity: 0.85
+                      lineWidth: 2
                     }}
                   />
-                  <Region
-                    start={[-1, ranges[0]]}
-                    end={[1, ranges[1]]}
-                    style={{
-                      fill: "#99cc99",
-                      fillOpacity: 0.85
-                    }}
+                  <Geom
+                    type="interval"
+                    position="title*actual"
+                    color="#663333"
+                    size={10}
                   />
-                  <Region
-                    start={[-1, ranges[1]]}
-                    end={[1, ranges[2]]}
-                    style={{
-                      fill: "#ffcc99",
-                      fillOpacity: 0.85
-                    }}
-                  />
+                  <Guide>
+                    <Region
+                      start={[-1, 0]}
+                      end={[1, ranges[0]]}
+                      style={{
+                        fill: "#66cc66",
+                        fillOpacity: 0.85
+                      }}
+                    />
+                    <Region
+                      start={[-1, ranges[0]]}
+                      end={[1, ranges[1]]}
+                      style={{
+                        fill: "#99cc99",
+                        fillOpacity: 0.85
+                      }}
+                    />
+                    <Region
+                      start={[-1, ranges[1]]}
+                      end={[1, ranges[2]]}
+                      style={{
+                        fill: "#ffcc99",
+                        fillOpacity: 0.85
+                      }}
+                    />
 
-                  <Region
-                    start={[-1, ranges[1]]}
-                    end={[1, ranges[3]]}
-                    style={{
-                      fill: "#cc9999",
-                      fillOpacity: 0.85
-                    }}
-                  />
-                  <Region
-                    start={[-1, ranges[1]]}
-                    end={[1, ranges[4]]}
-                    style={{
-                      fill: "#cc6666",
-                      fillOpacity: 0.85
-                    }}
-                  />
-                </Guide>
-
-                {(y += yGap + 0.125)}
-              </View>
+                    <Region
+                      start={[-1, ranges[1]]}
+                      end={[1, ranges[3]]}
+                      style={{
+                        fill: "#cc9999",
+                        fillOpacity: 0.85
+                      }}
+                    />
+                    <Region
+                      start={[-1, ranges[1]]}
+                      end={[1, ranges[4]]}
+                      style={{
+                        fill: "#cc6666",
+                        fillOpacity: 0.85
+                      }}
+                    />
+                  </Guide>
+                  <div className="d-none">{(y += yGap + 0.125)}</div>
+                </View>
+              </div>
             );
           })}
         </Chart>

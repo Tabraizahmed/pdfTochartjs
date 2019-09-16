@@ -159,6 +159,9 @@ const GetApiUrlsAgainstTypeAndEnviornment = type => {
     case UrlTypes.D3PSYCHOLOGICALGRAPHTWOAPI:
       result = url.concat(ApiUrl.ADDPSYCHOLOGICALPARTTWOGRAPHAPI);
       break;
+    case UrlTypes.GETCLIENTGRAPHSIDS:
+      result = url.concat(ApiUrl.GETCLIENTGRAPHSIDSAPI);
+      break;
     default:
   }
   return result;
@@ -178,7 +181,8 @@ const ApiUrl = {
   ADDPSYCHOLOGICALPARTONEGRAPHAPI:
     "api/tblpsychologicalparameterspart1/Create.php",
   ADDPSYCHOLOGICALPARTTWOGRAPHAPI:
-    "api/tblpsychologicalparameterspart2/Create.php"
+    "api/tblpsychologicalparameterspart2/Create.php",
+  GETCLIENTGRAPHSIDSAPI: "api/tblclientgraphsdetail/Read.php"
 };
 export const UrlTypes = {
   CHAKRAGRAPHAPI: 0,
@@ -192,7 +196,8 @@ export const UrlTypes = {
   ADDORGANSCHARTPARTONEGRAPH: 8,
   ADDORGANSCHARTPARTTWOGRAPH: 9,
   ADDPSYCHOLOGICALPARTONE: 10,
-  ADDPSYCHOLOGICALPARTTWO: 11
+  ADDPSYCHOLOGICALPARTTWO: 11,
+  GETCLIENTGRAPHSIDS: 12
 };
 
 const GetValueFromEnum = key => {

@@ -6,6 +6,7 @@ import Home from "./Home";
 import Dashboard from "./components/AdminDashboard/Dashboard";
 import ClientDashboard from "./components/ClientDashboard/ClientDashboard";
 import GraphViewHandler from "./components/Graphs/GraphViewHandler";
+import Report from "./components/ClientDashboard/Report";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -21,6 +22,7 @@ function App() {
             <Route exact path="/Dashboard" component={Dashboard} />
             <Route exact path="/ClientDashboard" component={ClientDashboard} />
             <Route exact path="/GraphView" component={GraphViewHandler} />
+            <Route exact path="/Report" component={Report} />
           </Switch>
         </div>
         <Footer />
